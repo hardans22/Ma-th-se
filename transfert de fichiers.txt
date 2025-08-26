@@ -1,0 +1,4 @@
+scp -r ~/home/harcenage/Documents/PhD_studies/Ma_thèse/Code/instances_xlsx danhar@maxwell04.umontreal.cirrelt.lan:~/Documents/Code/
+
+scp -r  danhar@maxwell04.umontreal.cirrelt.lan:~/Documents/Code/ ~/home/harcenage/Documents/PhD_studies/Ma_thèse/Code/instances_xlsx
+
