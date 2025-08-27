@@ -2,18 +2,18 @@ INSTANCE 86FL_7A_3D
 PREPROCESSING : true
 -----------------------INSTANCE 1--------------------------
 ✅ Solution trouvée (status: OPTIMAL)
-🎯 Objective value: 57839.988637043585
-⏱️ Time used: 1.9459
+🎯 Objective value: 57839.98985955043
+⏱️ Time used: 2.0396
 Nombre de vols satisfaits: 40
 Nombre de vols non satisfaits: 0
 
 ✈️ Paths for each aircraft:
 
-🛩️ Aircraft N440AS path: s ➡️  N440AS ➡️  SEA_OAK_355_463_OAK_SEA_555_661 ➡️  SEA_ANC_727_875_ANC_SEA_1058_1300 ➡️  SEA_MSP_2060_2368_MSP_SEA_2421_2525 ➡️  SEA_SFO_2576_2700 ➡️  SFO_PDX_3300_3406 ➡️  PDX_SFO_3480_3582 ➡️  SFO_PDX_3645_3758 ➡️  PDX_SNA_3808_3937_SNA_PDX_3983_4136 ➡️  t
+🛩️ Aircraft N440AS path: s ➡️  N440AS ➡️  SEA_OAK_355_463_OAK_SEA_555_661 ➡️  SEA_ANC_727_875_ANC_SEA_1058_1300 ➡️  SEA_PHL_1952_2422_PHL_SEA_2496_2679 ➡️  SEA_LAS_2834_2959_LAS_SEA_3300_3469 ➡️  SEA_PHX_3519_3734_PHX_SEA_3781_3905 ➡️  SEA_SFO_3952_4078 ➡️  SFO_SLC_4130_4304 ➡️  t
 
-🛩️ Aircraft N622AS path: s ➡️  N622AS ➡️  SEA_ONT_429_566_ONT_SEA_617_763 ➡️  SEA_DFW_825_1192_DFW_SEA_1238_1374 ➡️  SEA_PHL_1952_2422_PHL_SEA_2496_2679 ➡️  SEA_LAS_2834_2959_LAS_SEA_3300_3469 ➡️  SEA_PHX_3519_3734_PHX_SEA_3781_3905 ➡️  SEA_SFO_3952_4078 ➡️  SFO_SLC_4130_4304 ➡️  t
+🛩️ Aircraft N622AS path: s ➡️  N622AS ➡️  SEA_ONT_429_566_ONT_SEA_617_763 ➡️  SEA_DFW_825_1192_DFW_SEA_1238_1374 ➡️  SEA_MSP_2060_2368_MSP_SEA_2421_2525 ➡️  SEA_SFO_2576_2700 ➡️  SFO_PDX_3300_3406 ➡️  PDX_SFO_3480_3582 ➡️  SFO_PDX_3645_3758 ➡️  PDX_SNA_3808_3937_SNA_PDX_3983_4136 ➡️  t
 
-🛩️ Aircraft N518AS path: s ➡️  N518AS ➡️  SEA_ANC_539_705_ANC_HNL_796_1111_HNL_ANC_1312_1723_ANC_SCC_1868_1977_SCC_BRW_2020_2071_BRW_FAI_2111_2195_FAI_ANC_2235_2292_ANC_CDV_2386_2431_CDV_YAK_2478_2529_YAK_JNU_2571_2620_JNU_SEA_2661_2837 ➡️  SEA_SNA_3342_3487_SNA_SEA_3532_3701 ➡️  SEA_PSP_3795_3951_PSP_SEA_3991_4177 ➡️  t
+🛩️ Aircraft N518AS path: s ➡️  N518AS ➡️  SEA_ANC_539_705_ANC_HNL_796_1111_HNL_ANC_1312_1723_ANC_SCC_1868_1977_SCC_BRW_2020_2071_BRW_FAI_2111_2195_FAI_ANC_2235_2292_ANC_CDV_2386_2431_CDV_YAK_2478_2529_YAK_JNU_2571_2620_JNU_SEA_2661_2837 ➡️  SEA_LIH_3395_3677_LIH_SEA_3734_4198 ➡️  t
 
 🛩️ Aircraft N408AS path: s ➡️  N408AS ➡️  SEA_SFO_362_487_SFO_PDX_540_644_PDX_SJC_683_790_SJC_PDX_828_928_PDX_PSP_1005_1138_PSP_SEA_1183_1336 ➡️  SEA_SMF_1852_1947_SMF_OGG_2041_2266_OGG_SJC_2339_2740 ➡️  SJC_SEA_3475_3608 ➡️  SEA_DEN_3683_3904_DEN_SEA_3978_4126 ➡️  SEA_ONT_4193_4319 ➡️  t
 
@@ -21,43 +21,43 @@ Nombre de vols non satisfaits: 0
 
 🛩️ Aircraft N457AS_FAI_SEA_67_345 path: s ➡️  N457AS_FAI_SEA_67_345 ➡️  SEA_LIH_509_764_LIH_SEA_853_1291 ➡️  SEA_ONT_1865_2002_ONT_SEA_2054_2210 ➡️  SEA_SMF_2303_2398_SMF_SEA_2449_2561 ➡️  SEA_ANC_2635_2820_ANC_PDX_2926_3171 ➡️  PDX_SAN_3271_3420 ➡️  t
 
-🛩️ Aircraft N618AS_DEN_SEA_349_456 path: s ➡️  N618AS_DEN_SEA_349_456 ➡️  SEA_SMF_540_650_SMF_SEA_684_793 ➡️  SEA_DEN_845_1076_DEN_SEA_1128_1244 ➡️  SEA_SFO_1809_1927_SFO_PDX_1977_2091 ➡️  PDX_SJC_2134_2231_SJC_PDX_2274_2383 ➡️  PDX_PSP_2448_2584_PSP_SEA_2623_2804 ➡️  SEA_LIH_3395_3677_LIH_SEA_3734_4198 ➡️  t
+🛩️ Aircraft N618AS_DEN_SEA_349_456 path: s ➡️  N618AS_DEN_SEA_349_456 ➡️  SEA_SMF_540_650_SMF_SEA_684_793 ➡️  SEA_DEN_845_1076_DEN_SEA_1128_1244 ➡️  SEA_SFO_1809_1927_SFO_PDX_1977_2091 ➡️  PDX_SJC_2134_2231_SJC_PDX_2274_2383 ➡️  PDX_PSP_2448_2584_PSP_SEA_2623_2804 ➡️  SEA_SNA_3342_3487_SNA_SEA_3532_3701 ➡️  SEA_PSP_3795_3951_PSP_SEA_3991_4177 ➡️  t
 
-🛠️ Maintenance at node SEA_PHL_1952_2422_PHL_SEA_2496_2679 by aircraft N622AS | ρ=696.0; λ=5.0; φ=0.0
-🛠️ Maintenance at node SEA_LIH_3395_3677_LIH_SEA_3734_4198 by aircraft N618AS_DEN_SEA_349_456 | ρ=491.99943185217916; λ=0.0; φ=0.0
-🛠️ Maintenance at node SFO_PDX_3300_3406 by aircraft N440AS | ρ=445.0; λ=2.0; φ=0.0
+🛠️ Maintenance at node SEA_SNA_3342_3487_SNA_SEA_3532_3701 by aircraft N618AS_DEN_SEA_349_456 | ρ=491.9994929775214; λ=0.0; φ=0.0
+🛠️ Maintenance at node SEA_PHL_1952_2422_PHL_SEA_2496_2679 by aircraft N440AS | ρ=909.0; λ=5.0; φ=0.0
+🛠️ Maintenance at node SFO_PDX_3300_3406 by aircraft N622AS | ρ=232.0; λ=2.0; φ=0.0
 🛠️ Maintenance at node SJC_SEA_3475_3608 by aircraft N408AS | ρ=209.0; λ=0.0; φ=0.0
 
-Nombre de maintenances au total: 4.0000000920906755
+Nombre de maintenances au total: 4.0000009145318
 Stations de maintenance utilisées: Any["SJC", "SFO", "SEA"]
 Nombre de stations de maintenance utilisées: 3
 
 -----------------------INSTANCE 2--------------------------
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective value: 27360.0
-⏱️ Time used: 0.4092
+⏱️ Time used: 0.4148
 Nombre de vols satisfaits: 40
 Nombre de vols non satisfaits: 0
 
 ✈️ Paths for each aircraft:
 
-🛩️ Aircraft N440AS path: s ➡️  N440AS ➡️  SEA_ONT_429_566_ONT_SEA_617_763 ➡️  SEA_DFW_825_1192_DFW_SEA_1238_1374 ➡️  SEA_SFO_1809_1927_SFO_PDX_1977_2091 ➡️  PDX_SJC_2134_2231_SJC_PDX_2274_2383 ➡️  PDX_PSP_2448_2584_PSP_SEA_2623_2804 ➡️  SEA_SNA_3342_3487_SNA_SEA_3532_3701 ➡️  SEA_PSP_3795_3951_PSP_SEA_3991_4177 ➡️  t
+🛩️ Aircraft N440AS path: s ➡️  N440AS ➡️  SEA_SFO_362_487_SFO_PDX_540_644_PDX_SJC_683_790_SJC_PDX_828_928_PDX_PSP_1005_1138_PSP_SEA_1183_1336 ➡️  SEA_SMF_1852_1947_SMF_OGG_2041_2266_OGG_SJC_2339_2740 ➡️  SJC_SEA_3475_3608 ➡️  SEA_DEN_3683_3904_DEN_SEA_3978_4126 ➡️  SEA_ONT_4193_4319 ➡️  t
 
-🛩️ Aircraft N622AS path: s ➡️  N622AS ➡️  SEA_SMF_540_650_SMF_SEA_684_793 ➡️  SEA_DEN_845_1076_DEN_SEA_1128_1244 ➡️  SEA_MSP_2060_2368_MSP_SEA_2421_2525 ➡️  SEA_SFO_2576_2700 ➡️  SFO_PDX_3300_3406 ➡️  PDX_DFW_3481_3802_DFW_PDX_3875_4013 ➡️  PDX_PHX_4080_4278 ➡️  t
+🛩️ Aircraft N622AS path: s ➡️  N622AS ➡️  SEA_OAK_355_463_OAK_SEA_555_661 ➡️  SEA_ANC_727_875_ANC_SEA_1058_1300 ➡️  SEA_MSP_2060_2368_MSP_SEA_2421_2525 ➡️  SEA_SFO_2576_2700 ➡️  SFO_PDX_3300_3406 ➡️  PDX_DFW_3481_3802_DFW_PDX_3875_4013 ➡️  PDX_PHX_4080_4278 ➡️  t
 
-🛩️ Aircraft N518AS path: s ➡️  N518AS ➡️  SEA_OAK_355_463_OAK_SEA_555_661 ➡️  SEA_ANC_727_875_ANC_SEA_1058_1300 ➡️  SEA_PHL_1952_2422_PHL_SEA_2496_2679 ➡️  SEA_LAS_2834_2959_LAS_SEA_3300_3469 ➡️  SEA_PHX_3519_3734_PHX_SEA_3781_3905 ➡️  SEA_SFO_3952_4078 ➡️  SFO_SLC_4130_4304 ➡️  t
+🛩️ Aircraft N518AS path: s ➡️  N518AS ➡️  SEA_SMF_540_650_SMF_SEA_684_793 ➡️  SEA_DEN_845_1076_DEN_SEA_1128_1244 ➡️  SEA_PHL_1952_2422_PHL_SEA_2496_2679 ➡️  SEA_LAS_2834_2959_LAS_SEA_3300_3469 ➡️  SEA_PHX_3519_3734_PHX_SEA_3781_3905 ➡️  SEA_SFO_3952_4078 ➡️  SFO_SLC_4130_4304 ➡️  t
 
 🛩️ Aircraft N408AS path: s ➡️  N408AS ➡️  SEA_LIH_509_764_LIH_SEA_853_1291 ➡️  SEA_ONT_1865_2002_ONT_SEA_2054_2210 ➡️  SEA_SMF_2303_2398_SMF_SEA_2449_2561 ➡️  SEA_ANC_2635_2820_ANC_PDX_2926_3171 ➡️  PDX_SAN_3271_3420 ➡️  t
 
-🛩️ Aircraft N570AS path: s ➡️  N570AS ➡️  SEA_SFO_362_487_SFO_PDX_540_644_PDX_SJC_683_790_SJC_PDX_828_928_PDX_PSP_1005_1138_PSP_SEA_1183_1336 ➡️  SEA_SMF_1852_1947_SMF_OGG_2041_2266_OGG_SJC_2339_2740 ➡️  SJC_SEA_3475_3608 ➡️  SEA_DEN_3683_3904_DEN_SEA_3978_4126 ➡️  SEA_ONT_4193_4319 ➡️  t
+🛩️ Aircraft N570AS path: s ➡️  N570AS ➡️  SEA_ONT_429_566_ONT_SEA_617_763 ➡️  SEA_DFW_825_1192_DFW_SEA_1238_1374 ➡️  SEA_SFO_1809_1927_SFO_PDX_1977_2091 ➡️  PDX_SJC_2134_2231_SJC_PDX_2274_2383 ➡️  PDX_PSP_2448_2584_PSP_SEA_2623_2804 ➡️  SEA_SNA_3342_3487_SNA_SEA_3532_3701 ➡️  SEA_PSP_3795_3951_PSP_SEA_3991_4177 ➡️  t
 
 🛩️ Aircraft N457AS_FAI_SEA_67_345 path: s ➡️  N457AS_FAI_SEA_67_345 ➡️  SEA_DTW_536_964_DTW_SEA_1025_1150 ➡️  SEA_LAX_1196_1341_LAX_PDX_1838_1981 ➡️  PDX_DFW_2033_2376_DFW_PDX_2451_2568 ➡️  PDX_SAN_2610_2741_SAN_PDX_3266_3427 ➡️  PDX_SFO_3480_3582 ➡️  SFO_PDX_3645_3758 ➡️  PDX_SNA_3808_3937_SNA_PDX_3983_4136 ➡️  t
 
 🛩️ Aircraft N618AS_DEN_SEA_349_456 path: s ➡️  N618AS_DEN_SEA_349_456 ➡️  SEA_ANC_539_705_ANC_HNL_796_1111_HNL_ANC_1312_1723_ANC_SCC_1868_1977_SCC_BRW_2020_2071_BRW_FAI_2111_2195_FAI_ANC_2235_2292_ANC_CDV_2386_2431_CDV_YAK_2478_2529_YAK_JNU_2571_2620_JNU_SEA_2661_2837 ➡️  SEA_LIH_3395_3677_LIH_SEA_3734_4198 ➡️  t
 
-🛠️ Maintenance at node SEA_SNA_3342_3487_SNA_SEA_3532_3701 by aircraft N440AS | ρ=369.0; λ=1.0; φ=0.0
+🛠️ Maintenance at node SEA_SNA_3342_3487_SNA_SEA_3532_3701 by aircraft N570AS | ρ=218.0; λ=0.0; φ=0.0
 🛠️ Maintenance at node SEA_LIH_3395_3677_LIH_SEA_3734_4198 by aircraft N618AS_DEN_SEA_349_456 | ρ=446.0; λ=0.0; φ=0.0
-🛠️ Maintenance at node SJC_SEA_3475_3608 by aircraft N570AS | ρ=253.0; λ=1.0; φ=0.0
+🛠️ Maintenance at node SJC_SEA_3475_3608 by aircraft N440AS | ρ=404.0; λ=2.0; φ=0.0
 
 Nombre de maintenances au total: 3.0
 Stations de maintenance utilisées: Any["SJC", "SEA"]
@@ -66,7 +66,7 @@ Nombre de stations de maintenance utilisées: 2
 -----------------------INSTANCE 3--------------------------
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective value: 7000.0
-⏱️ Time used: 0.1501
+⏱️ Time used: 0.1427
 Nombre de vols satisfaits: 40
 Nombre de vols non satisfaits: 0
 
@@ -95,7 +95,7 @@ Nombre de stations de maintenance utilisées: 1
 -----------------------INSTANCE 4--------------------------
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective value: 10340.0
-⏱️ Time used: 0.201
+⏱️ Time used: 0.1873
 Nombre de vols satisfaits: 40
 Nombre de vols non satisfaits: 0
 
@@ -126,7 +126,7 @@ Nombre de stations de maintenance utilisées: 3
 -----------------------INSTANCE 5--------------------------
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective value: 4580.0
-⏱️ Time used: 0.187
+⏱️ Time used: 0.1811
 Nombre de vols satisfaits: 40
 Nombre de vols non satisfaits: 0
 
@@ -156,7 +156,7 @@ Nombre de stations de maintenance utilisées: 2
 -----------------------INSTANCE 6--------------------------
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective value: 8000.0
-⏱️ Time used: 0.3229
+⏱️ Time used: 0.3066
 Nombre de vols satisfaits: 40
 Nombre de vols non satisfaits: 0
 
@@ -186,7 +186,7 @@ Nombre de stations de maintenance utilisées: 2
 -----------------------INSTANCE 7--------------------------
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective value: 6340.0
-⏱️ Time used: 0.0934
+⏱️ Time used: 0.0901
 Nombre de vols satisfaits: 40
 Nombre de vols non satisfaits: 0
 
@@ -215,7 +215,7 @@ Nombre de stations de maintenance utilisées: 1
 -----------------------INSTANCE 8--------------------------
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective value: 63680.0
-⏱️ Time used: 1.2022
+⏱️ Time used: 1.1805
 Nombre de vols satisfaits: 40
 Nombre de vols non satisfaits: 0
 
@@ -248,7 +248,7 @@ Nombre de stations de maintenance utilisées: 3
 -----------------------INSTANCE 9--------------------------
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective value: 7060.0
-⏱️ Time used: 0.2005
+⏱️ Time used: 0.192
 Nombre de vols satisfaits: 40
 Nombre de vols non satisfaits: 0
 
@@ -278,7 +278,7 @@ Nombre de stations de maintenance utilisées: 2
 -----------------------INSTANCE 10--------------------------
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective value: 24480.0
-⏱️ Time used: 0.3189
+⏱️ Time used: 0.2993
 Nombre de vols satisfaits: 40
 Nombre de vols non satisfaits: 0
 

@@ -57,7 +57,7 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
     end 
     # ===================== Decision variables =====================
     @time begin
-        @variable(model, x[i in A], Bin)                                #Arc (i,j) selected
+        @variable(model, x[k in A], Bin)                                #Arc (i,j) selected
         @variable(model, y[j in L_M], Bin)                              #Perform maintenance before j 
         @variable(model, d_bar[j] <= u[j in V] <= F_bar[j])                  #Accumulatad flying time at node j 
         #@variable(model, d[j] <= u[j in V] <= max_flt)                  #Accumulatad flying time at node j 
@@ -66,8 +66,12 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @variable(model, rho[j in L_M] >= 0)                            #Remaining flying time at node j
         @variable(model, lambda[j in L_M] >= 0)                         #Remaining number of takeoff time at node j
         @variable(model, phi[j in L_M] >= 0)                            #Remaining number of flying day at node j
-        #= 
+        
         @variable(model, z[m in MS, t in 1:nbr_TP])                     #Number of maintenance opération at station m in period t
+        @variable(model, s[k in A] >= 0)                                #Flow on arc (i,j)
+        @variable(model, psi[m in MS, t in 1:nbr_TP] >= 0)                            #Remaining number of flying day at node j
+        
+        #=
         @variable(model, se[p in exp_part, m in MS, t in 1:nbr_TP])     #Inventory level of part exp_part p at station m in period t
         @variable(model, qe[p in exp_part, m in MS, t in 1:nbr_TP])     #Order quantity of part exp_part p at station m in period t
         =#
@@ -150,8 +154,12 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
          =##@constraint(model, c23[j in V_wt_st], 1 <= w[j]) 
     
         #Maintenance capacity
-        #@constraint(model, c24[ms in MS, t in 1:nbr_TP], sum(y[i]*a[i,t] for i in L_MS[ms]) <= ms_capacity[ms][t])
-         
+        @constraint(model, c24[ms in MS, t in 1:nbr_TP], z[ms,t] == sum(y[i]*a[i,t] for i in L_MS[ms]))
+        @constraint(model, c25[ms in MS, t in 1:nbr_TP],  z[ms,t] <= ms_capacity[ms][t])
+        
+        #Inventory constraints
+        @constraint(model, c26[i in V_wt_st], sum(s[(j,i)] for j in get(predecessors, i, [])) == sum(s[(i,j)] for j in get(successors, i, [])))
+
         #write_to_file(model, "model.lp")
         #= 
         @constraint(model, c25[ms in MS, t in 1:nbr_TP], z[ms,t] == sum(y[i]*a[(i,t)] for i in L_MS[ms]))

@@ -44,7 +44,7 @@ df_flights = DataFrame(XLSX.readtable("Notebook/" * file * ".xlsx", "Sheet1"))
 tail_numbers = unique(df_flights.TAIL_NUMBER)
 
 
-for nbr_day in [3]
+for nbr_day in [7]
     # ------------------- Part 1 -------------------
     list_ac = []
     for ac in tail_numbers
@@ -73,14 +73,14 @@ for nbr_day in [3]
 
         for version in 1:10
             init_apt, init_fl, init_tk, init_fd = [], [], [], []
-            compt = 20
+            compt = 0
             for ac in aircrafts
                 temp_ac_df = filter(row -> row.TAIL_NUMBER == ac, df_flights)
                 if compt < ceil(Int, len/3)
                     temp = 0
                     compt += 1
                 else
-                    temp = rand(3600:4800)
+                    temp = rand(1800:3600)
                 end
                 push!(init_apt, temp_ac_df[1, "ORIGIN_AIRPORT"])
                 push!(init_fl, temp)

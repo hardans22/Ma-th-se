@@ -11,7 +11,7 @@ include("functions.jl")
 #= inst_name = ARGS[1]
 preprocess = parse(Bool, ARGS[2])
  =#
-inst_name = "89FL_7A_3D"
+inst_name = "185FL_7A_7D"
 preprocess = true
 
 file_path = "instances_json/"*inst_name
