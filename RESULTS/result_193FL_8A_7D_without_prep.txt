@@ -1,0 +1,103 @@
+INSTANCE 193FL_8A_7D
+PREPROCESSING : false
+-----------------------INSTANCE 1--------------------------
+✅ Solution trouvée (status: OPTIMAL)
+🎯 Objective value: 2360.0
+⏱️ Time used: 361.4464
+Nombre de vols satisfaits: 193
+Nombre de vols non satisfaits: 0
+
+✈️ Paths for each aircraft:
+
+🛩️ Aircraft N527AS path: s ➡️  N527AS ➡️  SEA_LIH_509_764 ➡️  LIH_SEA_853_1291 ➡️  SEA_ONT_1865_2002 ➡️  ONT_SEA_2054_2210 ➡️  SEA_SMF_2303_2398 ➡️  SMF_SEA_2449_2561 ➡️  SEA_BUR_2612_2761 ➡️  BUR_SEA_3406_3565 ➡️  SEA_SAN_3691_3842 ➡️  SAN_SEA_4792_4973 ➡️  SEA_PSP_5235_5375 ➡️  PSP_SEA_5429_5606 ➡️  SEA_LAS_6362_6503 ➡️  LAS_BLI_6548_6721 ➡️  BLI_SEA_7590_7633 ➡️  SEA_PSP_7690_7848 ➡️  PSP_PDX_7903_8039 ➡️  PDX_SLC_8085_8238 ➡️  SLC_PDX_8300_8355 ➡️  PDX_DFW_9242_9586 ➡️  DFW_PDX_9640_9778 ➡️  t
+
+🛩️ Aircraft N457AS path: s ➡️  N457AS ➡️  FAI_SEA_67_345 ➡️  SEA_DTW_536_964 ➡️  DTW_SEA_1025_1150 ➡️  SEA_LAX_1196_1341 ➡️  LAX_PDX_1838_1981 ➡️  PDX_DFW_2033_2376 ➡️  DFW_PDX_2451_2568 ➡️  PDX_SAN_2610_2741 ➡️  SAN_PDX_3266_3427 ➡️  PDX_SFO_3480_3582 ➡️  SFO_PDX_3645_3758 ➡️  PDX_SNA_3808_3937 ➡️  SNA_PDX_3983_4136 ➡️  PDX_SNA_4723_4854 ➡️  SNA_SEA_4904_5089 ➡️  SEA_DFW_5126_5461 ➡️  DFW_SEA_5513_5665 ➡️  SEA_LAS_6203_6339 ➡️  LAS_PDX_6391_6525 ➡️  PDX_LAX_6579_6709 ➡️  LAX_PDX_6814_6942 ➡️  PDX_ORD_7824_8151 ➡️  ORD_PDX_8250_8438 ➡️  PDX_DCA_9227_9677 ➡️  DCA_SEA_9753_9945 ➡️  t
+
+🛩️ Aircraft N440AS path: s ➡️  N440AS ➡️  SEA_OAK_355_463 ➡️  OAK_SEA_555_661 ➡️  SEA_DEN_845_1076 ➡️  DEN_SEA_1128_1244 ➡️  SEA_SMF_1852_1947 ➡️  SMF_OGG_2041_2266 ➡️  OGG_SJC_2339_2740 ➡️  SJC_SEA_3475_3608 ➡️  SEA_GEG_4174_4228 ➡️  GEG_SEA_4614_4694 ➡️  SEA_ANC_4810_4956 ➡️  ANC_PDX_5018_5274 ➡️  PDX_LAS_5333_5458 ➡️  LAS_PDX_5502_5649 ➡️  PDX_BOS_6230_6691 ➡️  BOS_PDX_6797_7015 ➡️  PDX_PHX_7767_7983 ➡️  PHX_PDX_8035_8124 ➡️  PDX_PSP_8186_8326 ➡️  PSP_SEA_8375_8525 ➡️  SEA_SMF_9045_9155 ➡️  SMF_OGG_9241_9453 ➡️  OGG_SJC_9528_9927 ➡️  t
+
+🛩️ Aircraft N618AS path: s ➡️  N618AS ➡️  DEN_SEA_349_456 ➡️  SEA_SMF_540_650 ➡️  SMF_SEA_684_793 ➡️  SEA_DFW_825_1192 ➡️  DFW_SEA_1238_1374 ➡️  SEA_MSP_2060_2368 ➡️  MSP_SEA_2421_2525 ➡️  SEA_ANC_2635_2820 ➡️  ANC_PDX_2926_3171 ➡️  PDX_SEA_3289_3351 ➡️  SEA_ANC_3812_3967 ➡️  ANC_SEA_4022_4280 ➡️  SEA_BUR_4783_4910 ➡️  BUR_SEA_4961_5135 ➡️  SEA_ANC_5219_5386 ➡️  ANC_SEA_5441_5693 ➡️  SEA_LAS_6122_6258 ➡️  LAS_SEA_6308_6465 ➡️  SEA_SNA_6823_6982 ➡️  SNA_SEA_7666_7819 ➡️  SEA_SAT_7908_8262 ➡️  SAT_SEA_8319_8456 ➡️  SEA_EWR_9126_9593 ➡️  EWR_SEA_9681_9893 ➡️  t
+
+🛩️ Aircraft N611AS path: s ➡️  N611AS ➡️  PDX_SNA_409_539 ➡️  SNA_SEA_587_753 ➡️  SEA_DCA_847_1295 ➡️  DCA_SEA_1914_2074 ➡️  SEA_LAS_2153_2284 ➡️  LAS_SEA_2335_2511 ➡️  SEA_SFO_2576_2700 ➡️  SFO_PDX_3300_3406 ➡️  PDX_DFW_3481_3802 ➡️  DFW_PDX_3875_4013 ➡️  PDX_PHX_4080_4278 ➡️  PHX_SEA_4820_4946 ➡️  SEA_LAX_5002_5147 ➡️  LAX_SEA_6119_6303 ➡️  SEA_TUS_6368_6598 ➡️  TUS_SEA_6669_6795 ➡️  SEA_SMF_6928_7037 ➡️  SMF_SEA_7626_7732 ➡️  SEA_GEG_7940_7989 ➡️  GEG_SEA_8033_8098 ➡️  SEA_SNA_8200_8352 ➡️  SNA_SEA_9049_9216 ➡️  SEA_ABQ_9269_9512 ➡️  ABQ_SEA_9569_9693 ➡️  SEA_SNA_9823_9985 ➡️  t
+
+🛩️ Aircraft N518AS path: s ➡️  N518AS ➡️  SEA_ONT_429_566 ➡️  ONT_SEA_617_763 ➡️  SEA_SNA_830_974 ➡️  SNA_SEA_1022_1177 ➡️  SEA_LAS_1292_1422 ➡️  LAS_PDX_1845_1983 ➡️  PDX_SFO_2042_2145 ➡️  SFO_PDX_2212_2314 ➡️  PDX_SNA_2362_2490 ➡️  SNA_PDX_2541_2689 ➡️  PDX_SAN_3271_3420 ➡️  SAN_SEA_3924_4103 ➡️  SEA_ONT_4193_4319 ➡️  ONT_SEA_4697_4866 ➡️  SEA_HNL_4944_5239 ➡️  HNL_SJC_5290_5705 ➡️  SJC_LIH_6176_6406 ➡️  LIH_SAN_6463_6905 ➡️  SAN_OGG_7614_7841 ➡️  OGG_SMF_7912_8319 ➡️  SMF_SEA_8512_8615 ➡️  SEA_PHL_9154_9624 ➡️  PHL_SEA_9728_9920 ➡️  t
+
+🛩️ Aircraft N408AS path: s ➡️  N408AS ➡️  SEA_ANC_24_179 ➡️  ANC_SEA_413_675 ➡️  SEA_ANC_727_875 ➡️  ANC_SEA_1058_1300 ➡️  SEA_PHL_1952_2422 ➡️  PHL_SEA_2496_2679 ➡️  SEA_LAS_2834_2959 ➡️  LAS_SEA_3300_3469 ➡️  SEA_PHX_3519_3734 ➡️  PHX_SEA_3781_3905 ➡️  SEA_SFO_3952_4078 ➡️  SFO_SLC_4130_4304 ➡️  SLC_SFO_4786_4843 ➡️  SFO_SEA_4932_5060 ➡️  SEA_SAN_5138_5281 ➡️  SAN_SEA_5363_5548 ➡️  SEA_GEG_5702_5757 ➡️  GEG_SEA_6057_6128 ➡️  SEA_DEN_6210_6405 ➡️  DEN_SEA_6525_6655 ➡️  SEA_SNA_6948_7109 ➡️  SNA_SEA_7616_7773 ➡️  SEA_PHX_7830_8050 ➡️  PHX_SEA_8104_8209 ➡️  SEA_LAS_8333_8482 ➡️  LAS_SEA_8514_8656 ➡️  SEA_MCI_9243_9553 ➡️  MCI_SEA_9624_9743 ➡️  SEA_SJC_9795_9931 ➡️  t
+
+🛩️ Aircraft N318AS path: s ➡️  N318AS ➡️  LAX_PDX_1182_1314 ➡️  PDX_SAN_1834_1968 ➡️  SAN_PDX_2523_2679 ➡️  PDX_SNA_3283_3421 ➡️  SNA_SEA_3472_3643 ➡️  SEA_DEN_3683_3904 ➡️  DEN_SEA_3978_4126 ➡️  SEA_LAS_4169_4313 ➡️  LAS_SEA_4733_4906 ➡️  SEA_MSP_4953_5252 ➡️  MSP_SEA_5309_5422 ➡️  SEA_SFO_5478_5594 ➡️  SFO_SEA_6179_6305 ➡️  SEA_ATL_6390_6824 ➡️  ATL_SEA_6896_7063 ➡️  SEA_LAS_7560_7707 ➡️  LAS_SEA_7751_7891 ➡️  SEA_SAN_8009_8161 ➡️  SAN_PDX_8284_8421 ➡️  PDX_PHX_9206_9423 ➡️  PHX_PDX_9480_9573 ➡️  PDX_PSP_9629_9768 ➡️  PSP_SEA_9824_9972 ➡️  t
+
+🛠️ Maintenance at node SEA_BUR_4783_4910 by aircraft N618AS | ρ=15.0; λ=0.0; φ=0.0
+🛠️ Maintenance at node SEA_GEG_4174_4228 by aircraft N440AS | ρ=46.0; λ=0.0; φ=0.0
+🛠️ Maintenance at node SEA_LAS_6362_6503 by aircraft N527AS | ρ=53.0; λ=0.0; φ=0.0
+🛠️ Maintenance at node SMF_SEA_7626_7732 by aircraft N611AS | ρ=4.0; λ=0.0; φ=0.0
+
+Nombre de maintenances au total: 4.0
+Stations de maintenance utilisées: Any["SMF", "SEA"]
+Nombre de stations de maintenance utilisées: 2
+
+-----------------------INSTANCE 2--------------------------
+✅ Solution trouvée (status: OPTIMAL)
+🎯 Objective value: 2359.9922411687626
+⏱️ Time used: 89.633
+Nombre de vols satisfaits: 193
+Nombre de vols non satisfaits: 0
+
+✈️ Paths for each aircraft:
+
+🛩️ Aircraft N527AS path: s ➡️  N527AS ➡️  SEA_LIH_509_764 ➡️  LIH_SEA_853_1291 ➡️  SEA_ONT_1865_2002 ➡️  ONT_SEA_2054_2210 ➡️  SEA_SMF_2303_2398 ➡️  SMF_SEA_2449_2561 ➡️  SEA_BUR_2612_2761 ➡️  BUR_SEA_3406_3565 ➡️  SEA_SAN_3691_3842 ➡️  SAN_SEA_4792_4973 ➡️  SEA_PSP_5235_5375 ➡️  PSP_SEA_5429_5606 ➡️  SEA_LAS_6203_6339 ➡️  LAS_PDX_6391_6525 ➡️  PDX_LAX_6579_6709 ➡️  LAX_PDX_6814_6942 ➡️  PDX_ORD_7824_8151 ➡️  ORD_PDX_8250_8438 ➡️  PDX_DCA_9227_9677 ➡️  DCA_SEA_9753_9945 ➡️  t
+
+🛩️ Aircraft N457AS path: s ➡️  N457AS ➡️  FAI_SEA_67_345 ➡️  SEA_ONT_429_566 ➡️  ONT_SEA_617_763 ➡️  SEA_SNA_830_974 ➡️  SNA_SEA_1022_1177 ➡️  SEA_LAS_1292_1422 ➡️  LAS_PDX_1845_1983 ➡️  PDX_DFW_2033_2376 ➡️  DFW_PDX_2451_2568 ➡️  PDX_SAN_2610_2741 ➡️  SAN_PDX_3266_3427 ➡️  PDX_SFO_3480_3582 ➡️  SFO_PDX_3645_3758 ➡️  PDX_SNA_3808_3937 ➡️  SNA_PDX_3983_4136 ➡️  PDX_SNA_4723_4854 ➡️  SNA_SEA_4904_5089 ➡️  SEA_SAN_5138_5281 ➡️  SAN_SEA_5363_5548 ➡️  SEA_LAS_6122_6258 ➡️  LAS_SEA_6308_6465 ➡️  SEA_SNA_6948_7109 ➡️  SNA_SEA_7616_7773 ➡️  SEA_PHX_7830_8050 ➡️  PHX_SEA_8104_8209 ➡️  SEA_LAS_8333_8482 ➡️  LAS_SEA_8514_8656 ➡️  SEA_SMF_9045_9155 ➡️  SMF_OGG_9241_9453 ➡️  OGG_SJC_9528_9927 ➡️  t
+
+🛩️ Aircraft N440AS path: s ➡️  N440AS ➡️  SEA_OAK_355_463 ➡️  OAK_SEA_555_661 ➡️  SEA_DEN_845_1076 ➡️  DEN_SEA_1128_1244 ➡️  SEA_SMF_1852_1947 ➡️  SMF_OGG_2041_2266 ➡️  OGG_SJC_2339_2740 ➡️  SJC_SEA_3475_3608 ➡️  SEA_GEG_4174_4228 ➡️  GEG_SEA_4614_4694 ➡️  SEA_BUR_4783_4910 ➡️  BUR_SEA_4961_5135 ➡️  SEA_ANC_5219_5386 ➡️  ANC_SEA_5441_5693 ➡️  SEA_LAS_6362_6503 ➡️  LAS_BLI_6548_6721 ➡️  BLI_SEA_7590_7633 ➡️  SEA_PSP_7690_7848 ➡️  PSP_PDX_7903_8039 ➡️  PDX_SLC_8085_8238 ➡️  SLC_PDX_8300_8355 ➡️  PDX_PHX_9206_9423 ➡️  PHX_PDX_9480_9573 ➡️  PDX_PSP_9629_9768 ➡️  PSP_SEA_9824_9972 ➡️  t
+
+🛩️ Aircraft N618AS path: s ➡️  N618AS ➡️  DEN_SEA_349_456 ➡️  SEA_SMF_540_650 ➡️  SMF_SEA_684_793 ➡️  SEA_DFW_825_1192 ➡️  DFW_SEA_1238_1374 ➡️  SEA_MSP_2060_2368 ➡️  MSP_SEA_2421_2525 ➡️  SEA_ANC_2635_2820 ➡️  ANC_PDX_2926_3171 ➡️  PDX_SEA_3289_3351 ➡️  SEA_ANC_3812_3967 ➡️  ANC_SEA_4022_4280 ➡️  SEA_ANC_4810_4956 ➡️  ANC_PDX_5018_5274 ➡️  PDX_LAS_5333_5458 ➡️  LAS_PDX_5502_5649 ➡️  PDX_BOS_6230_6691 ➡️  BOS_PDX_6797_7015 ➡️  PDX_PHX_7767_7983 ➡️  PHX_PDX_8035_8124 ➡️  PDX_PSP_8186_8326 ➡️  PSP_SEA_8375_8525 ➡️  SEA_EWR_9126_9593 ➡️  EWR_SEA_9681_9893 ➡️  t
+
+🛩️ Aircraft N611AS path: s ➡️  N611AS ➡️  PDX_SNA_409_539 ➡️  SNA_SEA_587_753 ➡️  SEA_DCA_847_1295 ➡️  DCA_SEA_1914_2074 ➡️  SEA_LAS_2153_2284 ➡️  LAS_SEA_2335_2511 ➡️  SEA_SFO_2576_2700 ➡️  SFO_PDX_3300_3406 ➡️  PDX_DFW_3481_3802 ➡️  DFW_PDX_3875_4013 ➡️  PDX_PHX_4080_4278 ➡️  PHX_SEA_4820_4946 ➡️  SEA_LAX_5002_5147 ➡️  LAX_SEA_6119_6303 ➡️  SEA_TUS_6368_6598 ➡️  TUS_SEA_6669_6795 ➡️  SEA_SMF_6928_7037 ➡️  SMF_SEA_7626_7732 ➡️  SEA_GEG_7940_7989 ➡️  GEG_SEA_8033_8098 ➡️  SEA_SNA_8200_8352 ➡️  SNA_SEA_9049_9216 ➡️  SEA_ABQ_9269_9512 ➡️  ABQ_SEA_9569_9693 ➡️  SEA_SNA_9823_9985 ➡️  t
+
+🛩️ Aircraft N518AS path: s ➡️  N518AS ➡️  SEA_ANC_24_179 ➡️  ANC_SEA_413_675 ➡️  SEA_ANC_727_875 ➡️  ANC_SEA_1058_1300 ➡️  SEA_PHL_1952_2422 ➡️  PHL_SEA_2496_2679 ➡️  SEA_LAS_2834_2959 ➡️  LAS_SEA_3300_3469 ➡️  SEA_PHX_3519_3734 ➡️  PHX_SEA_3781_3905 ➡️  SEA_SFO_3952_4078 ➡️  SFO_SLC_4130_4304 ➡️  SLC_SFO_4786_4843 ➡️  SFO_SEA_4932_5060 ➡️  SEA_DFW_5126_5461 ➡️  DFW_SEA_5513_5665 ➡️  SEA_GEG_5702_5757 ➡️  GEG_SEA_6057_6128 ➡️  SEA_DEN_6210_6405 ➡️  DEN_SEA_6525_6655 ➡️  SEA_SNA_6823_6982 ➡️  SNA_SEA_7666_7819 ➡️  SEA_SAT_7908_8262 ➡️  SAT_SEA_8319_8456 ➡️  SEA_PHL_9154_9624 ➡️  PHL_SEA_9728_9920 ➡️  t
+
+🛩️ Aircraft N408AS path: s ➡️  N408AS ➡️  SEA_DTW_536_964 ➡️  DTW_SEA_1025_1150 ➡️  SEA_LAX_1196_1341 ➡️  LAX_PDX_1838_1981 ➡️  PDX_SFO_2042_2145 ➡️  SFO_PDX_2212_2314 ➡️  PDX_SNA_2362_2490 ➡️  SNA_PDX_2541_2689 ➡️  PDX_SNA_3283_3421 ➡️  SNA_SEA_3472_3643 ➡️  SEA_DEN_3683_3904 ➡️  DEN_SEA_3978_4126 ➡️  SEA_LAS_4169_4313 ➡️  LAS_SEA_4733_4906 ➡️  SEA_MSP_4953_5252 ➡️  MSP_SEA_5309_5422 ➡️  SEA_SFO_5478_5594 ➡️  SFO_SEA_6179_6305 ➡️  SEA_ATL_6390_6824 ➡️  ATL_SEA_6896_7063 ➡️  SEA_LAS_7560_7707 ➡️  LAS_SEA_7751_7891 ➡️  SEA_SAN_8009_8161 ➡️  SAN_PDX_8284_8421 ➡️  PDX_DFW_9242_9586 ➡️  DFW_PDX_9640_9778 ➡️  t
+
+🛩️ Aircraft N318AS path: s ➡️  N318AS ➡️  LAX_PDX_1182_1314 ➡️  PDX_SAN_1834_1968 ➡️  SAN_PDX_2523_2679 ➡️  PDX_SAN_3271_3420 ➡️  SAN_SEA_3924_4103 ➡️  SEA_ONT_4193_4319 ➡️  ONT_SEA_4697_4866 ➡️  SEA_HNL_4944_5239 ➡️  HNL_SJC_5290_5705 ➡️  SJC_LIH_6176_6406 ➡️  LIH_SAN_6463_6905 ➡️  SAN_OGG_7614_7841 ➡️  OGG_SMF_7912_8319 ➡️  SMF_SEA_8512_8615 ➡️  SEA_MCI_9243_9553 ➡️  MCI_SEA_9624_9743 ➡️  SEA_SJC_9795_9931 ➡️  t
+
+🛠️ Maintenance at node SEA_GEG_4174_4228 by aircraft N440AS | ρ=46.0; λ=0.0; φ=0.0
+🛠️ Maintenance at node SEA_ANC_4810_4956 by aircraft N618AS | ρ=14.999612058438133; λ=0.0; φ=0.0
+🛠️ Maintenance at node SEA_LAS_6203_6339 by aircraft N527AS | ρ=53.0; λ=0.0; φ=0.0
+🛠️ Maintenance at node SMF_SEA_7626_7732 by aircraft N611AS | ρ=4.0; λ=0.0; φ=0.0
+
+Nombre de maintenances au total: 3.9999989996020604
+Stations de maintenance utilisées: Any["SEA", "SMF"]
+Nombre de stations de maintenance utilisées: 2
+
+-----------------------INSTANCE 3--------------------------
+✅ Solution trouvée (status: OPTIMAL)
+🎯 Objective value: 2360.0
+⏱️ Time used: 151.3544
+Nombre de vols satisfaits: 193
+Nombre de vols non satisfaits: 0
+
+✈️ Paths for each aircraft:
+
+🛩️ Aircraft N527AS path: s ➡️  N527AS ➡️  SEA_LIH_509_764 ➡️  LIH_SEA_853_1291 ➡️  SEA_ONT_1865_2002 ➡️  ONT_SEA_2054_2210 ➡️  SEA_SMF_2303_2398 ➡️  SMF_SEA_2449_2561 ➡️  SEA_BUR_2612_2761 ➡️  BUR_SEA_3406_3565 ➡️  SEA_SAN_3691_3842 ➡️  SAN_SEA_4792_4973 ➡️  SEA_PSP_5235_5375 ➡️  PSP_SEA_5429_5606 ➡️  SEA_LAS_6122_6258 ➡️  LAS_SEA_6308_6465 ➡️  SEA_SNA_6823_6982 ➡️  SNA_SEA_7616_7773 ➡️  SEA_SAT_7908_8262 ➡️  SAT_SEA_8319_8456 ➡️  SEA_PHL_9154_9624 ➡️  PHL_SEA_9728_9920 ➡️  t
+
+🛩️ Aircraft N457AS path: s ➡️  N457AS ➡️  FAI_SEA_67_345 ➡️  SEA_DTW_536_964 ➡️  DTW_SEA_1025_1150 ➡️  SEA_LAX_1196_1341 ➡️  LAX_PDX_1838_1981 ➡️  PDX_DFW_2033_2376 ➡️  DFW_PDX_2451_2568 ➡️  PDX_SAN_2610_2741 ➡️  SAN_PDX_3266_3427 ➡️  PDX_SFO_3480_3582 ➡️  SFO_PDX_3645_3758 ➡️  PDX_SNA_3808_3937 ➡️  SNA_PDX_3983_4136 ➡️  PDX_SNA_4723_4854 ➡️  SNA_SEA_4904_5089 ➡️  SEA_DFW_5126_5461 ➡️  DFW_SEA_5513_5665 ➡️  SEA_GEG_5702_5757 ➡️  GEG_SEA_6057_6128 ➡️  SEA_LAS_6203_6339 ➡️  LAS_PDX_6391_6525 ➡️  PDX_LAX_6579_6709 ➡️  LAX_PDX_6814_6942 ➡️  PDX_PHX_7767_7983 ➡️  PHX_PDX_8035_8124 ➡️  PDX_PSP_8186_8326 ➡️  PSP_SEA_8375_8525 ➡️  SEA_EWR_9126_9593 ➡️  EWR_SEA_9681_9893 ➡️  t
+
+🛩️ Aircraft N440AS path: s ➡️  N440AS ➡️  SEA_OAK_355_463 ➡️  OAK_SEA_555_661 ➡️  SEA_DEN_845_1076 ➡️  DEN_SEA_1128_1244 ➡️  SEA_SMF_1852_1947 ➡️  SMF_OGG_2041_2266 ➡️  OGG_SJC_2339_2740 ➡️  SJC_SEA_3475_3608 ➡️  SEA_LAS_4169_4313 ➡️  LAS_SEA_4733_4906 ➡️  SEA_MSP_4953_5252 ➡️  MSP_SEA_5309_5422 ➡️  SEA_SFO_5478_5594 ➡️  SFO_SEA_6179_6305 ➡️  SEA_ATL_6390_6824 ➡️  ATL_SEA_6896_7063 ➡️  SEA_LAS_7560_7707 ➡️  LAS_SEA_7751_7891 ➡️  SEA_SAN_8009_8161 ➡️  SAN_PDX_8284_8421 ➡️  PDX_DCA_9227_9677 ➡️  DCA_SEA_9753_9945 ➡️  t
+
+🛩️ Aircraft N618AS path: s ➡️  N618AS ➡️  DEN_SEA_349_456 ➡️  SEA_SMF_540_650 ➡️  SMF_SEA_684_793 ➡️  SEA_DFW_825_1192 ➡️  DFW_SEA_1238_1374 ➡️  SEA_MSP_2060_2368 ➡️  MSP_SEA_2421_2525 ➡️  SEA_ANC_2635_2820 ➡️  ANC_PDX_2926_3171 ➡️  PDX_SEA_3289_3351 ➡️  SEA_ANC_3812_3967 ➡️  ANC_SEA_4022_4280 ➡️  SEA_ANC_4810_4956 ➡️  ANC_PDX_5018_5274 ➡️  PDX_LAS_5333_5458 ➡️  LAS_PDX_5502_5649 ➡️  PDX_BOS_6230_6691 ➡️  BOS_PDX_6797_7015 ➡️  PDX_ORD_7824_8151 ➡️  ORD_PDX_8250_8438 ➡️  PDX_DFW_9242_9586 ➡️  DFW_PDX_9640_9778 ➡️  t
+
+🛩️ Aircraft N611AS path: s ➡️  N611AS ➡️  PDX_SNA_409_539 ➡️  SNA_SEA_587_753 ➡️  SEA_DCA_847_1295 ➡️  DCA_SEA_1914_2074 ➡️  SEA_LAS_2153_2284 ➡️  LAS_SEA_2335_2511 ➡️  SEA_SFO_2576_2700 ➡️  SFO_PDX_3300_3406 ➡️  PDX_DFW_3481_3802 ➡️  DFW_PDX_3875_4013 ➡️  PDX_PHX_4080_4278 ➡️  PHX_SEA_4820_4946 ➡️  SEA_LAX_5002_5147 ➡️  LAX_SEA_6119_6303 ➡️  SEA_TUS_6368_6598 ➡️  TUS_SEA_6669_6795 ➡️  SEA_SMF_6928_7037 ➡️  SMF_SEA_7626_7732 ➡️  SEA_PHX_7830_8050 ➡️  PHX_SEA_8104_8209 ➡️  SEA_LAS_8333_8482 ➡️  LAS_SEA_8514_8656 ➡️  SEA_MCI_9243_9553 ➡️  MCI_SEA_9624_9743 ➡️  SEA_SJC_9795_9931 ➡️  t
+
+🛩️ Aircraft N518AS path: s ➡️  N518AS ➡️  SEA_ONT_429_566 ➡️  ONT_SEA_617_763 ➡️  SEA_SNA_830_974 ➡️  SNA_SEA_1022_1177 ➡️  SEA_LAS_1292_1422 ➡️  LAS_PDX_1845_1983 ➡️  PDX_SFO_2042_2145 ➡️  SFO_PDX_2212_2314 ➡️  PDX_SNA_2362_2490 ➡️  SNA_PDX_2541_2689 ➡️  PDX_SNA_3283_3421 ➡️  SNA_SEA_3472_3643 ➡️  SEA_DEN_3683_3904 ➡️  DEN_SEA_3978_4126 ➡️  SEA_GEG_4174_4228 ➡️  GEG_SEA_4614_4694 ➡️  SEA_BUR_4783_4910 ➡️  BUR_SEA_4961_5135 ➡️  SEA_ANC_5219_5386 ➡️  ANC_SEA_5441_5693 ➡️  SEA_DEN_6210_6405 ➡️  DEN_SEA_6525_6655 ➡️  SEA_SNA_6948_7109 ➡️  SNA_SEA_7666_7819 ➡️  SEA_GEG_7940_7989 ➡️  GEG_SEA_8033_8098 ➡️  SEA_SNA_8200_8352 ➡️  SNA_SEA_9049_9216 ➡️  SEA_ABQ_9269_9512 ➡️  ABQ_SEA_9569_9693 ➡️  SEA_SNA_9823_9985 ➡️  t
+
+🛩️ Aircraft N408AS path: s ➡️  N408AS ➡️  SEA_ANC_24_179 ➡️  ANC_SEA_413_675 ➡️  SEA_ANC_727_875 ➡️  ANC_SEA_1058_1300 ➡️  SEA_PHL_1952_2422 ➡️  PHL_SEA_2496_2679 ➡️  SEA_LAS_2834_2959 ➡️  LAS_SEA_3300_3469 ➡️  SEA_PHX_3519_3734 ➡️  PHX_SEA_3781_3905 ➡️  SEA_SFO_3952_4078 ➡️  SFO_SLC_4130_4304 ➡️  SLC_SFO_4786_4843 ➡️  SFO_SEA_4932_5060 ➡️  SEA_SAN_5138_5281 ➡️  SAN_SEA_5363_5548 ➡️  SEA_LAS_6362_6503 ➡️  LAS_BLI_6548_6721 ➡️  BLI_SEA_7590_7633 ➡️  SEA_PSP_7690_7848 ➡️  PSP_PDX_7903_8039 ➡️  PDX_SLC_8085_8238 ➡️  SLC_PDX_8300_8355 ➡️  PDX_PHX_9206_9423 ➡️  PHX_PDX_9480_9573 ➡️  PDX_PSP_9629_9768 ➡️  PSP_SEA_9824_9972 ➡️  t
+
+🛩️ Aircraft N318AS path: s ➡️  N318AS ➡️  LAX_PDX_1182_1314 ➡️  PDX_SAN_1834_1968 ➡️  SAN_PDX_2523_2679 ➡️  PDX_SAN_3271_3420 ➡️  SAN_SEA_3924_4103 ➡️  SEA_ONT_4193_4319 ➡️  ONT_SEA_4697_4866 ➡️  SEA_HNL_4944_5239 ➡️  HNL_SJC_5290_5705 ➡️  SJC_LIH_6176_6406 ➡️  LIH_SAN_6463_6905 ➡️  SAN_OGG_7614_7841 ➡️  OGG_SMF_7912_8319 ➡️  SMF_SEA_8512_8615 ➡️  SEA_SMF_9045_9155 ➡️  SMF_OGG_9241_9453 ➡️  OGG_SJC_9528_9927 ➡️  t
+
+🛠️ Maintenance at node SEA_ANC_4810_4956 by aircraft N618AS | ρ=15.0; λ=0.0; φ=0.0
+🛠️ Maintenance at node SEA_LAS_6122_6258 by aircraft N527AS | ρ=53.0; λ=0.0; φ=0.0
+🛠️ Maintenance at node SEA_LAS_4169_4313 by aircraft N440AS | ρ=46.0; λ=0.0; φ=0.0
+🛠️ Maintenance at node SMF_SEA_7626_7732 by aircraft N611AS | ρ=4.0; λ=0.0; φ=0.0
+
+Nombre de maintenances au total: 4.0
+Stations de maintenance utilisées: Any["SMF", "SEA"]
+Nombre de stations de maintenance utilisées: 2

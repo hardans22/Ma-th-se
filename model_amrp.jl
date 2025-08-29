@@ -17,6 +17,7 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
     A_M, A, L_M, A_M_bar = instance["A_M"], instance["A"], instance["L_M"], instance["A_M_bar"]
     V_wt_st, V, a_nodes = instance["V_wt_st"], instance["V"], instance["a_nodes"]
     MS, L_MS = instance["maintenance_stations"], instance["L_MS"]
+    M_FL_O, M_FL_D = instance["M_FL_O"], instance["M_FL_D"]
     TRT = instance["turn_around_time"]
     f = instance["initial_flying_time"]
     h = instance["initial_takeoff"]
@@ -32,12 +33,14 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         println("$i : ", b_bis[i])
     end
     =#
-    a = instance["a"]
+    a_day = instance["a_day"]
     nbr_TP = instance["nbr_TP"]
+    TP = 1:nbr_TP
     #=exp_part = instance["exp_part"]
     init_level_ep = instance["init_level_ep"] 
     rate_ep = instance["rate_ep"]
     =#
+    cs = 3 
     if preprocess
         F_bar = instance["F_bar"]
         d_bar = instance["d_bar"]
@@ -67,14 +70,19 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @variable(model, lambda[j in L_M] >= 0)                         #Remaining number of takeoff time at node j
         @variable(model, phi[j in L_M] >= 0)                            #Remaining number of flying day at node j
         
-        @variable(model, z[m in MS, t in 1:nbr_TP])                     #Number of maintenance opération at station m in period t
-        @variable(model, s[k in A] >= 0)                                #Flow on arc (i,j)
-        @variable(model, psi[m in MS, t in 1:nbr_TP] >= 0)                            #Remaining number of flying day at node j
+        @variable(model, z[m in MS, t in TP])                     #Number of maintenance opération at station m in period t
+        #Définition provisoire
+        MS_R = MS[1:2]
+        MS_L = MS[3:end]
+        SP = 1:3
+        req = [rand(1:5) for _ in SP]
+        D =Dict(ms => rand(0:5, length(SP), nbr_TP) for ms in MS)
+        Q_max = rand(0:20, length(SP), nbr_TP)
+
+        @variable(model, I[m in MS, k in SP, t in TP] >= 0)     #Inventory level of spare part p at station m in period t
+        @variable(model, Q[m in MS, k in SP, t in TP] >= 0)     #Order quantity of spare part p at station m in period t
+        @variable(model, S[m in MS_R, m1 in MS_L, k in SP, t in TP] >= 0)     #Transfert quantity of spare part p from station m to m1 in period t
         
-        #=
-        @variable(model, se[p in exp_part, m in MS, t in 1:nbr_TP])     #Inventory level of part exp_part p at station m in period t
-        @variable(model, qe[p in exp_part, m in MS, t in 1:nbr_TP])     #Order quantity of part exp_part p at station m in period t
-        =#
         # ===================== Objective function =====================
         gamma_f = 20                #1200 dollars par heure pour une maintenance
         gamma_t = gamma_f*150       #2.5h(150 min) en moyenne par vol
@@ -154,11 +162,19 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
          =##@constraint(model, c23[j in V_wt_st], 1 <= w[j]) 
     
         #Maintenance capacity
-        @constraint(model, c24[ms in MS, t in 1:nbr_TP], z[ms,t] == sum(y[i]*a[i,t] for i in L_MS[ms]))
+        @constraint(model, c24[ms in MS, t in 1:nbr_TP], z[ms,t] == sum(y[i] for i in L_MS[ms] if a_day[i] == t))
         @constraint(model, c25[ms in MS, t in 1:nbr_TP],  z[ms,t] <= ms_capacity[ms][t])
         
         #Inventory constraints
-        @constraint(model, c26[i in V_wt_st], sum(s[(j,i)] for j in get(predecessors, i, [])) == sum(s[(i,j)] for j in get(successors, i, [])))
+        @constraint(model, c26[ms in MS_R, k in SP], I[ms,k,1] == 5)
+
+        @constraint(model, c28[ms in MS_R, k in SP, t in 2:nbr_TP], 
+                    I[ms,k,t] == I[ms,k,t-1] + Q[ms,k,t] - sum(S[ms,l,k,t] for l in MS_L) - req[k]*z[ms,t] - D[ms][k,t] )
+
+        @constraint(model, c29[ms in MS_L, k in SP, t in 2:nbr_TP], 
+                    I[ms,k,t] == I[ms,k,t-1] + Q[ms,k,t] + sum(S[l,ms,k,t] for l in MS_R) - req[k]*z[ms,t] - D[ms][k,t] )
+
+        @constraint(model, c30[k in SP, t in TP], sum(Q[ms,k,t] for ms in MS) <= Q_max[k,t])
 
         #write_to_file(model, "model.lp")
         #= 
@@ -169,8 +185,8 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
          =#
         
     end 
-
     optimize!(model)
+
 
 
     # ===================== Résultats =====================
@@ -180,12 +196,38 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
     if status == MOI.OPTIMAL || status == MOI.FEASIBLE_POINT || status == MOI.TIME_LIMIT || status == MOI.INTERRUPTED
         obj_val = objective_value(model)
         sx, sy, su, sv, sw = JuMP.value.(x), JuMP.value.(y), JuMP.value.(u), JuMP.value.(v), JuMP.value.(w)
+        sz, sI, sQ, sS = JuMP.value.(z), JuMP.value.(I), JuMP.value.(Q), JuMP.value.(S) 
         s_rho, s_lambda, s_phi = JuMP.value.(rho), JuMP.value.(lambda), JuMP.value.(phi)
         gap = round(relative_gap(model)*100, digits = 4)
         nbr_nodes =  MOI.get(model, MOI.NodeCount())
         dual_obj = objective_bound(model)
         time = round(solve_time(model), digits = 4)
         nbr_mtn = sum(sy)
+
+        println("INVENTORY")
+        for ms in MS
+            println("Station : $ms")
+            for k in SP
+                for t in TP
+                    if sI[ms,k,t] > 0
+                        println("\nInventaire pour $k à $t: $ms\n")
+                    end
+                    if sQ[ms,k,t] > 0
+                        println("\nQuantité commandée pour $k à $t: $ms\n")
+                    end
+                end
+            end
+        end
+
+        println("\n\n\nQUANTITY TRANFERED ")
+        for ms in MS_R
+            for l in MS_L
+                println("\nTransfert de $ms vers $l \n",sS[ms,l,:,:])
+            end
+        end
+
+
+
 
         mtn_stations_used = []
         active_j_set = Set(j for j in L_M if value(y[j]) == 1)

@@ -1,4 +1,10 @@
-scp -r ~/home/harcenage/Documents/PhD_studies/Ma_thèse/Code/instances_xlsx danhar@maxwell04.umontreal.cirrelt.lan:~/Documents/Code/
+scp -r /home/harcenage/Documents/PhD_studies/Ma_thèse/Code/instances_xlsx danhar@maxwell04.umontreal.cirrelt.lan:~/Documents/Code/
 
-scp -r  danhar@maxwell04.umontreal.cirrelt.lan:~/Documents/Code/ ~/home/harcenage/Documents/PhD_studies/Ma_thèse/Code/instances_xlsx
+scp -r  danhar@maxwell04.umontreal.cirrelt.lan:~/Documents/Code/ /home/harcenage/Documents/PhD_studies/Ma_thèse/Code/instances_xlsx
+
+scp -r /home/harcenage/Documents/PhD_studies/Ma_thèse/Code/ danhar@nibi.alliancecan.ca:~/projects/def-mattgru/danhar/
+
+scp -r danhar@nibi.alliancecan.ca:~/projects/def-mattgru/danhar/ /home/harcenage/Documents/PhD_studies/Ma_thèse/Code/ 
+
+
 

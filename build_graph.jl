@@ -37,9 +37,21 @@ function arc_set_update(A, a_nodes, fl_nodes, flight_legs, init_airport, DT, AT,
     end
     unique!(L_M)
     unique!(L_a_M)
-    L_MS = Dict(ms => [i for i in L_M if flight_legs[i][1] == ms] for ms in mtn_stations)
+    #L_MS = Dict(ms => [i for i in L_M if flight_legs[i][1] == ms] for ms in mtn_stations)
+    L_MS, M_FL_O, M_FL_D = Dict(ms => String[] for ms in mtn_stations), Dict(ms => String[] for ms in mtn_stations), Dict(ms => String[] for ms in mtn_stations)
+    for i in L_M
+        ms = flight_legs[i][1]
+        haskey(L_MS, ms) && push!(L_MS[ms], i)
+    end
+
+    for i in fl_nodes
+        ms_o, ms_d = flight_legs[i]
+        haskey(M_FL_O, ms_o) && push!(M_FL_O[ms_o], i)
+        haskey(M_FL_D, ms_d) && push!(M_FL_D[ms_d], i)
+    end
+    
     A_M_bar = setdiff(A, A_M)
-    return A_K, A_F, A_M, A_M_bar, L_M, L_MS, L_a_M
+    return A_K, A_F, A_M, A_M_bar, L_M, L_MS, M_FL_O, M_FL_D, L_a_M
 end
 
 """
@@ -162,7 +174,8 @@ function build_graph(file, preprocess)
     # CONSTRUCTION DES ARCS
     # ================================================================
     A_K, A_F, A_T = [], [], []  # Arcs avions->vols, vols->vols, vols->puits
-    a = Dict()  # Matrice d'assignation temporelle
+    #a = Dict()  # Matrice d'assignation temporelle
+    a_day = Dict{String, Int}()
     #b_bis = Dict()  #Nombre de jour de chaque vol
     println("Construction des arcs...")
     for i in fl_nodes
@@ -187,10 +200,11 @@ function build_graph(file, preprocess)
         (end_h_time - at_i <= 1440) && push!(A_T, (i, st_nodes[2]))
         # Matrice d'assignation par période temporelle
         day = ceil(Int, dt_i / 1440)
-        for t in 1:nbr_TP
-            a[(i, t)] = (day == t) ? 1 : 0
-        end
+        a_day[i] = day
+
         b_bis[i] = floor(Int, AT[i]/1440) - floor(Int, DT[i]/1440) + 1 
+
+
     end
     
     # ================================================================
@@ -220,7 +234,25 @@ function build_graph(file, preprocess)
     A_M_bar = setdiff(A, A_M)
     #println(A_M_bar)
     # Regroupement des vols par station de maintenance
-    L_MS = Dict(ms => [i for i in L_M if flight_legs[i][1] == ms] for ms in mtn_stations)
+    #= L_MS = Dict(ms => [i for i in L_M if flight_legs[i][1] == ms] for ms in mtn_stations)
+    M_FL_O = Dict(ms => [i for i in fl_nodes if flight_legs[i][1] == ms] for ms in mtn_stations)
+    M_FL_D = Dict(ms => [i for i in fl_nodes if flight_legs[i][2] == ms] for ms in mtn_stations)
+     =#
+    
+    # Au lieu de parcourir L_M pour chaque station
+    L_MS, M_FL_O, M_FL_D = Dict(ms => String[] for ms in mtn_stations), Dict(ms => String[] for ms in mtn_stations), Dict(ms => String[] for ms in mtn_stations)
+
+    for i in L_M
+        ms = flight_legs[i][1]
+        haskey(L_MS, ms) && push!(L_MS[ms], i)
+    end
+
+    for i in fl_nodes
+        ms_o, ms_d = flight_legs[i]
+        haskey(M_FL_O, ms_o) && push!(M_FL_O[ms_o], i)
+        haskey(M_FL_D, ms_d) && push!(M_FL_D[ms_d], i)
+    end
+
     old_arc_nbr = length(A)
     old_node_nbr = length(V)
     arc_reduc = 0
@@ -384,7 +416,7 @@ function build_graph(file, preprocess)
         # CALCULS FINAUX (UNE SEULE FOIS)
         # ============================================================
         # Mise à jour finale des structures de maintenance
-        A_K, A_F, A_M, A_M_bar, L_M, L_MS, L_a_M = arc_set_update(A, a_nodes, fl_nodes, flight_legs, init_airport, DT, AT, mtn_time, mtn_stations)
+        A_K, A_F, A_M, A_M_bar, L_M, L_MS, M_FL_O, M_FL_D, L_a_M = arc_set_update(A, a_nodes, fl_nodes, flight_legs, init_airport, DT, AT, mtn_time, mtn_stations)
         A_S, A_T = collect(A_S_set), collect(A_T_set)
         # Nettoyage final des données
         d, tk, DT, AT = data_update(d, tk, DT, AT, nodes_rm)
@@ -401,14 +433,21 @@ function build_graph(file, preprocess)
         println("\nNombre d'arcs après : $new_arc_nbr arcs")
         println("Nombre de noeuds après : $new_node_nbr noeuds")
         # Recalcul de la matrice d'assignation temporelle
-        a = Dict()
+        #= a = Dict()
         for i in fl_nodes
             day = ceil(Int, DT[i] / 1440)
             for t in 1:nbr_TP
                 a[(i, t)] = (day == t) ? 1 : 0
             end
-        end
+        end =#
+        # Initialiser le dictionnaire
+        a_day = Dict{String, Int}()
 
+        # Remplir le dictionnaire
+        for i in fl_nodes
+            day = ceil(Int, DT[i] / 1440)  # Adapter selon votre structure
+            a_day[i] = day
+        end
         F_bar = Dict(j => instance["maximum_flying_time"] for j in fl_nodes)
         d_bar = Dict(j => d[j] for j in fl_nodes)
         
@@ -481,14 +520,14 @@ function build_graph(file, preprocess)
     # FINALISATION ET RETOUR
     # ================================================================
     
-    
+    #println(L_MS)
     # Mise à jour de l'instance avec toutes les structures calculées
     merge!(instance, Dict(
         "DT" => DT, "AT" => AT, "d" => d, "tk" => tk, "b" => b, "b_bar" => b_bar,
         "A_S" => A_S, "A_F" => A_F, "A_K" => A_K, "A_T" => A_T, "b_bis" => b_bis,
-        "A" => A, "A_M" => A_M, "A_M_bar" => A_M_bar, "L_M" => L_M,
-        "L_MS" => L_MS, "V" => V, "V_wt_st" => V_wt_st, "a" => a,
-        "a_nodes" => a_nodes, "fl_nodes" => fl_nodes,
+        "A" => A, "A_M" => A_M, "A_M_bar" => A_M_bar, "L_M" => L_M,"L_MS" => L_MS, 
+        "M_FL_O" => M_FL_O, "M_FL_D" => M_FL_D, "V" => V, "V_wt_st" => V_wt_st, 
+        "a_day" => a_day, "a_nodes" => a_nodes, "fl_nodes" => fl_nodes,
         "initial_flying_time" => initial_flying_time,
         "initial_takeoff" => initial_takeoff,
         "initial_flying_day" => initial_flying_day,
