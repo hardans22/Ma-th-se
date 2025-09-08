@@ -10,6 +10,7 @@ function print_solution(solution, output_file, silent=false)
     A, L_M, a_nodes, fl_nodes = instance["A"], instance["L_M"], instance["a_nodes"], instance["fl_nodes"]
     obj_val, time_used, sx, sy = solution["obj"], solution["time"], solution["x"], solution["y"]
     rho, lambda, phi = solution["rho"], solution["lambda"], solution["phi"]
+    su, sv, sw = solution["u"], solution["v"], solution["w"]
     mtn_stations_used, nbr_sts_used = solution["mtn_stations_used"], solution["nbr_sts_used"]
     
     # Construire le graphe des successeurs en une seule passe
@@ -46,11 +47,17 @@ function print_solution(solution, output_file, silent=false)
     aircraft_starts = [(i, j) for (i, j) in A if i == "s" && sx[(i, j)] >= 0.9]
     
     for (_, avion) in aircraft_starts
-        chemin = build_aircraft_path(avion, succ)
+        chemin, u_value, v_value, w_value = build_aircraft_path(avion, succ, su, sv, sw)
         aircraft_paths[avion] = chemin
         
         path_str = join(chemin, " ➡️  ")
+        path_str_u = join(u_value, " ➡️  ")
+        path_str_v = join(v_value, " ➡️  ")
+        path_str_w = join(w_value, " ➡️  ")
         write_both("\n🛩️ Aircraft $avion path: $path_str")
+        #= write_both("\n🛩️ Aircraft $avion u_value: $path_str_u")
+        write_both("\n🛩️ Aircraft $avion u_value: $path_str_v")
+        write_both("\n🛩️ Aircraft $avion u_value: $path_str_w") =#
     end
     
     # Identifier les maintenances actives et les mapper aux avions
@@ -81,20 +88,27 @@ function print_solution(solution, output_file, silent=false)
 end
 
 # Fonctions helper optimisées
-function build_aircraft_path(start_aircraft::String, succ::Dict{String, String})
+function build_aircraft_path(start_aircraft::String, succ::Dict{String, String}, su, sv, sw)
     """Construit le chemin complet d'un avion à partir du graphe des successeurs"""
     chemin = ["s", start_aircraft]
+    u_value = [su["s"], su[start_aircraft]]
+    v_value = [sv["s"], sv[start_aircraft]]
+    w_value = [sw["s"], sw[start_aircraft]]
     current = start_aircraft
     
     while haskey(succ, current) && succ[current] != "t"
         current = succ[current]
         push!(chemin, current)
+        push!(u_value, su[current])
+        push!(v_value, sv[current])
+        push!(w_value, sw[current])
+
     end
     
     # Ajouter le nœud terminal si accessible
     haskey(succ, current) && push!(chemin, succ[current])
     
-    return chemin
+    return chemin, u_value, v_value, w_value
 end
 
 function find_aircraft_for_maintenance(maintenance_node::String, aircraft_paths::Dict{String, Vector{String}})

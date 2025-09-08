@@ -67,7 +67,7 @@ function data_update(d, tk, DT, AT, nodes_rm)
     return d, tk, DT, AT
 end
 
-function fl_a_nodes_update(i, j, ij, a_nodes, fl_nodes, flight_legs, b_bis, d, tk, init_airport, initial_flying_time, initial_takeoff, initial_flying_day)
+function fl_a_nodes_update(i, j, ij, a_nodes, fl_nodes, flight_legs, d, tk, init_airport, initial_flying_time, initial_takeoff, initial_flying_day)
     flight_legs[ij] = []
     # Mise à jour des ensembles de nœuds
     if i in fl_nodes
@@ -82,7 +82,7 @@ function fl_a_nodes_update(i, j, ij, a_nodes, fl_nodes, flight_legs, b_bis, d, t
         # Transfert des propriétés d'avion
         initial_flying_time[ij] = initial_flying_time[i] + d[j]
         initial_takeoff[ij] = initial_takeoff[i] + tk[j]
-        initial_flying_day[ij] = initial_flying_day[i] + b_bis[j] - 1
+        initial_flying_day[ij] = initial_flying_day[i]
         for dict in [initial_flying_time, initial_takeoff, initial_flying_day]
             filter!(kv -> kv[1] != i, dict)
         end
@@ -157,18 +157,15 @@ function build_graph(file, preprocess)
     AT = Dict(fl_nodes[i] => f_legs[i][4] for i in 1:nbr_FL)  # Arrival Time
     d = Dict(fl_nodes[i] => f_legs[i][5] for i in 1:nbr_FL)   # Duration
     tk = Dict(fl_nodes[i] => 1 for i in 1:nbr_FL)   # Takeoff
-    b_bar = Dict(fl_nodes[i] => 1 for i in 1:nbr_FL)   # Takeoff
-    b_bis = Dict()
+    
 
     # Initialisation des avions et nœuds source/puits
     A_S = [(st_nodes[1], k) for k in a_nodes]  # Arcs source -> avions
     for k in a_nodes
-        d[k],tk[k], b_bar[k], DT[k], AT[k] = initial_flying_time[k], initial_takeoff[k], initial_flying_day[k], 0, 0
-        b_bis[k] = initial_flying_day[k]
+        d[k],tk[k], DT[k], AT[k] = initial_flying_time[k], initial_takeoff[k], 0, 0
     end
-    d["s"], tk["s"], b_bar["s"], DT["s"], AT["s"] = 0, 0, 0, 0, 0
-    d["t"], tk["t"], b_bar["t"], DT["t"], AT["t"] = 0, 0, 0, end_h_time, end_h_time
-    b_bis["s"], b_bis["t"]  = 0, 0 
+    d["s"], tk["s"], DT["s"], AT["s"] = 0, 0, 0, 0 
+    d["t"], tk["t"], DT["t"], AT["t"] = 0, 0, end_h_time, end_h_time
     
     # ================================================================
     # CONSTRUCTION DES ARCS
@@ -176,7 +173,6 @@ function build_graph(file, preprocess)
     A_K, A_F, A_T = [], [], []  # Arcs avions->vols, vols->vols, vols->puits
     #a = Dict()  # Matrice d'assignation temporelle
     a_day = Dict{String, Int}()
-    #b_bis = Dict()  #Nombre de jour de chaque vol
     println("Construction des arcs...")
     for i in fl_nodes
         origin, dest = flight_legs[i][1], flight_legs[i][2]
@@ -201,10 +197,6 @@ function build_graph(file, preprocess)
         # Matrice d'assignation par période temporelle
         day = ceil(Int, dt_i / 1440)
         a_day[i] = day
-
-        b_bis[i] = floor(Int, AT[i]/1440) - floor(Int, DT[i]/1440) + 1 
-
-
     end
     
     # ================================================================
@@ -294,7 +286,7 @@ function build_graph(file, preprocess)
                 push!(nodes_new, ij)
                 # Mise à jour des nœuds
                 a_nodes, fl_nodes, flight_legs, init_airport, initial_flying_time, initial_takeoff, initial_flying_day = 
-                    fl_a_nodes_update(i, j, ij, a_nodes, fl_nodes, flight_legs, b_bis, d, tk, init_airport, initial_flying_time, initial_takeoff, initial_flying_day)
+                    fl_a_nodes_update(i, j, ij, a_nodes, fl_nodes, flight_legs, d, tk, init_airport, initial_flying_time, initial_takeoff, initial_flying_day)
                 
                 # Collecte des arcs à modifier
                 inarc_i = [(u, i) for u in get(predecessors, i, [])]
@@ -305,14 +297,8 @@ function build_graph(file, preprocess)
                 # Mise à jour des données
                 d[ij] = d[i] + d[j]
                 tk[ij] = tk[i] + tk[j]
-                if floor(Int, DT[i]/1440) == floor(Int, AT[j]/1440)
-                    b_bar[ij] = 1
-                else
-                    b_bar[ij] = b[arc] + min(b_bar[j],b_bar[j])
-                end
                 DT[ij] = DT[i]
                 AT[ij] = AT[j]
-                b_bis[ij] = floor(Int, AT[ij]/1440) - floor(Int, DT[ij]/1440) + 1 
                 # Mise à jour sélective de b : supprimer les anciens arcs et ajouter les nouveaux
                 new_arcs = []
                 for u in get(predecessors, i, [])
@@ -354,7 +340,7 @@ function build_graph(file, preprocess)
                 push!(nodes_new, ij)
                 # Mise à jour des nœuds
                 a_nodes, fl_nodes, flight_legs, init_airport, initial_flying_time, initial_takeoff, initial_flying_day = 
-                    fl_a_nodes_update(i, j, ij, a_nodes, fl_nodes, flight_legs, b_bis, d, tk, init_airport, initial_flying_time, initial_takeoff, initial_flying_day)
+                    fl_a_nodes_update(i, j, ij, a_nodes, fl_nodes, flight_legs, d, tk, init_airport, initial_flying_time, initial_takeoff, initial_flying_day)
                 # Collecte des arcs à modifier
                 inarc_i = [(u, i) for u in get(predecessors, i, [])]
                 outarc_j = [(j, v) for v in get(successors, j, [])]
@@ -364,14 +350,9 @@ function build_graph(file, preprocess)
                 # Mise à jour des données
                 d[ij] = d[i] + d[j]
                 tk[ij] = tk[i] + tk[j]
-                if floor(Int, DT[i]/1440) == floor(Int, AT[j]/1440)
-                    b_bar[ij] = 1
-                else
-                    b_bar[ij] = b[arc] + min(b_bar[j],b_bar[j])
-                end
+                
                 DT[ij] = DT[i]
                 AT[ij] = AT[j] 
-                b_bis[ij] = floor(Int, AT[ij]/1440) - floor(Int, DT[ij]/1440) + 1 
                 # Mise à jour sélective de b : supprimer les anciens arcs et ajouter les nouveaux
                 new_arcs = []
                 for u in get(predecessors, i, [])
@@ -423,8 +404,7 @@ function build_graph(file, preprocess)
         V_wt_st = vcat(unique!(fl_nodes), unique!(a_nodes))
         V = vcat(["s", "t"], V_wt_st)
         for k in a_nodes
-            d[k],tk[k], b_bar[k] = initial_flying_time[k], initial_takeoff[k], initial_flying_day[k], 0, 0
-            b_bis[k] = initial_flying_day[k]
+            d[k],tk[k], b[k] = initial_flying_time[k], initial_takeoff[k], initial_flying_day[k], 0, 0
         end
         new_arc_nbr = length(A)
         new_node_nbr = length(V)
@@ -523,8 +503,8 @@ function build_graph(file, preprocess)
     #println(L_MS)
     # Mise à jour de l'instance avec toutes les structures calculées
     merge!(instance, Dict(
-        "DT" => DT, "AT" => AT, "d" => d, "tk" => tk, "b" => b, "b_bar" => b_bar,
-        "A_S" => A_S, "A_F" => A_F, "A_K" => A_K, "A_T" => A_T, "b_bis" => b_bis,
+        "DT" => DT, "AT" => AT, "d" => d, "tk" => tk, "b" => b, "b" => b,
+        "A_S" => A_S, "A_F" => A_F, "A_K" => A_K, "A_T" => A_T, 
         "A" => A, "A_M" => A_M, "A_M_bar" => A_M_bar, "L_M" => L_M,"L_MS" => L_MS, 
         "M_FL_O" => M_FL_O, "M_FL_D" => M_FL_D, "V" => V, "V_wt_st" => V_wt_st, 
         "a_day" => a_day, "a_nodes" => a_nodes, "fl_nodes" => fl_nodes,

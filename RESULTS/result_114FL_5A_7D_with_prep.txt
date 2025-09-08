@@ -1,0 +1,57 @@
+INSTANCE 114FL_5A_7D
+PREPROCESSING : true
+-----------------------INSTANCE 3--------------------------
+✅ Solution trouvée (status: OPTIMAL)
+🎯 Objective value: 86980.0
+⏱️ Time used: 0.2091
+Nombre de vols satisfaits: 48
+Nombre de vols non satisfaits: 0
+
+✈️ Paths for each aircraft:
+
+🛩️ Aircraft N524AS path: s ➡️  N524AS ➡️  SEA_TPA_506_1010_TPA_SEA_1102_1274 ➡️  SEA_SMF_1852_1947_SMF_OGG_2041_2266_OGG_SJC_2339_2740_SJC_SEA_3475_3608 ➡️  SEA_DEN_3683_3904_DEN_SEA_3978_4126 ➡️  SEA_ONT_4193_4319_ONT_SEA_4697_4866 ➡️  SEA_HNL_4944_5239_HNL_SJC_5290_5705_SJC_LIH_6176_6406_LIH_SAN_6463_6905 ➡️  SAN_OGG_7614_7841_OGG_SMF_7912_8319_SMF_SEA_8512_8615 ➡️  SEA_SMF_9045_9155_SMF_OGG_9241_9453_OGG_SJC_9528_9927 ➡️  t
+
+🛩️ Aircraft N524AS u_value: 0.0 ➡️  0.0 ➡️  634.0 ➡️  1417.0 ➡️  1704.0 ➡️  1968.0 ➡️  3241.0 ➡️  3926.0 ➡️  4588.0
+
+🛩️ Aircraft N524AS u_value: 0.0 ➡️  1.0 ➡️  3.0 ➡️  7.0 ➡️  9.0 ➡️  11.0 ➡️  15.0 ➡️  18.0 ➡️  21.0
+
+🛩️ Aircraft N524AS u_value: 0.0 ➡️  1.0 ➡️  1.0 ➡️  2.0 ➡️  3.0 ➡️  3.0 ➡️  4.0 ➡️  6.0 ➡️  7.0
+
+🛩️ Aircraft N518AS path: s ➡️  N518AS ➡️  SEA_LIH_509_764_LIH_SEA_853_1291 ➡️  SEA_EWR_1921_2398_EWR_SEA_2474_2687 ➡️  SEA_FAI_2850_3036_FAI_SEA_3266_3540 ➡️  SEA_AUS_3597_3943_AUS_SEA_4002_4154 ➡️  SEA_BOS_4222_4705_BOS_SEA_4779_4995 ➡️  SEA_PSP_5059_5224_PSP_SEA_5264_5443 ➡️  SEA_BUR_5513_5653_BUR_SEA_6236_6396 ➡️  SEA_SMF_6674_6767_SMF_SEA_6806_6909 ➡️  SEA_ANC_6954_7114 ➡️  ANC_SEA_7310_7558 ➡️  SEA_PHX_7648_7863_PHX_SEA_7917_8032 ➡️  SEA_BUR_8104_8244_BUR_SEA_9197_9340 ➡️  SEA_ANC_9382_9541_ANC_SEA_9607_9857 ➡️  t
+
+🛩️ Aircraft N518AS u_value: 0.0 ➡️  0.0 ➡️  645.0 ➡️  1294.0 ➡️  1698.0 ➡️  2148.0 ➡️  2789.0 ➡️  3067.0 ➡️  3321.0 ➡️  3483.0 ➡️  3679.0 ➡️  3853.0 ➡️  4144.0 ➡️  4391.0 ➡️  4762.0
+
+🛩️ Aircraft N518AS u_value: 0.0 ➡️  1.0 ➡️  3.0 ➡️  5.0 ➡️  7.0 ➡️  9.0 ➡️  11.0 ➡️  13.0 ➡️  15.0 ➡️  17.0 ➡️  18.0 ➡️  19.0 ➡️  21.0 ➡️  23.0 ➡️  25.0
+
+🛩️ Aircraft N518AS u_value: 0.0 ➡️  1.0 ➡️  1.0 ➡️  2.0 ➡️  2.0 ➡️  3.0 ➡️  3.0 ➡️  4.0 ➡️  4.0 ➡️  5.0 ➡️  5.0 ➡️  6.0 ➡️  6.0 ➡️  6.0 ➡️  7.0
+
+🛩️ Aircraft N570AS path: s ➡️  N570AS ➡️  SEA_ANC_539_705_ANC_HNL_796_1111_HNL_ANC_1312_1723_ANC_SCC_1868_1977_SCC_BRW_2020_2071_BRW_FAI_2111_2195_FAI_ANC_2235_2292_ANC_CDV_2386_2431_CDV_YAK_2478_2529_YAK_JNU_2571_2620_JNU_SEA_2661_2837 ➡️  SEA_LIH_3395_3677_LIH_SEA_3734_4198 ➡️  SEA_ANC_4874_5017_ANC_HNL_5122_5406_HNL_ANC_5646_6073_ANC_JNU_6236_6331_JNU_SIT_6374_6418_SIT_KTN_6474_6518_KTN_SEA_6555_6731 ➡️  SEA_OGG_6822_7087_OGG_PDX_7146_7566_PDX_KOA_7640_7896_KOA_PDX_7963_8404_PDX_ANC_8511_8670_ANC_PDX_8751_9014_PDX_BOS_9110_9610_BOS_PDX_9666_9908 ➡️  t
+
+🛩️ Aircraft N570AS u_value: 0.0 ➡️  0.0 ➡️  1327.0 ➡️  2004.0 ➡️  3084.0 ➡️  5425.0
+
+🛩️ Aircraft N570AS u_value: 0.0 ➡️  1.0 ➡️  12.0 ➡️  14.0 ➡️  21.0 ➡️  29.0
+
+🛩️ Aircraft N570AS u_value: 0.0 ➡️  1.0 ➡️  1.0 ➡️  3.0 ➡️  4.0 ➡️  5.0
+
+🛩️ Aircraft N546AS path: s ➡️  N546AS ➡️  SAN_MCO_609_1069_MCO_SEA_1125_1331 ➡️  SEA_MCO_1922_2425_MCO_SAN_2486_2618 ➡️  SAN_BOS_3416_3924_BOS_SAN_4069_4310 ➡️  SAN_MCO_4958_5419_MCO_SEA_5471_5688 ➡️  SEA_BWI_6253_6694_BWI_SEA_6811_7014 ➡️  SEA_ANC_7099_7255 ➡️  ANC_SEA_7778_8035 ➡️  SEA_PHX_8097_8312_PHX_SEA_8382_8487 ➡️  SEA_FAI_8589_8752_FAI_SEA_9026_9292 ➡️  SEA_BUR_9530_9669_BUR_SEA_9709_9847 ➡️  SEA_OAK_9915_10030 ➡️  t
+
+🛩️ Aircraft N546AS u_value: 0.0 ➡️  3072.0 ➡️  3682.0 ➡️  4281.0 ➡️  4938.0 ➡️  5565.0 ➡️  595.0 ➡️  793.0 ➡️  968.0 ➡️  1256.0 ➡️  1634.0 ➡️  1881.0 ➡️  1981.0
+
+🛩️ Aircraft N546AS u_value: 0.0 ➡️  21.0 ➡️  23.0 ➡️  25.0 ➡️  27.0 ➡️  29.0 ➡️  2.0 ➡️  3.0 ➡️  4.0 ➡️  6.0 ➡️  8.0 ➡️  10.0 ➡️  11.0
+
+🛩️ Aircraft N546AS u_value: 0.0 ➡️  6.0 ➡️  6.0 ➡️  7.0 ➡️  8.0 ➡️  9.0 ➡️  1.0 ➡️  1.0 ➡️  2.0 ➡️  2.0 ➡️  2.0 ➡️  3.0 ➡️  3.0
+
+🛩️ Aircraft N469AS_OAK_SEA_368_481 path: s ➡️  N469AS_OAK_SEA_368_481 ➡️  SEA_MSP_619_921_MSP_SEA_985_1100 ➡️  SEA_FAI_1169_1332_FAI_SEA_1507_1762 ➡️  SEA_SAN_1830_1977 ➡️  SAN_SEA_2463_2647 ➡️  SEA_MCO_2711_3220_MCO_SEA_3295_3493 ➡️  SEA_JNU_3549_3649_JNU_SEA_3737_3947 ➡️  SEA_PHL_4937_5404_PHL_SEA_5458_5658 ➡️  SEA_SMF_6300_6413_SMF_SEA_6452_6566 ➡️  SEA_ONT_6608_6757_ONT_SEA_6798_6952 ➡️  SEA_SAN_6998_7147 ➡️  SAN_BOS_7741_8240_BOS_SAN_8319_8565 ➡️  SAN_SEA_9112_9276 ➡️  SEA_AUS_9339_9698_AUS_SEA_9745_9891 ➡️  t
+
+🛩️ Aircraft N469AS_OAK_SEA_368_481 u_value: 0.0 ➡️  2866.0 ➡️  3228.0 ➡️  3605.0 ➡️  3735.0 ➡️  3900.0 ➡️  4559.0 ➡️  4811.0 ➡️  5427.0 ➡️  5597.0 ➡️  5856.0 ➡️  5986.0 ➡️  668.0 ➡️  807.0 ➡️  1263.0
+
+🛩️ Aircraft N469AS_OAK_SEA_368_481 u_value: 0.0 ➡️  20.0 ➡️  22.0 ➡️  24.0 ➡️  25.0 ➡️  26.0 ➡️  28.0 ➡️  30.0 ➡️  32.0 ➡️  34.0 ➡️  36.0 ➡️  37.0 ➡️  2.0 ➡️  3.0 ➡️  5.0
+
+🛩️ Aircraft N469AS_OAK_SEA_368_481 u_value: 0.0 ➡️  5.0 ➡️  5.0 ➡️  5.0 ➡️  6.0 ➡️  6.0 ➡️  6.0 ➡️  7.0 ➡️  8.0 ➡️  9.0 ➡️  9.0 ➡️  9.0 ➡️  1.0 ➡️  2.0 ➡️  2.0
+
+🛠️ Maintenance at node SEA_BWI_6253_6694_BWI_SEA_6811_7014 by aircraft N546AS | ρ=435.0; λ=11.0; φ=1.0
+🛠️ Maintenance at node SAN_BOS_7741_8240_BOS_SAN_8319_8565 by aircraft N469AS_OAK_SEA_368_481 | ρ=14.0; λ=3.0; φ=1.0
+
+Nombre de maintenances au total: 2.0
+Stations de maintenance utilisées: Any["SAN", "SEA"]
+Nombre de stations de maintenance utilisées: 2
