@@ -160,11 +160,12 @@ function build_graph(file, preprocess)
     
 
     # Initialisation des avions et nœuds source/puits
+    temp = minimum(values(DT))
     A_S = [(st_nodes[1], k) for k in a_nodes]  # Arcs source -> avions
     for k in a_nodes
-        d[k],tk[k], DT[k], AT[k] = initial_flying_time[k], initial_takeoff[k], 0, 0
+        d[k],tk[k], DT[k], AT[k] = initial_flying_time[k], initial_takeoff[k], temp, temp
     end
-    d["s"], tk["s"], DT["s"], AT["s"] = 0, 0, 0, 0 
+    d["s"], tk["s"], DT["s"], AT["s"] = 0, 0, temp, temp 
     d["t"], tk["t"], DT["t"], AT["t"] = 0, 0, end_h_time, end_h_time
     
     # ================================================================
@@ -404,7 +405,7 @@ function build_graph(file, preprocess)
         V_wt_st = vcat(unique!(fl_nodes), unique!(a_nodes))
         V = vcat(["s", "t"], V_wt_st)
         for k in a_nodes
-            d[k],tk[k], b[k] = initial_flying_time[k], initial_takeoff[k], initial_flying_day[k], 0, 0
+            d[k],tk[k], b[k] = initial_flying_time[k], initial_takeoff[k], initial_flying_day[k]
         end
         new_arc_nbr = length(A)
         new_node_nbr = length(V)

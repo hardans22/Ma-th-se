@@ -65,7 +65,7 @@ for nbr_day in [1,8,15,22]
 
     # ------------------- Part 2 -------------------
     
-    for len in [5, 10, 15]
+    for len in [5,10,15]
         aircrafts = good_ac[1:len]
         #aircrafts = sample(good_ac, len, replace=false)
         df_fl_ac = filter(row -> row.TAIL_NUMBER in aircrafts && row.DAY in nbr_day:nbr_day+6, df_flights)
@@ -76,14 +76,14 @@ for nbr_day in [1,8,15,22]
         sorted_o_apt = sort(collect(countmap(origin_airports)), by = x -> x[2], rev = true)
         cap_mat = [rand() < 0.2 ? 0 : rand(1:3) for _ in 1:length(sorted_o_apt), _ in nbr_day:nbr_day+6]
 
-        v_range = len == 5 ? (1:2) : (1:3)
+        v_range = len <= 5 ? (1:2) : (1:3)
         for version in v_range
             init_apt, init_fl, init_tk, init_fd = [], [], [], []
             nbr_ac_mtn = [3, 5, 8][version]
             for (i, ac) in enumerate(aircrafts)
-                temp_fl = (i <= length(aircrafts) - nbr_ac_mtn) ? 0 : rand(2400:4800)
+                temp_fl = (i <= length(aircrafts) - nbr_ac_mtn) ? 0 : rand(1800:4200)
                 
-                push!(init_apt, filter(row -> row.TAIL_NUMBER == ac, df_flights)[1, "ORIGIN_AIRPORT"])
+                push!(init_apt, filter(row -> row.TAIL_NUMBER == ac, df_fl_ac)[1, "ORIGIN_AIRPORT"])
                 push!(init_fl, temp_fl)
                 push!(init_tk, temp_fl == 0 ? 1 : ceil(Int, temp_fl / 150))     # 2.5h (150 min) en moyenne par vol
                 push!(init_fd, temp_fl == 0 ? 1 : ceil(Int, temp_fl / 600))     # 10h (600 min) en moyenne par jour
@@ -109,7 +109,7 @@ for nbr_day in [1,8,15,22]
                     INIT_FLYING_DAY = init_fd
                 )
 
-                filename = Output_fold*string(nbr_flights)*"FL_"*string(nbr_aircrafts)*"A_"*"7D_"*string(version)*".xlsx"
+                filename = Output_fold*string(nbr_flights)*"FL_"*string(nbr_aircrafts)*"A_"*string(version)*".xlsx"
                 XLSX.openxlsx(filename, mode = "w") do xf
                     # Supprimer la feuille par défaut "Sheet1"
                     XLSX.rename!(xf["Sheet1"], "Data")

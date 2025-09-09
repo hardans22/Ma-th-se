@@ -23,15 +23,12 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
     h = instance["initial_takeoff"]
     g = instance["initial_flying_day"]
     b = instance["b"]
+    DT, AT = instance["DT"], instance["AT"]
     a_nodes = instance["a_nodes"]
     fl_nodes = instance["fl_nodes"]
     predecessors, successors = Dict(), Dict()
     predecessors, successors = update_neighborhood(A, predecessors, successors)
-    
-    #= for k in A
-        println("$k")
-    end  =#
-    
+
     a_day = instance["a_day"]
     nbr_TP = instance["nbr_TP"]
     TP = 1:nbr_TP
@@ -81,7 +78,7 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @constraint(model, c1[i in fl_nodes], sum(x[(i,j)] for j in get(successors, i, [])) == 1)
         @constraint(model, c2[i in V_wt_st], sum(x[(j,i)] for j in get(predecessors, i, [])) == sum(x[(i,j)] for j in get(successors, i, [])))
         @constraint(model, c3[j in L_M], y[j] <= sum(x[(i, j)] for (i, j) in A_M))
-        
+    
         #Flying time constraints
         @constraint(model, c4[(i,j) in A_M], rho[j] >= max_flt*x[(i, j)] - u[i] - (max_flt - d[i])*(1 - y[j]))
         for (i, j) in A

@@ -12,11 +12,14 @@ function combine_results(file_list, output_file)
     # Sauvegarder
     XLSX.writetable(output_file, combined, overwrite = true)
 end
-without_files = sort(glob("*_without_*.xlsx", "/home/harcenage/Téléchargements/RESULTS"))
-output_file = "/home/harcenage/Téléchargements/RESULTS/Combined_results/all_results_without_prep.xlsx"
-combine_results(without_files, output_file)
+init_path = "/home/harcenage/Téléchargements/RESULTS/"
+for first_fold in ["M01_W1/", "M01_W2/", "M01_W3/", "M01_W4/"]
+    for second_fold in ["MS_5/", "MS_10/"]
+        without_files = sort(glob("*_without_*.xlsx", init_path*first_fold*second_fold))
+        combine_results(without_files, init_path*first_fold*second_fold*"COMBINED/all_results_without_prep.xlsx")
+        with_files = sort(glob("*_with_*.xlsx", init_path*first_fold*second_fold))
+        combine_results(with_files, init_path*first_fold*second_fold*"COMBINED/all_results_with_prep.xlsx")
+    end
+end
 
-with_files = sort(glob("*_with_*.xlsx", "/home/harcenage/Téléchargements/RESULTS"))
-output_file = "/home/harcenage/Téléchargements/RESULTS/Combined_results/all_results_with_prep.xlsx"
-combine_results(with_files, output_file)
 

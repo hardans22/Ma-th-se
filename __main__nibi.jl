@@ -13,7 +13,9 @@ nbr_thread = 10
 silent = false
 time_limit = 18000
 
-Outputs_fold = "RESULTS/"
+parts = split(instance, "/")
+f_fold = join(parts[end-2:end-1], "/")  # "M01_W1/MS_5"
+Outputs_fold = "RESULTS/"*f_fold*"/"
 
 list_instances, list_obj, list_dual_obj, list_gap, list_nbr_nodes  = [], [], [], [], []
 list_time, list_opt, list_arc_reduc, list_node_reduc, list_nbr_mtn = [], [], [], [], []
