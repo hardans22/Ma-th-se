@@ -11,13 +11,13 @@ include("functions.jl")
 #= inst_name = ARGS[1]
 preprocess = parse(Bool, ARGS[2])
  =# 
-inst_name = "370FL_15A"
+inst_name = "249FL_10A"
 #preprocess = false
 
-file_path = "instances_json/M01_W1/MS_5/"*inst_name
+file_path = "instances_json/A_MTN_5/"*inst_name
 nbr_thread = 10
 silent = false
-time_limit = 180
+time_limit = 300
 #model_amrp(file*".json")
 
 Outputs_fold = "RESULTS/"
@@ -36,7 +36,7 @@ for preprocess in [false, true]
     write(Output_file, "INSTANCE "*inst_name)
     println("\nPREPROCESSING : ", preprocess)
     write(Output_file, "\nPREPROCESSING : "*string(preprocess))
-    for i in 2:2
+    for i in 1:1
         println("-----------------------INSTANCE $i--------------------------")
         write(Output_file, "\n-----------------------INSTANCE "*string(i)*"--------------------------")
         push!(list_instances, inst_name*"_"*string(i))

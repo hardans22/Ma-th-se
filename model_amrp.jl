@@ -29,6 +29,7 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
     predecessors, successors = Dict(), Dict()
     predecessors, successors = update_neighborhood(A, predecessors, successors)
 
+
     a_day = instance["a_day"]
     nbr_TP = instance["nbr_TP"]
     TP = 1:nbr_TP
@@ -46,6 +47,8 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
     model = Model(optimizer_with_attributes(Gurobi.Optimizer, "Threads" => nbr_thread))
     set_optimizer_attribute(model, "OutputFlag", 1)
     set_optimizer_attribute(model, "TimeLimit", time_limit) 
+    set_optimizer_attribute(model, "Presolve", 0)
+
     if silent
         set_silent(model)
     end 
@@ -97,7 +100,7 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @constraint(model, u["s"] == 0)
         @constraint(model, c9[k in a_nodes], u[k] == f[k])
         
-        #Takeoff constraints 
+        #=#Takeoff constraints 
         @constraint(model, c10[(i,j) in A_M], lambda[j] >= max_tk*x[(i, j)] - v[i] - (max_tk - tk[i])*(1 - y[j]))
         
         for (i, j) in A
@@ -114,7 +117,7 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @constraint(model, c14[(i,j) in A_M], v[j] >= v[i] + tk[j] - max_tk*(1 - x[(i,j)]) - max_tk*y[j])
         @constraint(model, v["s"] == 0)
         @constraint(model, c15[k in a_nodes], v[k] == h[k])
-        
+         =#
         #Flying day constraints
         #= @constraint(model, c17[(i,j) in A_M], phi[j] >= max_day*x[(i, j)] - w[i] - (max_day - 1)*(1 - y[j]))
         for (i, j) in A
@@ -146,16 +149,16 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
     # Contrôle du statut
     status = termination_status(model)
     if status == MOI.OPTIMAL || status == MOI.FEASIBLE_POINT || status == MOI.TIME_LIMIT || status == MOI.INTERRUPTED
-        obj_val = objective_value(model)
+        obj_val = round(objective_value(model), digits = 2)
         sx, sy, su, sv, sw = JuMP.value.(x), JuMP.value.(y), JuMP.value.(u), JuMP.value.(v), JuMP.value.(w)
         sz= JuMP.value.(z)
         #sI, sQ, sS =  JuMP.value.(I), JuMP.value.(Q), JuMP.value.(S) 
-        s_rho, s_lambda, s_phi = JuMP.value.(rho), JuMP.value.(lambda), JuMP.value.(phi)
+        s_rho, s_lambda, s_phi = round.(Int, JuMP.value.(rho)), round.(Int, JuMP.value.(lambda)), round.(Int, JuMP.value.(phi))
         gap = round(relative_gap(model)*100, digits = 4)
         nbr_nodes =  MOI.get(model, MOI.NodeCount())
-        dual_obj = objective_bound(model)
-        time = round(solve_time(model), digits = 4)
-        nbr_mtn = sum(sy)
+        dual_obj = round(objective_bound(model); digits = 2)
+        time = round(solve_time(model), digits = 2)
+        nbr_mtn = round(Int, sum(sy))
         println("ROUTING OBJ = ", sum(gamma_f*s_rho[j] + gamma_t*s_lambda[j] + gamma_d*s_phi[j] for j in L_M))
 
         mtn_stations_used = []
@@ -168,7 +171,7 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
             end
         end
         
-        nbr_sts_used = length(mtn_stations_used)
+        nbr_sts_used = round(Int, length(mtn_stations_used))
 
         return Dict("instance" => instance, "obj" => obj_val, "x" => sx, "y" => sy, "u" => su, "v" => sv, 
                     "w" => sw, "rho" => s_rho, "phi" => s_phi, "lambda" => s_lambda, "gap" => gap, 
