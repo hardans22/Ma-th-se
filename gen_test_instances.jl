@@ -5,10 +5,11 @@ function detection(df_flights, aircrafts)
     ac_problem = []
     for ac in aircrafts
         ac_df = filter(row -> row.TAIL_NUMBER == ac, df_flights)
+        ac_df = sort(ac_df, :DEPARTURE_TIME)
         #println(ac_df)
         ac_list = [ac_df[1,"ORIGIN_AIRPORT"]]
         for i in 2:size(ac_df,1)
-            if ac_df[i-1, "DESTINATION_AIRPORT"] == ac_df[i, "ORIGIN_AIRPORT"] &&  30 <= ac_df[i, "DEPARTURE_TIME"]-ac_df[i-1, "ARRIVAL_TIME"] && ac_df[i, "DEPARTURE_TIME"]-ac_df[i-1, "ARRIVAL_TIME"] <= 1440  
+            if ac_df[i-1, "DESTINATION_AIRPORT"] == ac_df[i, "ORIGIN_AIRPORT"] &&  35 <= ac_df[i, "DEPARTURE_TIME"]-ac_df[i-1, "ARRIVAL_TIME"] && ac_df[i, "DEPARTURE_TIME"]-ac_df[i-1, "ARRIVAL_TIME"] <= 1440  
                 push!(ac_list, ac_df[i-1, "DESTINATION_AIRPORT"])
             else
                 push!(ac_problem,ac)
@@ -35,13 +36,13 @@ end
 
 
 month = "01"
-file = "AS_2015-"*month*"_real_fl"
+file = "AS_2024-"*month*"_real_fl"
 df_flights = DataFrame(XLSX.readtable("./Notebook/" * file * ".xlsx", "Sheet1"))
 
 first_fold = "instances_xlsx/"
 
 tail_numbers = unique(df_flights.TAIL_NUMBER)
-for nbr_day in [1,8,15,22]
+#=for nbr_day in [1, 8, 15, 22]
     week = Int((nbr_day+6)/7)
     # ------------------- Part 1 -------------------
     list_ac = []
@@ -53,14 +54,13 @@ for nbr_day in [1,8,15,22]
         end
     end
 
-    df_fl = filter(row -> row.TAIL_NUMBER in list_ac, df_flights)
+    df_fl = filter(row -> (nbr_day <= row.DAY <= nbr_day+6) && (row.TAIL_NUMBER in list_ac), df_flights)
     ac_problem = detection(df_fl, list_ac)  # tu dois définir cette fonction ailleurs
     good_ac = setdiff(list_ac, ac_problem)
     # ------------------- Part 2 -------------------
-    
-    
-    for len_ac in [10,15]
-        aircrafts = good_ac[1:len_ac]
+
+    for len_ac in [10, 15]
+        aircrafts = good_ac[2:1+len_ac]
         #aircrafts = sample(good_ac, len_ac, replace=false)
         df_fl_ac = filter(row -> row.TAIL_NUMBER in aircrafts && row.DAY in nbr_day:nbr_day+6, df_flights)
         nbr_flights = size(df_fl_ac, 1)
@@ -78,8 +78,8 @@ for nbr_day in [1,8,15,22]
             m_st_df[!, "T_" * string(i)] = cap_bis[:, i]
         end
 
-        for version in 1:2
-            for ac_critique in [5, 8]
+        for version in 1:5
+            for ac_critique in [3, 5, 8]
                 init_apt, init_fl, init_tk, init_fd = [], [], [], []
                 critical_indices = sample(1:length(aircrafts), ac_critique, replace=false)
                 for (i, ac) in enumerate(aircrafts)
@@ -88,13 +88,13 @@ for nbr_day in [1,8,15,22]
                     
                     push!(init_apt, filter(row -> row.TAIL_NUMBER == ac, df_fl_ac)[1, "ORIGIN_AIRPORT"])
                     push!(init_fl, temp_fl)
-                    push!(init_tk, temp_fl == 0 ? 1 : ceil(Int, temp_fl / 150)) # 2.5h (150 min) en moyenne par vol
+                    push!(init_tk, temp_fl == 0 ? 1 : ceil(Int, temp_fl / 120)) # 2h (120 min) en moyenne par vol
                     push!(init_fd, temp_fl == 0 ? 1 : ceil(Int, temp_fl / 600)) # 10h (600 min) en moyenne par jour
                 end
             
                 Output_fold = first_fold*"A_MTN_"*string(ac_critique)*"/"
                 # ------------------- Part 3 -------------------
-                prm_df = DataFrame(TRT = 30, F = 6000, MT = 480, T = 40, D = 10, NBR_TP = 7)
+                prm_df = DataFrame(TRT = 35, F = 6000, MT = 480, T = 50, D = 10, NBR_TP = 7)
                 aircraft_df = DataFrame(
                     TAIL_NUMBER = aircrafts,
                     INIT_AIRPORT = init_apt,
@@ -124,10 +124,10 @@ for nbr_day in [1,8,15,22]
         end
     end
 end
-
+=#
 
 println()
-for ac_critique in [5, 8]
+for ac_critique in [3, 5, 8]
     folder_path ="instances_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
     xlsx_files = process_xlsx_files(folder_path)
 

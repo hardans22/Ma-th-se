@@ -9,51 +9,45 @@ function combine_all_results(init_path, output_without, output_with)
     mw_labels = []
     ms_labels = []
     
-    for first_fold in ["M01_W1/", "M01_W2/", "M01_W3/", "M01_W4/"]
-        for second_fold in ["MS_5/", "MS_10/"]
-            current_path = init_path * first_fold * second_fold
+    for first_fold in ["A_MTN_3/", "A_MTN_5/", "A_MTN_8/"]
+        current_path = init_path * first_fold
+        # Extraire les labels pour identification
+        mw_label = replace(first_fold, "/" => "")  # Enlever le "/"
+        
+        # Traiter les fichiers "without"
+        without_files = sort(glob("*_without_*.xlsx", current_path))
+        for file in without_files
+            println("Processing without file: ", file)
+            df = DataFrame(XLSX.readtable(file, "Sheet1"))
             
-            # Extraire les labels pour identification
-            mw_label = replace(first_fold, "/" => "")  # Enlever le "/"
-            ms_label = replace(second_fold, "MS_" => "", "/" => "")  # Enlever "MS_" et "/"
+            # Ajouter les colonnes d'identification au début
+            df_with_labels = DataFrame()
+            df_with_labels.AC = fill(mw_label, nrow(df))
             
-            # Traiter les fichiers "without"
-            without_files = sort(glob("*_without_*.xlsx", current_path))
-            for file in without_files
-                println("Processing without file: ", file)
-                df = DataFrame(XLSX.readtable(file, "Sheet1"))
-                
-                # Ajouter les colonnes d'identification au début
-                df_with_labels = DataFrame()
-                df_with_labels.MW = fill(mw_label, nrow(df))
-                df_with_labels.MS = fill(ms_label, nrow(df))
-                
-                # Ajouter toutes les autres colonnes
-                for col in names(df)
-                    df_with_labels[!, col] = df[!, col]
-                end
-                
-                push!(all_without_data, df_with_labels)
+            # Ajouter toutes les autres colonnes
+            for col in names(df)
+                df_with_labels[!, col] = df[!, col]
             end
             
-            # Traiter les fichiers "with"
-            with_files = sort(glob("*_with_*.xlsx", current_path))
-            for file in with_files
-                println("Processing with file: ", file)
-                df = DataFrame(XLSX.readtable(file, "Sheet1"))
-                
-                # Ajouter les colonnes d'identification au début
-                df_with_labels = DataFrame()
-                df_with_labels.MW = fill(mw_label, nrow(df))
-                df_with_labels.MS = fill(ms_label, nrow(df))
-                
-                # Ajouter toutes les autres colonnes
-                for col in names(df)
-                    df_with_labels[!, col] = df[!, col]
-                end
-                
-                push!(all_with_data, df_with_labels)
+            push!(all_without_data, df_with_labels)
+        end
+        
+        # Traiter les fichiers "with"
+        with_files = sort(glob("*_with_*.xlsx", current_path))
+        for file in with_files
+            println("Processing with file: ", file)
+            df = DataFrame(XLSX.readtable(file, "Sheet1"))
+            
+            # Ajouter les colonnes d'identification au début
+            df_with_labels = DataFrame()
+            df_with_labels.AC = fill(mw_label, nrow(df))
+            
+            # Ajouter toutes les autres colonnes
+            for col in names(df)
+                df_with_labels[!, col] = df[!, col]
             end
+            
+            push!(all_with_data, df_with_labels)
         end
     end
     
@@ -74,7 +68,7 @@ function combine_all_results(init_path, output_without, output_with)
 end
 
 # Utilisation
-init_path = "/home/harcenage/Documents/PhD_studies/Ma_thèse/Code/INSTANCES_RESULTS/OPTION_1/RESULTS/"
+init_path = "/home/harcenage/Téléchargements/RESULTS/"
 output_without = init_path * "FINAL_all_results_without_prep.xlsx"
 output_with = init_path * "FINAL_all_results_with_prep.xlsx"
 

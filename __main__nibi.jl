@@ -10,15 +10,15 @@ preprocess = parse(Bool, ARGS[2])
 preprocess = false
  =#
 nbr_thread = 10
-silent = false
+silent = true
 time_limit = 18000
 
 parts = split(instance, "/")
-f_fold = join(parts[end-2:end-1], "/")  # "M01_W1/MS_5"
+f_fold = parts[end-1]
 Outputs_fold = "RESULTS/"*f_fold*"/"
 
-list_instances, list_obj, list_dual_obj, list_gap, list_nbr_nodes  = [], [], [], [], []
-list_time, list_opt, list_arc_reduc, list_node_reduc, list_nbr_mtn = [], [], [], [], []
+Instances, Obj, Obj_rho, Obj_lambda, Obj_phi, Dual_obj, Gap, Nbr_nodes  = [], [], [], [], [], [], [], []
+Time, Opt, Arc_reduc, Node_reduc, Nbr_mtn = [], [], [], [], []
 list_nbr_sts_used = []
 
 inst_name = splitext(basename(instance))[1]
@@ -32,31 +32,34 @@ Output_file = open(path_file, "w")
 write(Output_file, "INSTANCE "*inst_name)
 println("\nPREPROCESSING : ", preprocess)
 write(Output_file, "\nPREPROCESSING : "*string(preprocess))
-
+    
 println("-----------------------INSTANCE $inst_name--------------------------")
 write(Output_file, "\n-----------------------INSTANCE "*string(inst_name)*"--------------------------")
-push!(list_instances, inst_name)
+push!(Instances, inst_name*"_"*string(inst_name))
 solution = model_amrp(instance, nbr_thread, silent, preprocess, time_limit)
-push!(list_obj, solution["obj"])
-push!(list_dual_obj, solution["dual_obj"])
-push!(list_gap, solution["gap"])
-push!(list_nbr_nodes, solution["nbr_nodes"])
-push!(list_time, solution["time"])
-push!(list_arc_reduc, solution["arc_reduc"])
-push!(list_node_reduc, solution["node_reduc"])
-push!(list_nbr_mtn, solution["nbr_mtn"])
+push!(Obj, solution["obj"])
+push!(Obj_rho, solution["obj_rho"])
+push!(Obj_lambda, solution["obj_lambda"])
+push!(Obj_phi, solution["obj_phi"])
+push!(Dual_obj, solution["dual_obj"])
+push!(Gap, solution["gap"])
+push!(Nbr_nodes, solution["nbr_nodes"])
+push!(Time, solution["time"])
+push!(Arc_reduc, solution["arc_reduc"])
+push!(Node_reduc, solution["node_reduc"])
+push!(Nbr_mtn, solution["nbr_mtn"])
 push!(list_nbr_sts_used, solution["nbr_sts_used"])
 if solution["status"] == MOI.OPTIMAL
-    push!(list_opt, 1)
+    push!(Opt, 1)
 else
-    push!(list_opt, 0)
+    push!(Opt, 0)
 end
 print_solution(solution, Output_file, silent)
 
-dataframe = DataFrames.DataFrame(Instances = list_instances, Arc_reduced = list_arc_reduc, 
-                                Node_reduced = list_node_reduc, UB = list_obj, LB = list_dual_obj, 
-                                Gap = list_gap, Nodes = list_nbr_nodes, Time = list_time, Opt = list_opt, 
-                                Nbr_mtn = list_nbr_mtn, Nbr_sts_used = list_nbr_sts_used)
+dataframe = DataFrames.DataFrame(Instances = Instances, Arc_reduced = Arc_reduc, Node_reduced = Node_reduc, 
+                            Rho = Obj_rho, Lambda = Obj_lambda, Phi = Obj_phi, UB = Obj, LB = Dual_obj, 
+                            Gap = Gap, Nodes = Nbr_nodes, Time = Time, Opt = Opt, 
+                            Nbr_mtn = Nbr_mtn, Nbr_sts_used = list_nbr_sts_used)
 if preprocess
     XLSX.writetable(Outputs_fold*"result_"*inst_name*"_with_prep.xlsx", dataframe, overwrite=true)
 else

@@ -12,6 +12,7 @@ function print_solution(solution, output_file, silent=false)
     rho, lambda, phi = solution["rho"], solution["lambda"], solution["phi"]
     su, sv, sw = solution["u"], solution["v"], solution["w"]
     mtn_stations_used, nbr_sts_used = solution["mtn_stations_used"], solution["nbr_sts_used"]
+    obj_rho, obj_lambda, obj_phi = solution["obj_rho"], solution["obj_lambda"], solution["obj_phi"]
     
     # Construire le graphe des successeurs en une seule passe
     succ = Dict{String, String}()
@@ -32,7 +33,10 @@ function print_solution(solution, output_file, silent=false)
     
     # Afficher les résultats généraux
     write_both("✅ Solution trouvée (status: $status)")
-    write_both("🎯 Objective value: $obj_val")
+    write_both("🎯 Objective global: $obj_val")
+    write_both("🎯 Objective rho: $obj_rho")
+    write_both("🎯 Objective lambda: $obj_lambda")
+    write_both("🎯 Objective phi: $obj_phi")
     write_both("⏱️ Time used: $time_used")
     write_both("Nombre de vols satisfaits: $(length(fl_satisfied))")
     write_both("Nombre de vols non satisfaits: $(length(not_fl_satisfied))")
@@ -80,7 +84,7 @@ function print_solution(solution, output_file, silent=false)
         aircraft = find_aircraft_for_maintenance(j, aircraft_paths)
         maintenance_at_node[j] = aircraft
         
-        rho_val, lambda_val, phi_val = value(rho[j]), value(lambda[j]), value(phi[j])
+        rho_val, lambda_val, phi_val = rho[j], lambda[j], phi[j]
         write_both("🛠️ Maintenance at node $j by aircraft $aircraft | ρ=$rho_val; λ=$lambda_val; φ=$phi_val")
     end
     

@@ -47,7 +47,7 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
     model = Model(optimizer_with_attributes(Gurobi.Optimizer, "Threads" => nbr_thread))
     set_optimizer_attribute(model, "OutputFlag", 1)
     set_optimizer_attribute(model, "TimeLimit", time_limit) 
-    set_optimizer_attribute(model, "Presolve", 0)
+    #set_optimizer_attribute(model, "Presolve", 0)
 
     if silent
         set_silent(model)
@@ -67,13 +67,15 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @variable(model, z[m in MS, t in TP])                     #Number of maintenance opération at station m in period t
         # ===================== Objective function =====================
         gamma_f = 20                #1200 dollars par heure pour une maintenance
-        gamma_t = gamma_f*150       #2.5h(150 min) en moyenne par vol
+        gamma_t = gamma_f*120       #2h(120 min) en moyenne par vol
         gamma_d = gamma_f*600       #10h(600 min) en moyenne par jour
         ft_obj = sum(gamma_f*rho[j] for j in L_M)
         tk_obj = sum(gamma_t*lambda[j] for j in L_M)
         fd_obj = sum(gamma_d*phi[j] for j in L_M)
        
-        @objective(model, Min, ft_obj + tk_obj + fd_obj)
+        #@objective(model, Min, ft_obj + tk_obj + fd_obj)
+        #@objective(model, Min, ft_obj + tk_obj)
+        @objective(model, Min, sum(rho[j] for j in L_M))
         
         # ===================== Constraints =====================
         @constraint(model, sum(x[i] for i in A_S) == nbr_K)
@@ -84,6 +86,8 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
     
         #Flying time constraints
         @constraint(model, c4[(i,j) in A_M], rho[j] >= max_flt*x[(i, j)] - u[i] - (max_flt - d[i])*(1 - y[j]))
+        #@constraint(model, c27, sum(rho[j] for j in L_M) <= Int(max_flt))
+
         for (i, j) in A
             if j != "t"
                 @constraint(model, u[j] <= u[i] + d[j] + (max_flt - d[i] - d[j])*(1 - x[(i,j)]), base_name = "c5[($i,$j)]")
@@ -100,8 +104,9 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @constraint(model, u["s"] == 0)
         @constraint(model, c9[k in a_nodes], u[k] == f[k])
         
-        #=#Takeoff constraints 
+        #Takeoff constraints 
         @constraint(model, c10[(i,j) in A_M], lambda[j] >= max_tk*x[(i, j)] - v[i] - (max_tk - tk[i])*(1 - y[j]))
+        #@constraint(model, c28, sum(lambda[j] for j in L_M) <= Int(max_tk))
         
         for (i, j) in A
             if j != "t" 
@@ -117,10 +122,11 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @constraint(model, c14[(i,j) in A_M], v[j] >= v[i] + tk[j] - max_tk*(1 - x[(i,j)]) - max_tk*y[j])
         @constraint(model, v["s"] == 0)
         @constraint(model, c15[k in a_nodes], v[k] == h[k])
-         =#
+        
         #Flying day constraints
-        #= @constraint(model, c17[(i,j) in A_M], phi[j] >= max_day*x[(i, j)] - w[i] - (max_day - 1)*(1 - y[j]))
-        for (i, j) in A
+        @constraint(model, c17[(i,j) in A_M], phi[j] >= max_day*x[(i, j)] - w[i] - (max_day - 1)*(1 - y[j]))
+        #@constraint(model, c29, sum(phi[j] for j in L_M) <= Int(max_day))
+	    for (i, j) in A
             if j != "t" && i != "s"
                 @constraint(model, w[j] <= w[i] + b[(i,j)] + (max_day - b[(i,j)] - 1)*(1 - x[(i,j)]), base_name = "c18[($i,$j)]")
             end
@@ -135,11 +141,9 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @constraint(model, w["s"] == 0)
         @constraint(model, c22[k in a_nodes], w[k] == g[k])
         @constraint(model, c23[j in V_wt_st], 1 <= w[j]) 
-     =#
         #Maintenance capacity
-        #= @constraint(model, c24[ms in MS, t in 1:nbr_TP], z[ms,t] == sum(y[i] for i in L_MS[ms] if a_day[i] == t))
-        @constraint(model, c25[ms in MS, t in 1:nbr_TP],  z[ms,t] <= ms_capacity[ms][t]) =#
-        
+        @constraint(model, c24[ms in MS, t in 1:nbr_TP], z[ms,t] == sum(y[i] for i in L_MS[ms] if a_day[i] == t))
+        @constraint(model, c25[ms in MS, t in 1:nbr_TP],  z[ms,t] <= ms_capacity[ms][t])
     end
 
     optimize!(model)
@@ -149,17 +153,21 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
     # Contrôle du statut
     status = termination_status(model)
     if status == MOI.OPTIMAL || status == MOI.FEASIBLE_POINT || status == MOI.TIME_LIMIT || status == MOI.INTERRUPTED
-        obj_val = round(objective_value(model), digits = 2)
+        obj_val = round(Int, objective_value(model))
         sx, sy, su, sv, sw = JuMP.value.(x), JuMP.value.(y), JuMP.value.(u), JuMP.value.(v), JuMP.value.(w)
         sz= JuMP.value.(z)
         #sI, sQ, sS =  JuMP.value.(I), JuMP.value.(Q), JuMP.value.(S) 
         s_rho, s_lambda, s_phi = round.(Int, JuMP.value.(rho)), round.(Int, JuMP.value.(lambda)), round.(Int, JuMP.value.(phi))
+        obj_rho = sum(s_rho[j] for j in L_M if sy[j] >= 0.9)
+        obj_lambda = sum(s_lambda[j] for j in L_M if sy[j] >= 0.9)
+        obj_phi = sum(s_phi[j] for j in L_M if sy[j] >= 0.9)
+
         gap = round(relative_gap(model)*100, digits = 4)
         nbr_nodes =  MOI.get(model, MOI.NodeCount())
         dual_obj = round(objective_bound(model); digits = 2)
         time = round(solve_time(model), digits = 2)
         nbr_mtn = round(Int, sum(sy))
-        println("ROUTING OBJ = ", sum(gamma_f*s_rho[j] + gamma_t*s_lambda[j] + gamma_d*s_phi[j] for j in L_M))
+        #println("ROUTING OBJ = ", sum(gamma_f*s_rho[j] + gamma_t*s_lambda[j] + gamma_d*s_phi[j] for j in L_M))
 
         mtn_stations_used = []
         active_j_set = Set(j for j in L_M if value(y[j]) == 1)
@@ -173,11 +181,12 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         
         nbr_sts_used = round(Int, length(mtn_stations_used))
 
-        return Dict("instance" => instance, "obj" => obj_val, "x" => sx, "y" => sy, "u" => su, "v" => sv, 
-                    "w" => sw, "rho" => s_rho, "phi" => s_phi, "lambda" => s_lambda, "gap" => gap, 
-                    "nbr_nodes" => nbr_nodes, "time" => time, "dual_obj" => dual_obj, "nbr_mtn" => nbr_mtn, 
-                    "nbr_sts_used" => nbr_sts_used, "mtn_stations_used" => mtn_stations_used, 
-                    "status" => status, "arc_reduc" => instance["arc_reduc"], "node_reduc" => instance["node_reduc"])
+        return Dict("instance" => instance, "obj" => obj_val, "obj_rho" => obj_rho,"obj_lambda" => obj_lambda,
+                    "obj_phi" => obj_phi, "x" => sx, "y" => sy, "u" => su, "v" => sv, "w" => sw, "rho" => s_rho, 
+                    "phi" => s_phi, "lambda" => s_lambda, "gap" => gap, "nbr_nodes" => nbr_nodes, "time" => time, 
+                    "dual_obj" => dual_obj, "nbr_mtn" => nbr_mtn,  "nbr_sts_used" => nbr_sts_used, 
+                    "mtn_stations_used" => mtn_stations_used, "status" => status, 
+                    "arc_reduc" => instance["arc_reduc"], "node_reduc" => instance["node_reduc"])
     else
         return Dict("status" => status)
     end
