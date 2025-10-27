@@ -136,6 +136,7 @@ function build_graph(file, preprocess)
     initial_flying_time = instance["initial_flying_time"]
     initial_takeoff, initial_flying_day = instance["initial_takeoff"], instance["initial_flying_day"]
     end_h_time, nbr_TP = instance["end_horizon_time"], instance["nbr_TP"]
+    max_flt = instance["maximum_flying_time"]
     
     # ================================================================
     # CONSTRUCTION DES NŒUDS
@@ -163,7 +164,13 @@ function build_graph(file, preprocess)
     temp = minimum(values(DT))
     A_S = [(st_nodes[1], k) for k in a_nodes]  # Arcs source -> avions
     for k in a_nodes
-        d[k],tk[k], DT[k], AT[k] = initial_flying_time[k], initial_takeoff[k], temp, temp
+        d[k],tk[k] = initial_flying_time[k], initial_takeoff[k]
+        if max_flt - initial_flying_time[k] < 240
+            DT[k], AT[k] = temp-mtn_time-35, temp-mtn_time-35  # Initialisation au plus tôt
+        else
+            DT[k], AT[k] = temp, temp  # Initialisation au plus tôt
+        end
+
     end
     d["s"], tk["s"], DT["s"], AT["s"] = 0, 0, temp, temp 
     d["t"], tk["t"], DT["t"], AT["t"] = 0, 0, end_h_time, end_h_time
@@ -222,6 +229,9 @@ function build_graph(file, preprocess)
         end
         # Variable binaire pour changement de jour
         b[x] = floor(Int, DT[j]/1440) - floor(Int, DT[i]/1440)
+        if i == "s" && j in a_nodes
+            b[x] = initial_flying_day[j]  # Pas de changement de jour pour les arcs source->avion
+        end
     end
     L_M = unique(L_M)
     A_M_bar = setdiff(A, A_M)
@@ -504,7 +514,7 @@ function build_graph(file, preprocess)
     #println(L_MS)
     # Mise à jour de l'instance avec toutes les structures calculées
     merge!(instance, Dict(
-        "DT" => DT, "AT" => AT, "d" => d, "tk" => tk, "b" => b, "b" => b,
+        "DT" => DT, "AT" => AT, "d" => d, "tk" => tk, "b" => b,
         "A_S" => A_S, "A_F" => A_F, "A_K" => A_K, "A_T" => A_T, 
         "A" => A, "A_M" => A_M, "A_M_bar" => A_M_bar, "L_M" => L_M,"L_MS" => L_MS, 
         "M_FL_O" => M_FL_O, "M_FL_D" => M_FL_D, "V" => V, "V_wt_st" => V_wt_st, 

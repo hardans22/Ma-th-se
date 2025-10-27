@@ -9,7 +9,7 @@ function combine_all_results(init_path, output_without, output_with)
     mw_labels = []
     ms_labels = []
     
-    for first_fold in ["A_MTN_3/", "A_MTN_5/", "A_MTN_8/"]
+    for first_fold in ["A_MTN_2/"]
         current_path = init_path * first_fold
         # Extraire les labels pour identification
         mw_label = replace(first_fold, "/" => "")  # Enlever le "/"

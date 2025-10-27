@@ -39,10 +39,10 @@ month = "01"
 file = "AS_2024-"*month*"_real_fl"
 df_flights = DataFrame(XLSX.readtable("./Notebook/" * file * ".xlsx", "Sheet1"))
 
-first_fold = "instances_xlsx/"
+first_fold = "INSTANCES/instances_xlsx/"
 
 tail_numbers = unique(df_flights.TAIL_NUMBER)
-#=for nbr_day in [1, 8, 15, 22]
+for nbr_day in [1]
     week = Int((nbr_day+6)/7)
     # ------------------- Part 1 -------------------
     list_ac = []
@@ -59,7 +59,7 @@ tail_numbers = unique(df_flights.TAIL_NUMBER)
     good_ac = setdiff(list_ac, ac_problem)
     # ------------------- Part 2 -------------------
 
-    for len_ac in [10, 15]
+    for len_ac in [7]
         aircrafts = good_ac[2:1+len_ac]
         #aircrafts = sample(good_ac, len_ac, replace=false)
         df_fl_ac = filter(row -> row.TAIL_NUMBER in aircrafts && row.DAY in nbr_day:nbr_day+6, df_flights)
@@ -77,9 +77,9 @@ tail_numbers = unique(df_flights.TAIL_NUMBER)
         for i in 1:7
             m_st_df[!, "T_" * string(i)] = cap_bis[:, i]
         end
-
-        for version in 1:5
-            for ac_critique in [3, 5, 8]
+        
+        for version in [1, 8, 10]
+            for ac_critique in [2]
                 init_apt, init_fl, init_tk, init_fd = [], [], [], []
                 critical_indices = sample(1:length(aircrafts), ac_critique, replace=false)
                 for (i, ac) in enumerate(aircrafts)
@@ -124,11 +124,10 @@ tail_numbers = unique(df_flights.TAIL_NUMBER)
         end
     end
 end
-=#
 
 println()
-for ac_critique in [3, 5, 8]
-    folder_path ="instances_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
+for ac_critique in [2]
+    folder_path ="INSTANCES/instances_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
     xlsx_files = process_xlsx_files(folder_path)
 
     for file in xlsx_files
@@ -141,7 +140,7 @@ for ac_critique in [3, 5, 8]
         O_airport = unique(df_flight.ORIGIN_AIRPORT)
         D_airport = unique(df_flight.DESTINATION_AIRPORT)
         airports = unique(vcat(O_airport, D_airport))
-        aircrafts = unique(df_flight.TAIL_NUMBER)
+        aircrafts = unique(df_aircrafts.TAIL_NUMBER)
         nbr_flights = nrow(df_flight)
         nbr_airports = length(airports)
         nbr_aircrafts = length(aircrafts)
@@ -194,8 +193,15 @@ for ac_critique in [3, 5, 8]
             "rate_ep" => rate_ep =#
         )
 
+        # S'assurer que le dossier existe avant d'écrire le fichier JSON
+        json_filepath = "INSTANCES/instances_json/A_MTN_"*string(ac_critique)*"/" * string(splitext(file)[1]) * ".json"
+        dirpath = dirname(json_filepath)
+        if !isdir(dirpath)
+            mkpath(dirpath)
+        end
+
         # Sauvegarde au format JSON dans un fichier
-        open("instances_json/A_MTN_"*string(ac_critique)*"/"*splitext(file)[1]*".json", "w") do f
+        open(json_filepath, "w") do f
             JSON.print(f, instance_data;)
             println("Fichier json créé")
         end

@@ -1,0 +1,12 @@
+Airport	Capacity
+GKL	1
+WEI	5
+ADL	1
+AZB	1
+HIS	1
+KGI	1
+DJJ	1
+AYU	1
+EMD	5
+GEX	1
+MEL	1

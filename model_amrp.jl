@@ -47,7 +47,7 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
     model = Model(optimizer_with_attributes(Gurobi.Optimizer, "Threads" => nbr_thread))
     set_optimizer_attribute(model, "OutputFlag", 1)
     set_optimizer_attribute(model, "TimeLimit", time_limit) 
-    #set_optimizer_attribute(model, "Presolve", 0)
+    set_optimizer_attribute(model, "Presolve", 0)
 
     if silent
         set_silent(model)
@@ -66,16 +66,14 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         
         @variable(model, z[m in MS, t in TP])                     #Number of maintenance opération at station m in period t
         # ===================== Objective function =====================
-        gamma_f = 20                #1200 dollars par heure pour une maintenance
-        gamma_t = gamma_f*120       #2h(120 min) en moyenne par vol
-        gamma_d = gamma_f*600       #10h(600 min) en moyenne par jour
+        gamma_f = 0                #1200 dollars par heure pour une maintenance
+        gamma_t = 0      #2h(120 min) en moyenne par vol
+        gamma_d = 1      #10h(600 min) en moyenne par jour
         ft_obj = sum(gamma_f*rho[j] for j in L_M)
         tk_obj = sum(gamma_t*lambda[j] for j in L_M)
         fd_obj = sum(gamma_d*phi[j] for j in L_M)
        
-        #@objective(model, Min, ft_obj + tk_obj + fd_obj)
-        #@objective(model, Min, ft_obj + tk_obj)
-        @objective(model, Min, sum(rho[j] for j in L_M))
+        @objective(model, Min, ft_obj + tk_obj + fd_obj)
         
         # ===================== Constraints =====================
         @constraint(model, sum(x[i] for i in A_S) == nbr_K)
@@ -84,7 +82,7 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @constraint(model, c2[i in V_wt_st], sum(x[(j,i)] for j in get(predecessors, i, [])) == sum(x[(i,j)] for j in get(successors, i, [])))
         @constraint(model, c3[j in L_M], y[j] <= sum(x[(i, j)] for (i, j) in A_M))
     
-        #Flying time constraints
+        #= #Flying time constraints
         @constraint(model, c4[(i,j) in A_M], rho[j] >= max_flt*x[(i, j)] - u[i] - (max_flt - d[i])*(1 - y[j]))
         #@constraint(model, c27, sum(rho[j] for j in L_M) <= Int(max_flt))
 
@@ -103,11 +101,10 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @constraint(model, c8[(i,j) in A_M], u[j] >= u[i] + d[j] - max_flt*(1 - x[(i,j)]) - max_flt*y[j])
         @constraint(model, u["s"] == 0)
         @constraint(model, c9[k in a_nodes], u[k] == f[k])
-        
-        #Takeoff constraints 
+         =#
+        #= #Takeoff constraints 
         @constraint(model, c10[(i,j) in A_M], lambda[j] >= max_tk*x[(i, j)] - v[i] - (max_tk - tk[i])*(1 - y[j]))
-        #@constraint(model, c28, sum(lambda[j] for j in L_M) <= Int(max_tk))
-        
+         
         for (i, j) in A
             if j != "t" 
                 @constraint(model, v[j] <= v[i] + tk[j] + (max_tk - tk[i] - tk[j])*(1 - x[(i,j)]), base_name = "c11[($i,$j)]")
@@ -122,10 +119,12 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @constraint(model, c14[(i,j) in A_M], v[j] >= v[i] + tk[j] - max_tk*(1 - x[(i,j)]) - max_tk*y[j])
         @constraint(model, v["s"] == 0)
         @constraint(model, c15[k in a_nodes], v[k] == h[k])
+         =#
         
         #Flying day constraints
         @constraint(model, c17[(i,j) in A_M], phi[j] >= max_day*x[(i, j)] - w[i] - (max_day - 1)*(1 - y[j]))
         #@constraint(model, c29, sum(phi[j] for j in L_M) <= Int(max_day))
+
 	    for (i, j) in A
             if j != "t" && i != "s"
                 @constraint(model, w[j] <= w[i] + b[(i,j)] + (max_day - b[(i,j)] - 1)*(1 - x[(i,j)]), base_name = "c18[($i,$j)]")
@@ -141,9 +140,14 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         @constraint(model, w["s"] == 0)
         @constraint(model, c22[k in a_nodes], w[k] == g[k])
         @constraint(model, c23[j in V_wt_st], 1 <= w[j]) 
+        
+        #= @constraint(model, c28[j in L_M], 120*(gamma_f-gamma_t-gamma_d)*lambda[j] <= (gamma_f-gamma_t-gamma_d)*rho[j])
+        @constraint(model, c30[j in L_M], 5*(gamma_f+gamma_t-gamma_d)*phi[j] <= (gamma_f+gamma_t-gamma_d)*lambda[j])
+        #@constraint(model, c29[j in L_M], (gamma_f+gamma_t+gamma_d)*rho[j] <= 600*(gamma_f+gamma_t+gamma_d)*phi[j] )
+        =#
         #Maintenance capacity
         @constraint(model, c24[ms in MS, t in 1:nbr_TP], z[ms,t] == sum(y[i] for i in L_MS[ms] if a_day[i] == t))
-        @constraint(model, c25[ms in MS, t in 1:nbr_TP],  z[ms,t] <= ms_capacity[ms][t])
+        @constraint(model, c25[ms in MS, t in 1:nbr_TP],  z[ms,t] <= ms_capacity[ms][t]) 
     end
 
     optimize!(model)
@@ -158,9 +162,10 @@ function model_amrp(instance_file, nbr_thread, silent, preprocess, time_limit)
         sz= JuMP.value.(z)
         #sI, sQ, sS =  JuMP.value.(I), JuMP.value.(Q), JuMP.value.(S) 
         s_rho, s_lambda, s_phi = round.(Int, JuMP.value.(rho)), round.(Int, JuMP.value.(lambda)), round.(Int, JuMP.value.(phi))
-        obj_rho = sum(s_rho[j] for j in L_M if sy[j] >= 0.9)
-        obj_lambda = sum(s_lambda[j] for j in L_M if sy[j] >= 0.9)
-        obj_phi = sum(s_phi[j] for j in L_M if sy[j] >= 0.9)
+        active_j = [j for j in L_M if sy[j] >= 0.9]
+        obj_rho = isempty(active_j) ? 0 : sum(s_rho[j] for j in active_j)
+        obj_lambda = isempty(active_j) ? 0 : sum(s_lambda[j] for j in active_j)
+        obj_phi = isempty(active_j) ? 0 : sum(s_phi[j] for j in active_j)
 
         gap = round(relative_gap(model)*100, digits = 4)
         nbr_nodes =  MOI.get(model, MOI.NodeCount())
