@@ -1,4 +1,4 @@
-using CSV, DataFrames, Dates, JSON, XLSX
+using CSV, DataFrames, Dates, JSON, XLSX, Statistics
 
 function process_files(folder_path, file_type)
     # Obtenir tous les fichiers .xlsx
@@ -7,81 +7,50 @@ function process_files(folder_path, file_type)
 end
 
 function computation(df_flights)
-    tail_numbers = unique(df_flights.TAIL_NUMBER)
-    # air_time_by_tail_day est la somme des airtime de chaque tail pour chaque jour
-    air_time_by_tail_day = Dict{Tuple{String, Int}, Float64}()
+    fh_tk_min = minimum(df_flights.AIR_TIME)
+    fh_tk_max = maximum(df_flights.AIR_TIME)
+    fh_tk_md = round(Int, median(df_flights.AIR_TIME))
+    fh_tk_mn = round(Int, mean(df_flights.AIR_TIME))
 
-    # takeoff_by_tail_day est le nombre d'occurence de chaque tail number pour chaque jour
-    takeoff_by_tail_day = Dict{Tuple{String, Int}, Int}()
-    for row in eachrow(df_flights)
-        tail = row.TAIL_NUMBER
-        day = row.DAY
-        airtime = row.AIR_TIME
+    aircraft_day_df = combine(groupby(df_flights, [:TAIL_NUMBER, :DAY]),
+        :AIR_TIME => sum => :FLYING_TIME,
+        :AIR_TIME => length => :TAKEOFF
+    )
 
-        key = (tail, day)
+    sort!(aircraft_day_df, [:TAIL_NUMBER, :DAY])
 
-        if haskey(air_time_by_tail_day, key)
-            air_time_by_tail_day[key] += airtime
-            takeoff_by_tail_day[key] += 1
-        else
-            air_time_by_tail_day[key] = airtime
-            takeoff_by_tail_day[key] = 1
-        end
-    end
+    fh_day_min = minimum(aircraft_day_df.FLYING_TIME)
+    fh_day_max = maximum(aircraft_day_df.FLYING_TIME)
+    fh_day_md = round(Int, median(aircraft_day_df.FLYING_TIME))
+    fh_day_mn = round(Int, mean(aircraft_day_df.FLYING_TIME))
 
-    result_df = DataFrame(TAIL_NUMBER = String[],DAY = Int[],TAKEOFF = Int[], FLYING_TIME = Float64[])
-
-    for ((tail, day), takeoff) in sort(collect(takeoff_by_tail_day); by=x->(x[1][1], x[1][2]))
-        flying_time = air_time_by_tail_day[(tail, day)]
-        push!(result_df, (tail, day, takeoff, flying_time))
-    end
-    nbr_ac = length(tail_numbers)
-    fh_ac_day = round(Int, sum(result_df.FLYING_TIME)/nbr_ac/7)
-    tk_ac_day = round(Int, sum(result_df.TAKEOFF)/nbr_ac/7)
-    fh_tk = round(sum(Int, result_df.FLYING_TIME)/sum(result_df.TAKEOFF))
-
-    return Dict("fh_ac_day" => fh_ac_day, "tk_ac_day" => tk_ac_day, "fh_tk" => fh_tk)
-end 
+    tk_day_min = minimum(aircraft_day_df.TAKEOFF)
+    tk_day_max = maximum(aircraft_day_df.TAKEOFF)
+    tk_day_md = round(Int, median(aircraft_day_df.TAKEOFF))
+    tk_day_mn = round(Int, mean(aircraft_day_df.TAKEOFF))
+    
+    return (fh_tk_min = fh_tk_min, fh_tk_max = fh_tk_max, fh_tk_md = fh_tk_md, fh_tk_mn = fh_tk_mn,
+            fh_day_min = fh_day_min, fh_day_max = fh_day_max, fh_day_md = fh_day_md, fh_day_mn = fh_day_mn,
+            tk_day_min = tk_day_min, tk_day_max = tk_day_max, tk_day_md = tk_day_md, tk_day_mn = tk_day_mn)
+end
 
 function computation2(df_flights, nbr_ac)
-    # air_time_by_tail_day est la somme des airtime de chaque tail pour chaque jour
-    air_time_by_tail_day = Dict{Tuple{String, Int}, Float64}()
+    aircraft_day_df = combine(groupby(df_flights, [:TAIL_NUMBER, :DAY]),
+        :AIR_TIME => sum => :FLYING_TIME,
+        :AIR_TIME => length => :TAKEOFF
+    )
 
-    # Agrégation par jour uniquement
-    takeoff_by_day = Dict{Int, Int}()
-    air_time_by_day = Dict{Int, Float64}()
+    sort!(aircraft_day_df, [:TAIL_NUMBER, :DAY])
+    fh_day = round(Int, sum(aircraft_day_df.FLYING_TIME)/nbr_ac/7)
+    tk_day = round(Int, sum(aircraft_day.TAKEOFF)/nbr_ac/7)
+    fh_tk = round(sum(Int, aircraft_day.FLYING_TIME)/sum(aircraft_day.TAKEOFF))
 
-    for row in eachrow(df_flights)
-        day = row.DAY
-        airtime = row.AIR_TIME
-        
-        if haskey(air_time_by_day, day)
-            air_time_by_day[day] += airtime
-            takeoff_by_day[day] += 1
-        else
-            air_time_by_day[day] = airtime
-            takeoff_by_day[day] = 1
-        end
-    end
+    return (fh_day = fh_day, tk_day = tk_day, fh_tk = fh_tk)
 
-    # Créer le DataFrame résultat
-    result_df = DataFrame(DAY = Int[], TAKEOFF = Int[], FLYING_TIME = Float64[])
-
-    for day in sort(collect(keys(takeoff_by_day)))
-        takeoff = takeoff_by_day[day]
-        flying_time = air_time_by_day[day]
-        push!(result_df, (day, takeoff, flying_time))
-    end
-
-    fh_ac_day = round(Int, sum(result_df.FLYING_TIME)/nbr_ac/7)
-    tk_ac_day = round(Int, sum(result_df.TAKEOFF)/nbr_ac/7)
-    fh_tk = round(Int,sum(result_df.FLYING_TIME)/sum(result_df.TAKEOFF))
-
-    return Dict("fh_ac_day" => fh_ac_day, "tk_ac_day" => tk_ac_day, "fh_tk" => fh_tk)
 end 
 
 
-for ac_critique in [2]  
+#= for ac_critique in [2]  
     folder_path_xlsx ="INSTANCES/instances_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
     folder_path_json ="INSTANCES/instances_json/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
     xlsx_files = process_files(folder_path_xlsx, "xlsx")
@@ -90,17 +59,22 @@ for ac_critique in [2]
         file_xlsx = folder_path_xlsx*file
         println("Traitement de: $file_xlsx")
         df_flights = DataFrame(XLSX.readtable(file_xlsx, "Data"))
-        df_param = DataFrame(XLSX.readtable(file_xlsx, "Parameters"))
-        df_aircrafts = DataFrame(XLSX.readtable(file_xlsx, "Aircrafts"))
         
-        nbr_ac = length(df_aircrafts.TAIL_NUMBER)
-        df_param.AC_CRITIQUE .= ac_critique
-        dict_gamma = computation(df_flights)
-        df_param.FH_DAY .= dict_gamma["fh_ac_day"]
-        df_param.FH_TK .= dict_gamma["fh_tk"]
-        df_param.TK_DAY .= dict_gamma["tk_ac_day"]
+        ind = computation(df_flights)
+        coeff_df = DataFrame(FH_TK_MIN = ind.fh_tk_min, FH_TK_MAX = ind.fh_tk_max, FH_TK_MEDIAN = ind.fh_tk_md, FH_TK_MEAN = ind.fh_tk_mn, 
+                             FH_DAY_MIN = ind.fh_day_min, FH_DAY_MAX = ind.fh_day_max, FH_DAY_MEDIAN = ind.fh_day_md, FH_DAY_MEAN = ind.fh_day_mn,
+                             TK_DAY_MIN = ind.tk_day_min, TK_DAY_MAX = ind.tk_day_max, TK_DAY_MEDIAN = ind.tk_day_md, TK_DAY_MEAN = ind.tk_day_mn,
+                             )
 
-        # Lire toutes les feuilles existantes
+        XLSX.openxlsx(file_xlsx, mode="rw") do xf
+            # Ajouter une nouvelle feuille
+            new_sheet = XLSX.addsheet!(xf, "Coefficients")
+            
+            # Écrire le DataFrame dans la nouvelle feuille
+            XLSX.writetable!(new_sheet, Tables.columntable(coeff_df), write_columnnames=true)
+        end
+        
+        #= # Lire toutes les feuilles existantes
         xf = XLSX.readxlsx(file_xlsx)
         noms_feuilles = XLSX.sheetnames(xf)
         # Préparer toutes les feuilles
@@ -112,7 +86,6 @@ for ac_critique in [2]
                 feuilles[Symbol(nom)] = XLSX.readtable(file_xlsx, nom)
             end
         end
-        
        # Ouvrir le fichier en mode lecture/écriture
         XLSX.openxlsx(file_xlsx, mode="rw") do xf
             sheet = xf["Parameters"]
@@ -123,16 +96,71 @@ for ac_critique in [2]
             # Écrire le DataFrame
             XLSX.writetable!(sheet, collect(eachcol(df_param)), names(df_param))
         end
+         =#
 
         file_json = folder_path_json*inst_name*".json"
         println("Traitement de: $file_json")
         data = JSON.parsefile(file_json)
         data_dict = Dict(data)
-        data_dict["ac_critique"] = ac_critique
-        data_dict["fh_day"] = dict_gamma["fh_ac_day"]
-        data_dict["tk_day"] = dict_gamma["tk_ac_day"]
-        data_dict["fh_tk"] = dict_gamma["fh_tk"]
+        
+        data_dict["fh_tk_min"] = ind.fh_tk_min
+        data_dict["fh_tk_max"] = ind.fh_tk_max
+        data_dict["fh_tk_median"] = ind.fh_tk_md
+        data_dict["fh_tk_mean"] = ind.fh_tk_mn
+        data_dict["fh_day_min"] = ind.fh_day_min
+        data_dict["fh_day_max"] = ind.fh_day_max
+        data_dict["fh_day_median"] = ind.fh_day_md
+        data_dict["fh_day_mean"] = ind.fh_day_mn
+        data_dict["tk_day_min"] = ind.tk_day_min
+        data_dict["tk_day_max"] = ind.tk_day_max
+        data_dict["tk_day_median"] = ind.tk_day_md
+        data_dict["tk_day_mean"] = ind.tk_day_mn
 
+        # 4. Sauvegarder
+        open(file_json, "w") do f
+            JSON.print(f, data_dict;)
+        end
+
+    end  
+ 
+end
+ =#
+for ac_critique in [3,5,8]  
+    folder_path_xlsx ="INSTANCES/instances_WCTR_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
+    folder_path_json ="INSTANCES/instances_WCTR_json/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
+    xlsx_files = process_files(folder_path_xlsx, "xlsx")
+    for file in xlsx_files
+        inst_name = split(file, ".")[1]
+        file_xlsx = folder_path_xlsx*file
+        println("Traitement de: $file_xlsx")
+        df_ac = DataFrame(XLSX.readtable(file_xlsx, "Aircrafts"))
+        
+        for row in eachrow(df_ac)
+            if row.INIT_FLYING_TIME == 0
+                row.INIT_TAKEOFF = 0
+            end
+        end
+
+        XLSX.openxlsx(file_xlsx, mode="rw") do xf
+            sheet = xf["Aircrafts"]
+            
+            # Effacer le contenu existant de la feuille
+            XLSX.rename!(sheet, "Aircrafts")
+            
+            # Écrire le DataFrame
+            XLSX.writetable!(sheet, collect(eachcol(df_ac)), names(df_ac))
+        end
+
+        file_json = folder_path_json*inst_name*".json"
+        println("Traitement de: $file_json")
+        data = JSON.parsefile(file_json)
+        data_dict = Dict(data)
+        
+        for ac in data_dict["aircrafts"]
+            if data_dict["initial_flying_time"][ac] == 0
+                data_dict["initial_takeoff"][ac] = 0
+            end 
+        end        
         # 4. Sauvegarder
         open(file_json, "w") do f
             JSON.print(f, data_dict;)

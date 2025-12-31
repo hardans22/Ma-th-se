@@ -1,4 +1,5 @@
 using JSON
+include("structures.jl")
 
 # ====================================================================
 # FONCTIONS UTILITAIRES POUR LA MANIPULATION DE GRAPHES
@@ -160,6 +161,7 @@ function build_graph(file, preprocess)
     tk = Dict(fl_nodes[i] => 1 for i in 1:nbr_FL)   # Takeoff
     
 
+    acritik_set = []
     # Initialisation des avions et nœuds source/puits
     temp = minimum(values(DT))
     A_S = [(st_nodes[1], k) for k in a_nodes]  # Arcs source -> avions
@@ -170,6 +172,9 @@ function build_graph(file, preprocess)
         else
             DT[k], AT[k] = temp, temp  # Initialisation au plus tôt
         end
+        if d[k] > 0
+            push!(acritik_set, k)
+        end 
 
     end
     d["s"], tk["s"], DT["s"], AT["s"] = 0, 0, temp, temp 
@@ -195,7 +200,7 @@ function build_graph(file, preprocess)
         for j in Set(fl_nodes)
             if i != j && dest == flight_legs[j][1]
                 time_diff = DT[j] - at_i
-                if TRT <= time_diff <= 1440
+                if TRT <= time_diff <= 1440 #******************************************************************
                     push!(A_F, (i, j))
                 end
             end
@@ -213,6 +218,7 @@ function build_graph(file, preprocess)
     A = vcat(A_S, A_K, A_F, A_T)
     A_M, L_M = [], []  # Arcs et nœuds de maintenance
     b = Dict()  # Variable binaire jour
+    arc_info = Dict{Tuple{String,String},String}()
     println("Identification des opportunités de maintenance...")
     for x in Set(A)
         i, j = x
@@ -226,6 +232,9 @@ function build_graph(file, preprocess)
         if j in fl_nodes && arrival_station in mtn_stations && DT[j] - AT[i] >= mtn_time
             push!(A_M, x)
             push!(L_M, j)
+            arc_info[x] = "A_M"
+        else
+            arc_info[x] = "A_M_bar"
         end
         # Variable binaire pour changement de jour
         b[x] = floor(Int, DT[j]/1440) - floor(Int, DT[i]/1440)
@@ -513,6 +522,13 @@ function build_graph(file, preprocess)
     
     #println(L_MS)
     # Mise à jour de l'instance avec toutes les structures calculées
+
+    #= node_sets = NodeSets(fl_nodes, a_nodes, L_M)
+    arcs_sets = ArcSets(A_S, A_K, A_F, A_T, A_M, A_M_bar)
+
+    graph = Graph(["s", "t"], V, A, node_sets, arcs_sets)
+     =#
+    
     merge!(instance, Dict(
         "DT" => DT, "AT" => AT, "d" => d, "tk" => tk, "b" => b,
         "A_S" => A_S, "A_F" => A_F, "A_K" => A_K, "A_T" => A_T, 
@@ -521,8 +537,8 @@ function build_graph(file, preprocess)
         "a_day" => a_day, "a_nodes" => a_nodes, "fl_nodes" => fl_nodes,
         "initial_flying_time" => initial_flying_time,
         "initial_takeoff" => initial_takeoff,
-        "initial_flying_day" => initial_flying_day,
-        "arc_reduc" => arc_reduc, "node_reduc" => node_reduc
+        "initial_flying_day" => initial_flying_day, "arc_info" => arc_info,
+        "arc_reduc" => arc_reduc, "node_reduc" => node_reduc, "acritik_set" => acritik_set
     ))
     
     println("\nConstruction terminée. Réduction: $arc_reduc arcs et $node_reduc noeuds\n")

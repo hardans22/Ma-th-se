@@ -1,0 +1,107 @@
+INSTANCE 196FL_7A_10
+PREPROCESSING : false
+-----------------------INSTANCE 196FL_7A_10--------------------------
+Gurobi 12.0.2 (linux64) logging started Sun Nov 30 19:19:14 2025
+
+Set parameter LogFile to value "RESULTS_EXP/A_MTN_2/FC_MIN_DY_MIN/result_196FL_7A_10_without_prep.txt"
+Set parameter LogToConsole to value 0
+
+Gurobi 12.0.2 (linux64) logging started Sun Nov 30 19:19:17 2025
+
+Set parameter LogFile to value "RESULTS_EXP/A_MTN_2/FC_MIN_DY_MIN/result_196FL_7A_10_without_prep.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "AlmaLinux 9.6 (Sage Margay)")
+
+CPU model: Intel(R) Xeon(R) 6972P, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 192 physical cores, 192 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  7200
+LogToConsole  0
+Threads  8
+
+Optimize a model with 6153 rows, 1752 columns and 22852 nonzeros
+Model fingerprint: 0xdd08cb01
+Variable types: 410 continuous, 1342 integer (1142 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 5e+01]
+  Objective range  [2e+01, 2e+02]
+  Bounds range     [1e+00, 5e+01]
+  RHS range        [1e+00, 5e+01]
+Presolve removed 1999 rows and 654 columns
+Presolve time: 0.07s
+Presolved: 4154 rows, 1098 columns, 24251 nonzeros
+Variable types: 164 continuous, 934 integer (802 binary)
+
+Root relaxation: objective 0.000000e+00, 607 iterations, 0.02 seconds (0.02 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    2          -    0.00000      -     -    0s
+H    0     0                    1806.0000000    0.00000   100%     -    0s
+H    0     0                    1481.0000000    0.00000   100%     -    0s
+H    0     0                    1204.0000000    0.00000   100%     -    0s
+H    0     0                     602.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0   17  602.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   17  602.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   17  602.00000    0.00000   100%     -    0s
+H    0     0                     325.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    2  325.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    4  325.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    4  325.00000    0.00000   100%     -    0s
+     0     2    0.00000    0    4  325.00000    0.00000   100%     -    0s
+H  164   294                     293.0000000    0.00000   100%  42.1    0s
+H  194   294                       0.0000000    0.00000  0.00%  39.2    0s
+
+Cutting planes:
+  Learned: 7
+  Gomory: 2
+  Implied bound: 1
+  MIR: 8
+
+Explored 339 nodes (12235 simplex iterations) in 0.75 seconds (0.90 work units)
+Thread count was 8 (of 192 available processors)
+
+Solution count 7: 0 293 325 ... 1806
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 1974, time in user-callback 0.01 sec
+
+AVANT CALCUL DES AUTRES INDICATEURS
+Obj_rho = 0
+Obj_lambda = 0
+Obj_phi = 0
+AVANT CALCUL DES AUTRES INDICATEURS
+Obj_rho = -817
+Obj_lambda = 0
+Obj_phi = 0
+✅ Solution trouvée (status: OPTIMAL)
+🎯 Objective global: 0.0
+⏱️ Time used: 0.75
+Nombre de vols satisfaits: 196
+Nombre de vols non satisfaits: 0
+
+✈️ Paths for each aircraft:
+
+🛩️ Aircraft N607AS path (29 nodes): s_(u=0, v=0, w=0) ➡️  N607AS_(u=3483, v=30, w=6) ➡️  ANC_SEA_137_389_(u=3656, v=31, w=6) ➡️  SEA_ANC_479_633_(u=3849, v=32, w=6) ➡️  ANC_SEA_715_980_(u=4030, v=33, w=6) ➡️  SEA_LAS_1064_1207_(u=4140, v=34, w=6) ➡️  LAS_SFO_1317_1401_(u=4206, v=35, w=6) ➡️  SFO_ORD_1859_2247_(u=4438, v=36, w=7) ➡️  ORD_SFO_2309_2462_(u=4683, v=37, w=7) ➡️  SFO_AUS_2533_2855_(u=4860, v=38, w=7) ➡️  AUS_SFO_3432_3558_(u=5070, v=39, w=8) ➡️  SFO_SEA_3655_3795_(u=5179, v=40, w=8) ➡️  SEA_ATL_3841_4313_(u=5443, v=41, w=8) ➡️  ATL_SEA_4752_4910_(u=5730, v=42, w=9) ➡️  SEA_RDM_4991_5054_(u=5768, v=43, w=9) ➡️  RDM_SEA_5133_5199_(u=5816, v=44, w=9) ➡️  SEA_ANC_5295_5444_(u=6005, v=45, w=9) ➡️  ANC_SEA_5503_5765_(u=6186, v=46, w=9) ➡️  SEA_LAS_6225_6362_(u=6297, v=47, w=10) ➡️  LAS_SEA_6427_6598_(u=6443, v=48, w=10) ➡️  SEA_LAX_6651_6804_(u=6565, v=49, w=10) ➡️  LAX_SEA_6863_7042_(u=6718, v=50, w=10) ➡️  SEA_DFW_7967_8313_(u=198, v=1, w=1) ➡️  DFW_SEA_8423_8562_(u=430, v=2, w=1) ➡️  SEA_ORD_8600_8957_(u=638, v=3, w=1) ➡️  ORD_PDX_9026_9156_(u=870, v=4, w=2) ➡️  PDX_SEA_9262_9310_(u=902, v=5, w=2) ➡️  SEA_BOI_9372_9523_(u=964, v=6, w=2) ➡️  BOI_SEA_9582_9616_(u=1038, v=7, w=2) ➡️  SEA_LIH_9718_9994_(u=1383, v=8, w=2) ➡️  LIH_SAN_10060_10521_(u=1702, v=9, w=2) ➡️  t_(u=0, v=0, w=0)
+
+🛩️ Aircraft N585AS path (28 nodes): s_(u=0, v=0, w=0) ➡️  N585AS_(u=0, v=0, w=1) ➡️  ANC_SEA_162_428_(u=174, v=1, w=1) ➡️  SEA_LAX_528_675_(u=295, v=2, w=1) ➡️  LAX_SEA_743_917_(u=443, v=3, w=1) ➡️  SEA_SFO_990_1113_(u=546, v=4, w=1) ➡️  SFO_SEA_1177_1307_(u=645, v=5, w=1) ➡️  SEA_SJC_1855_1984_(u=755, v=6, w=2) ➡️  SJC_SEA_2047_2171_(u=852, v=7, w=2) ➡️  SEA_SBA_2265_2429_(u=983, v=8, w=2) ➡️  SBA_SEA_2482_2633_(u=1099, v=9, w=2) ➡️  SEA_PDX_2732_2790_(u=1128, v=10, w=2) ➡️  PDX_SEA_3178_3252_(u=1164, v=11, w=3) ➡️  SEA_ANC_3375_3530_(u=1355, v=12, w=3) ➡️  ANC_SEA_3593_3853_(u=1538, v=13, w=3) ➡️  SEA_SAN_4005_4151_(u=1659, v=14, w=3) ➡️  SAN_TPA_4795_5235_(u=1892, v=15, w=4) ➡️  TPA_SAN_5307_5449_(u=2180, v=16, w=4) ➡️  SAN_SEA_5512_5695_(u=2334, v=17, w=4) ➡️  SEA_DAL_6207_6549_(u=2533, v=18, w=5) ➡️  DAL_SEA_6619_6766_(u=2783, v=19, w=5) ➡️  SEA_STL_6837_7194_(u=2982, v=20, w=5) ➡️  STL_SEA_7614_7836_(u=3214, v=21, w=6) ➡️  SEA_MCI_7916_8251_(u=3399, v=22, w=6) ➡️  MCI_SEA_8308_8432_(u=3599, v=23, w=6) ➡️  SEA_JNU_8494_8605_(u=3745, v=24, w=6) ➡️  JNU_SEA_9259_9463_(u=3844, v=25, w=7) ➡️  SEA_BUR_9508_9638_(u=3951, v=26, w=7) ➡️  BUR_SEA_9709_9913_(u=4113, v=27, w=7) ➡️  SEA_FAI_10053_10220_(u=4317, v=28, w=7) ➡️  t_(u=0, v=0, w=0)
+
+🛩️ Aircraft N317AS path (28 nodes): s_(u=0, v=0, w=0) ➡️  N317AS_(u=0, v=0, w=1) ➡️  FAI_SEA_201_455_(u=177, v=1, w=1) ➡️  SEA_ANC_582_739_(u=371, v=2, w=1) ➡️  ANC_SEA_1062_1344_(u=559, v=3, w=1) ➡️  SEA_ORD_1401_1741_(u=762, v=4, w=1) ➡️  ORD_SEA_1807_1944_(u=990, v=5, w=2) ➡️  SEA_IAD_2038_2527_(u=1262, v=6, w=2) ➡️  IAD_SEA_2584_2741_(u=1571, v=7, w=2) ➡️  SEA_IAH_2838_3229_(u=1803, v=8, w=2) ➡️  IAH_SEA_3299_3463_(u=2047, v=9, w=3) ➡️  SEA_DEN_3550_3770_(u=2183, v=10, w=3) ➡️  DEN_SEA_3827_3928_(u=2322, v=11, w=3) ➡️  SEA_PHX_4087_4345_(u=2458, v=12, w=3) ➡️  PHX_SEA_4706_4849_(u=2637, v=13, w=4) ➡️  SEA_PIT_4922_5383_(u=2881, v=14, w=4) ➡️  PIT_SEA_5447_5576_(u=3169, v=15, w=4) ➡️  SEA_SLC_6187_6360_(u=3261, v=16, w=5) ➡️  SLC_SEA_6449_6557_(u=3373, v=17, w=5) ➡️  SEA_PHX_6669_6910_(u=3506, v=18, w=5) ➡️  PHX_SEA_6965_7117_(u=3685, v=19, w=5) ➡️  SEA_PDX_7152_7210_(u=3714, v=20, w=5) ➡️  PDX_SEA_7495_7564_(u=3746, v=21, w=6) ➡️  SEA_LIH_7702_8038_(u=4078, v=22, w=6) ➡️  LIH_SEA_8108_8604_(u=4418, v=23, w=6) ➡️  SEA_SFO_8995_9134_(u=4506, v=24, w=7) ➡️  SFO_JAC_9215_9444_(u=4655, v=25, w=7) ➡️  JAC_SFO_9493_9582_(u=4767, v=26, w=7) ➡️  SFO_PDX_9628_9744_(u=4863, v=27, w=7) ➡️  PDX_SFO_9826_9943_(u=4938, v=28, w=7) ➡️  t_(u=0, v=0, w=0)
+
+🛩️ Aircraft N587AS path (28 nodes): s_(u=0, v=0, w=0) ➡️  N587AS_(u=0, v=0, w=1) ➡️  JNU_SEA_310_514_(u=116, v=1, w=1) ➡️  SEA_PHX_570_794_(u=257, v=2, w=1) ➡️  PHX_SEA_857_991_(u=422, v=3, w=1) ➡️  SEA_BUR_1045_1181_(u=540, v=4, w=1) ➡️  BUR_SEA_1268_1435_(u=678, v=5, w=1) ➡️  SEA_SLC_1846_2021_(u=774, v=6, w=2) ➡️  SLC_SEA_2122_2206_(u=875, v=7, w=2) ➡️  SEA_SJC_2247_2382_(u=992, v=8, w=2) ➡️  SJC_SEA_2432_2554_(u=1087, v=9, w=2) ➡️  SEA_ANC_2874_3028_(u=1280, v=10, w=2) ➡️  ANC_SEA_3168_3438_(u=1462, v=11, w=3) ➡️  SEA_IAD_3504_3971_(u=1727, v=12, w=3) ➡️  IAD_SEA_4030_4189_(u=2036, v=13, w=3) ➡️  SEA_SMF_4248_4369_(u=2117, v=14, w=3) ➡️  SMF_SEA_4703_4832_(u=2216, v=15, w=4) ➡️  SEA_DCA_4891_5368_(u=2487, v=16, w=4) ➡️  DCA_SEA_5437_5593_(u=2802, v=17, w=4) ➡️  SEA_SMF_5645_5755_(u=2883, v=18, w=4) ➡️  SMF_SEA_6112_6231_(u=2979, v=19, w=5) ➡️  SEA_LIH_6321_6593_(u=3340, v=20, w=5) ➡️  LIH_SEA_6647_7117_(u=3656, v=21, w=5) ➡️  SEA_PHX_7626_7841_(u=3791, v=22, w=6) ➡️  PHX_SEA_7908_8038_(u=3952, v=23, w=6) ➡️  SEA_PHX_8109_8330_(u=4088, v=24, w=6) ➡️  PHX_SEA_8407_8537_(u=4252, v=25, w=6) ➡️  SEA_SAN_9117_9279_(u=4366, v=26, w=7) ➡️  SAN_MCO_9359_9801_(u=4602, v=27, w=7) ➡️  MCO_SEA_9867_10065_(u=4948, v=28, w=7) ➡️  t_(u=0, v=0, w=0)
+
+🛩️ Aircraft N284AK path (22 nodes): s_(u=0, v=0, w=0) ➡️  N284AK_(u=0, v=0, w=1) ➡️  PHX_PDX_356_453_(u=138, v=1, w=1) ➡️  PDX_FLL_541_1050_(u=449, v=2, w=1) ➡️  FLL_SFO_1118_1320_(u=802, v=3, w=1) ➡️  SFO_FLL_1383_1870_(u=1079, v=4, w=1) ➡️  FLL_PDX_2018_2231_(u=1440, v=5, w=2) ➡️  PDX_JFK_2322_2828_(u=1728, v=6, w=2) ➡️  JFK_PSP_3414_3583_(u=2053, v=7, w=3) ➡️  PSP_SEA_3697_3873_(u=2207, v=8, w=3) ➡️  SEA_ONT_3941_4070_(u=2317, v=9, w=3) ➡️  ONT_SEA_4675_4856_(u=2473, v=10, w=4) ➡️  SEA_CLE_4925_5380_(u=2708, v=11, w=4) ➡️  CLE_SEA_5435_5585_(u=2984, v=12, w=4) ➡️  SEA_ATL_6289_6758_(u=3250, v=13, w=5) ➡️  ATL_SEA_6839_6970_(u=3541, v=14, w=5) ➡️  SEA_SMF_7089_7200_(u=3627, v=15, w=5) ➡️  SMF_SEA_7553_7682_(u=3723, v=16, w=6) ➡️  SEA_FLL_7746_8300_(u=4043, v=17, w=6) ➡️  FLL_SEA_8359_8570_(u=4402, v=18, w=6) ➡️  SEA_SNA_9008_9175_(u=4513, v=19, w=7) ➡️  SNA_SEA_9239_9448_(u=4698, v=20, w=7) ➡️  SEA_DEN_9579_9790_(u=4828, v=21, w=7) ➡️  DEN_SEA_9846_9966_(u=4983, v=22, w=7) ➡️  t_(u=0, v=0, w=0)
+
+🛩️ Aircraft N320AS path (30 nodes): s_(u=0, v=0, w=0) ➡️  N320AS_(u=0, v=0, w=1) ➡️  SJC_SEA_364_507_(u=106, v=1, w=1) ➡️  SEA_PIT_580_1048_(u=364, v=2, w=1) ➡️  PIT_SEA_1104_1236_(u=638, v=3, w=1) ➡️  SEA_ORD_1795_2159_(u=848, v=4, w=2) ➡️  ORD_PDX_2215_2349_(u=1083, v=5, w=2) ➡️  PDX_ONT_2434_2569_(u=1205, v=6, w=2) ➡️  ONT_PDX_2628_2754_(u=1316, v=7, w=2) ➡️  PDX_ANC_2866_3034_(u=1519, v=8, w=2) ➡️  ANC_SEA_3102_3363_(u=1693, v=9, w=3) ➡️  SEA_ANC_3462_3616_(u=1881, v=10, w=3) ➡️  ANC_JNU_4064_4188_(u=1974, v=11, w=3) ➡️  JNU_SIT_4227_4276_(u=1997, v=12, w=3) ➡️  SIT_JNU_4672_4708_(u=2020, v=13, w=4) ➡️  JNU_ANC_4773_4879_(u=2108, v=14, w=4) ➡️  ANC_BET_4949_5073_(u=2165, v=15, w=4) ➡️  BET_ANC_5111_5186_(u=2226, v=16, w=4) ➡️  ANC_JNU_6410_6511_(u=2309, v=17, w=5) ➡️  JNU_PSG_6558_6607_(u=2339, v=18, w=5) ➡️  PSG_WRG_6650_6684_(u=2355, v=19, w=5) ➡️  WRG_KTN_6726_6760_(u=2377, v=20, w=5) ➡️  KTN_SEA_6808_6973_(u=2467, v=21, w=5) ➡️  SEA_DFW_7182_7527_(u=2664, v=22, w=5) ➡️  DFW_SEA_7641_7776_(u=2890, v=23, w=6) ➡️  SEA_PHX_8018_8241_(u=3028, v=24, w=6) ➡️  PHX_ANC_8336_8626_(u=3405, v=25, w=6) ➡️  ANC_SEA_8684_8926_(u=3563, v=26, w=7) ➡️  SEA_PHX_9068_9279_(u=3696, v=27, w=7) ➡️  PHX_SEA_9344_9480_(u=3865, v=28, w=7) ➡️  SEA_PHX_9550_9765_(u=4001, v=29, w=7) ➡️  PHX_SEA_9831_9982_(u=4184, v=30, w=7) ➡️  t_(u=0, v=0, w=0)
+
+🛩️ Aircraft N277AK path (31 nodes): s_(u=0, v=0, w=0) ➡️  N277AK_(u=2683, v=23, w=5) ➡️  SEA_FAT_375_503_(u=2796, v=24, w=5) ➡️  FAT_SEA_559_687_(u=2904, v=25, w=5) ➡️  SEA_ANC_799_933_(u=3082, v=26, w=5) ➡️  ANC_SEA_1660_1931_(u=3273, v=27, w=6) ➡️  SEA_ANC_2030_2168_(u=3449, v=28, w=6) ➡️  ANC_CDV_2249_2310_(u=3486, v=29, w=6) ➡️  CDV_YAK_2357_2404_(u=3524, v=30, w=6) ➡️  YAK_JNU_2447_2500_(u=3558, v=31, w=6) ➡️  JNU_SEA_2569_2776_(u=3675, v=32, w=6) ➡️  SEA_LAS_3342_3511_(u=3803, v=33, w=7) ➡️  LAS_SEA_3563_3728_(u=3938, v=34, w=7) ➡️  SEA_LAS_3857_4005_(u=4062, v=35, w=7) ➡️  LAS_SEA_4086_4272_(u=4206, v=36, w=7) ➡️  SEA_PHX_4668_4915_(u=4343, v=37, w=8) ➡️  PHX_SEA_4965_5107_(u=4518, v=38, w=8) ➡️  SEA_SAN_5176_5324_(u=4643, v=39, w=8) ➡️  SAN_SEA_5397_5572_(u=4795, v=40, w=8) ➡️  SEA_MSP_6233_6559_(u=4966, v=41, w=9) ➡️  MSP_SEA_6615_6760_(u=5164, v=42, w=9) ➡️  SEA_SNA_6813_6972_(u=5291, v=43, w=9) ➡️  SNA_SEA_7009_7192_(u=5445, v=44, w=9) ➡️  SEA_SNA_7578_7729_(u=5570, v=45, w=10) ➡️  SNA_SEA_7783_7960_(u=5730, v=46, w=10) ➡️  SEA_OAK_8006_8114_(u=5822, v=47, w=10) ➡️  OAK_SEA_8157_8285_(u=5921, v=48, w=10) ➡️  SEA_SMF_8335_8455_(u=5996, v=49, w=10) ➡️  SMF_SEA_8490_8613_(u=6099, v=50, w=10) ➡️  SEA_MSP_9120_9435_(u=175, v=1, w=1) ➡️  MSP_SEA_9512_9628_(u=365, v=2, w=1) ➡️  SEA_PHX_9672_9885_(u=499, v=3, w=1) ➡️  PHX_SEA_9941_10089_(u=683, v=4, w=1) ➡️  t_(u=0, v=0, w=0)
+
+🛠️ Maintenance at node SEA_MSP_9120_9435 by aircraft N277AK | ρ=-99; λ=0; φ=0
+🛠️ Maintenance at node SEA_DFW_7967_8313 by aircraft N607AS | ρ=-718; λ=0; φ=0
+
+Nombre de maintenances au total: 2.0
+Stations de maintenance utilisées: Any["SEA"]
+Nombre de stations de maintenance utilisées: 1

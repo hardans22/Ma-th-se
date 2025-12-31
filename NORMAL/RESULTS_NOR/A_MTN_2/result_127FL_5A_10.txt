@@ -1,0 +1,80 @@
+INSTANCE 127FL_5A_10
+PREPROCESSING : false
+Gurobi 12.0.2 (linux64) logging started jeu. 18 déc. 2025 18:20:12
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_10.txt"
+
+Gurobi 12.0.2 (linux64) logging started jeu. 18 déc. 2025 18:20:12
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_10.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1724 rows, 815 columns and 6844 nonzeros
+Model fingerprint: 0x235dd967
+Variable types: 202 continuous, 613 integer (613 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [3e+01, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 1528 rows and 711 columns
+Presolve time: 0.01s
+Presolved: 196 rows, 104 columns, 680 nonzeros
+Variable types: 51 continuous, 53 integer (52 binary)
+Found heuristic solution: objective 2974.0000000
+Found heuristic solution: objective 2933.0000000
+Found heuristic solution: objective 1220.0000000
+
+Root relaxation: objective 0.000000e+00, 65 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    2 1220.00000    0.00000   100%     -    0s
+H    0     0                     863.0000000    0.00000   100%     -    0s
+H    0     0                     272.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    6  272.00000    0.00000   100%     -    0s
+H    0     0                     270.0000000    0.00000   100%     -    0s
+H    0     0                     264.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    4  264.00000    0.00000   100%     -    0s
+H    0     0                     215.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    4  215.00000    0.00000   100%     -    0s
+     0     0  211.00000    0    2  215.00000  211.00000  1.86%     -    0s
+     0     0  211.00000    0    4  215.00000  211.00000  1.86%     -    0s
+     0     0  211.00000    0    4  215.00000  211.00000  1.86%     -    0s
+     0     0  211.00000    0    9  215.00000  211.00000  1.86%     -    0s
+     0     0  211.00000    0    9  215.00000  211.00000  1.86%     -    0s
+     0     0  211.00000    0    6  215.00000  211.00000  1.86%     -    0s
+     0     0  211.00000    0    7  215.00000  211.00000  1.86%     -    0s
+     0     0  211.00000    0    6  215.00000  211.00000  1.86%     -    0s
+     0     0  211.00000    0    7  215.00000  211.00000  1.86%     -    0s
+     0     0  211.00000    0    7  215.00000  211.00000  1.86%     -    0s
+     0     0  211.00000    0    7  215.00000  211.00000  1.86%     -    0s
+     0     0  211.00000    0    7  215.00000  211.00000  1.86%     -    0s
+
+Cutting planes:
+  Learned: 1
+  Cover: 3
+  Implied bound: 3
+  MIR: 11
+  Flow cover: 2
+  RLT: 1
+  Relax-and-lift: 1
+  BQP: 1
+
+Explored 1 nodes (402 simplex iterations) in 0.04 seconds (0.05 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 8: 215 264 270 ... 2974
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.150000000000e+02, best bound 2.150000000000e+02, gap 0.0000%
+
+User-callback calls 1262, time in user-callback 0.00 sec

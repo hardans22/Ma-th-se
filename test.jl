@@ -14,66 +14,44 @@ On décompose en:
 - Subproblem: Min d'y, s.t. By >= b - Ax̄, y >= 0
 """
 
-function resoudre_avec_benders()
-    # Données du problème
-    c = [5.0, 4.0]  # Coûts variables de premier niveau
-    d = [6.0, 3.0, 2.0]  # Coûts variables de second niveau
+"""
+Résout le sous-problème pour une solution x donnée.
+Retourne un NamedTuple avec le statut et les résultats.
+"""
+function resoudre_subproblem(x_val, A, B, b, d)
+    sub = Model(Gurobi.Optimizer)
+    set_optimizer_attribute(sub, "OutputFlag", 0)
     
-    # Contraintes: A*x + B*y >= b
-    A = [2.0 1.0;
-         1.0 2.0;
-         3.0 1.0]
+    @variable(sub, y[1:3] >= 0)
+    @objective(sub, Min, dot(d, y))
     
-    B = [1.0 2.0 1.0;
-         2.0 1.0 1.0;
-         1.0 1.0 2.0]
+    # Contraintes avec x fixé
+    rhs = b - A * x_val
+    @constraint(sub, con, B * y .>= rhs)
     
-    b = [10.0, 12.0, 15.0]
+    optimize!(sub)
     
-    # Créer le problème maître
-    master = Model(Gurobi.Optimizer)
-    set_optimizer_attribute(master, "OutputFlag", 0)
-    
-    @variable(master, x[1:2] >= 0, Int)
-    @variable(master, θ >= -1000)  # Variable pour l'objectif du sous-problème
-    @objective(master, Min, dot(c, x) + θ)
-    
-    # Compteurs
-    nb_coupes = Ref(0)
-    nb_iterations = Ref(0)
-    
-    # Fonction pour résoudre le sous-problème
-    function resoudre_subproblem(x_val)
-        sub = Model(Gurobi.Optimizer)
-        set_optimizer_attribute(sub, "OutputFlag", 0)
-        
-        @variable(sub, y[1:3] >= 0)
-        @objective(sub, Min, dot(d, y))
-        
-        # Contraintes avec x fixé
-        rhs = b - A * x_val
-        @constraint(sub, con, B * y .>= rhs)
-        
-        optimize!(sub)
-        
-        if termination_status(sub) == MOI.OPTIMAL
-            return (
-                optimal = true,
-                obj = objective_value(sub),
-                y_val = value.(y),
-                dual = dual.(con)
-            )
-        else
-            # Sous-problème infaisable - coupe de faisabilité
-            # On récupère le rayon extrême
-            return (
-                optimal = false,
-                dual = dual.(con)
-            )
-        end
+    if termination_status(sub) == MOI.OPTIMAL
+        return (
+            optimal = true,
+            obj = objective_value(sub),
+            y_val = value.(y),
+            dual = dual.(con)
+        )
+    else
+        # Sous-problème infaisable - coupe de faisabilité
+        # On récupère le rayon extrême
+        return (
+            optimal = false,
+            dual = dual.(con)
+        )
     end
-    
-    # Callback pour ajouter les coupes de Benders
+end
+
+"""
+Crée le callback de Benders qui ajoute les coupes d'optimalité et de faisabilité.
+"""
+function creer_benders_callback(master, x, θ, A, B, b, c, d, nb_coupes, nb_iterations)
     function benders_callback(cb_data)
         status = callback_node_status(cb_data, master)
         
@@ -89,7 +67,7 @@ function resoudre_avec_benders()
         θ_val = callback_value(cb_data, θ)
         
         # Résoudre le sous-problème
-        result = resoudre_subproblem(x_val)
+        result = resoudre_subproblem(x_val, A, B, b, d)
         
         if result.optimal
             # Coupe d'optimalité
@@ -126,7 +104,42 @@ function resoudre_avec_benders()
         end
     end
     
-    # Enregistrer le callback
+    return benders_callback
+end
+
+"""
+Fonction principale pour résoudre le problème avec la décomposition de Benders.
+"""
+function resoudre_avec_benders()
+    # Données du problème
+    c = [5.0, 4.0]  # Coûts variables de premier niveau
+    d = [6.0, 3.0, 2.0]  # Coûts variables de second niveau
+    
+    # Contraintes: A*x + B*y >= b
+    A = [2.0 1.0;
+         1.0 2.0;
+         3.0 1.0]
+    
+    B = [1.0 2.0 1.0;
+         2.0 1.0 1.0;
+         1.0 1.0 2.0]
+    
+    b = [10.0, 12.0, 15.0]
+    
+    # Créer le problème maître
+    master = Model(Gurobi.Optimizer)
+    set_optimizer_attribute(master, "OutputFlag", 0)
+    
+    @variable(master, x[1:2] >= 0, Int)
+    @variable(master, θ >= -1000)  # Variable pour l'objectif du sous-problème
+    @objective(master, Min, dot(c, x) + θ)
+    
+    # Compteurs
+    nb_coupes = Ref(0)
+    nb_iterations = Ref(0)
+    
+    # Créer et enregistrer le callback
+    benders_callback = creer_benders_callback(master, x, θ, A, B, b, c, d, nb_coupes, nb_iterations)
     set_attribute(master, MOI.LazyConstraintCallback(), benders_callback)
     
     # Paramètres Gurobi pour forcer l'utilisation du callback
@@ -148,7 +161,7 @@ function resoudre_avec_benders()
     
     # Vérifier avec le sous-problème final
     x_final = value.(x)
-    result = resoudre_subproblem(x_final)
+    result = resoudre_subproblem(x_final, A, B, b, d)
     println("\nVérification:")
     println("  Coût premier niveau (c'x) = $(dot(c, x_final))")
     println("  Coût second niveau (d'y) = $(result.obj)")

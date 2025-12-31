@@ -1,0 +1,40 @@
+INSTANCE 127FL_5A_5
+PREPROCESSING : false
+Gurobi 12.0.2 (linux64) logging started lun. 29 déc. 2025 10:24:17
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_5.txt"
+
+Gurobi 12.0.2 (linux64) logging started lun. 29 déc. 2025 10:24:17
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_5.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 2536 rows, 3267 columns and 23094 nonzeros
+Model fingerprint: 0xe52f8382
+Variable types: 202 continuous, 3065 integer (3065 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [3e+01, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 416 rows and 664 columns
+Presolve time: 0.09s
+Presolved: 2120 rows, 2603 columns, 22114 nonzeros
+Variable types: 166 continuous, 2437 integer (2432 binary)
+
+Explored 0 nodes (0 simplex iterations) in 0.10 seconds (0.19 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 0
+
+Solve interrupted
+Best objective -, best bound -5.868000000000e+03, gap -
+
+User-callback calls 887, time in user-callback 0.00 sec

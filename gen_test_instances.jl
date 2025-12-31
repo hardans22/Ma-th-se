@@ -34,6 +34,47 @@ function process_xlsx_files(folder_path)
     return xlsx_files
 end
 
+function process_xlsx_files_timer(folder_path)
+    # Obtenir tous les fichiers .xlsx
+    xlsx_files = filter(f -> endswith(f, ".xlsx"), readdir(folder_path))
+    
+    # Temps actuel
+    current_time = time()
+    
+    # Filtrer les fichiers des 2 dernières minutes (120 secondes)
+    recent_files = filter(xlsx_files) do filename
+        filepath = joinpath(folder_path, filename)
+        file_mtime = mtime(filepath)  # Temps de modification
+        (current_time - file_mtime) <= 120  # 120 secondes = 2 minutes
+    end
+    
+    for filename in recent_files
+        filepath = joinpath(folder_path, filename)
+        println("Traitement de: $filename")
+        # Traiter le fichier
+        # wb = XLSX.readxlsx(filepath)
+        # ... votre code de traitement ...
+    end
+    
+    return recent_files
+end
+
+function computation(df_flights)
+    tail_numbers = unique(df_flights.TAIL_NUMBER)
+    aircraft_day_df = combine(groupby(df_flights, [:TAIL_NUMBER, :DAY]),
+        :AIR_TIME => sum => :FLYING_TIME,
+        :AIR_TIME => length => :TAKEOFF
+    )
+
+    sort!(aircraft_day_df, [:TAIL_NUMBER, :DAY])
+    nbr_ac = length(tail_numbers)
+    fh_ac_day = round(Int, sum(aircraft_day_df.FLYING_TIME)/nbr_ac/7)
+    tk_ac_day = round(Int, sum(aircraft_day.TAKEOFF)/nbr_ac/7)
+    fh_tk = round(sum(Int, aircraft_day.FLYING_TIME)/sum(aircraft_day.TAKEOFF))
+
+    return (fh_ac_day = fh_ac_day, tk_ac_day = tk_ac_day, fh_tk = fh_tk)
+end 
+
 
 month = "01"
 file = "AS_2024-"*month*"_real_fl"
@@ -59,7 +100,7 @@ for nbr_day in [1]
     good_ac = setdiff(list_ac, ac_problem)
     # ------------------- Part 2 -------------------
 
-    for len_ac in [7]
+    for len_ac in [1]
         aircrafts = good_ac[2:1+len_ac]
         #aircrafts = sample(good_ac, len_ac, replace=false)
         df_fl_ac = filter(row -> row.TAIL_NUMBER in aircrafts && row.DAY in nbr_day:nbr_day+6, df_flights)
@@ -77,9 +118,14 @@ for nbr_day in [1]
         for i in 1:7
             m_st_df[!, "T_" * string(i)] = cap_bis[:, i]
         end
+
+        fl_ind = computation(df_flights)
+        fh_day = fl_ind.fh_ac_day
+        fh_tk = fl_ind.fh_tk
+        tk_day =fl_ind.tk_ac_day
         
-        for version in [1, 8, 10]
-            for ac_critique in [2]
+        for version in 1:20
+            for ac_critique in [1]
                 init_apt, init_fl, init_tk, init_fd = [], [], [], []
                 critical_indices = sample(1:length(aircrafts), ac_critique, replace=false)
                 for (i, ac) in enumerate(aircrafts)
@@ -94,7 +140,7 @@ for nbr_day in [1]
             
                 Output_fold = first_fold*"A_MTN_"*string(ac_critique)*"/"
                 # ------------------- Part 3 -------------------
-                prm_df = DataFrame(TRT = 35, F = 6000, MT = 480, T = 50, D = 10, NBR_TP = 7)
+                prm_df = DataFrame(TRT = 35, F = 6000, MT = 480, T = 50, D = 10, NBR_TP = 7, FH_TK = fh_tk, FH_DAY = fh_day, TK_DAY = tk_day)
                 aircraft_df = DataFrame(
                     TAIL_NUMBER = aircrafts,
                     INIT_AIRPORT = init_apt,
@@ -126,9 +172,9 @@ for nbr_day in [1]
 end
 
 println()
-for ac_critique in [2]
+for ac_critique in [1]
     folder_path ="INSTANCES/instances_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
-    xlsx_files = process_xlsx_files(folder_path)
+    xlsx_files = process_xlsx_files_timer(folder_path)
 
     for file in xlsx_files
         df_flight = DataFrame(XLSX.readtable(folder_path*file, "Data"))
@@ -159,6 +205,10 @@ for ac_critique in [2]
         flying_day_max = df_param.D[1]
         mtn_time = df_param.MT[1]
         nbr_TP = df_param.NBR_TP[1]
+        fh_tk = df_param.FH_TK[1]
+        fh_day = df_param.FH_DAY[1]
+        tk_day = df_param.TK_DAY[1]
+
         #= 
         exp_part = df_inventory.EXP_PART
         nbr_exp_part = length(exp_part)
@@ -186,7 +236,7 @@ for ac_critique in [2]
             "mtn_station_capacity" => ms_capacity, "initial_airport_aircraft" => initial_airport, 
             "flight_legs" => flight_legs, "turn_around_time" => turn_around_time, 
             "maintenance_time" => mtn_time, "end_horizon_time" => end_horizon_time,
-            "nbr_TP" => nbr_TP
+            "nbr_TP" => nbr_TP, "fh_tk" => fh_tk, "fh_day" => fh_day, "tk_day" => tk_day
             #= "exp_part" => exp_part,
             "number_of_exp_part" => nbr_exp_part,
             "init_level_ep" => init_level_ep,
