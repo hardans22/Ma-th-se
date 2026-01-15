@@ -111,23 +111,19 @@ function print_solution(solution, instance_data, output_file, silent=false)
     nbr_mtn = sum(sy) =#
     
     # Fonction helper pour l'écriture
-    function write_both(msg)
-        !silent && println(msg)
-        write(output_file, "\n$msg")
-    end
     
     # Afficher les résultats généraux
-    write_both("✅ Solution trouvée (status: $status)")
-    write_both("🎯 Objective global: $obj_val")
-    #= write_both("🎯 Objective rho: $obj_rho")
-    write_both("🎯 Objective lambda: $obj_lambda")
-    write_both("🎯 Objective phi: $obj_phi")
-     =#write_both("⏱️ Time used: $time_used")
-   #=  write_both("Nombre de vols satisfaits: $(length(fl_satisfied))")
-    write_both("Nombre de vols non satisfaits: $(length(not_fl_satisfied))") =#
-    write_both("")
+    write_both(output_file, "✅ Solution trouvée (status: $status)")
+    write_both(output_file,"🎯 Objective global: $obj_val")
+    #= write_both(output_file,"🎯 Objective rho: $obj_rho")
+    write_both(output_file,"🎯 Objective lambda: $obj_lambda")
+    write_both(output_file,"🎯 Objective phi: $obj_phi")
+     =#write_both(output_file,"⏱️ Time used: $time_used")
+   #=  write_both(output_file,"Nombre de vols satisfaits: $(length(fl_satisfied))")
+    write_both(output_file,"Nombre de vols non satisfaits: $(length(not_fl_satisfied))") =#
+    write_both(output_file,"")
     
-    write_both("✈️ Paths for each aircraft:")
+    write_both(output_file,"✈️ Paths for each aircraft:")
     # Extraire les chemins des avions et trouver le plus long
     aircraft_paths = Dict{String, Vector{String}}()
     longest_aircraft = ""
@@ -152,8 +148,8 @@ function print_solution(solution, instance_data, output_file, silent=false)
         
         path_with_values = ["$(chemin[i])_(u=$(u_val[i]), v=$(v_val[i]), w=$(w_val[i]))" for i in 1:length(chemin)]
         path_str = join(path_with_values, " ➡️  ")
-        write_both("🛩️ Aircraft $aircraft path ($(length(chemin)-3) nodes): $path_str")
-        #write_both("")
+        write_both(output_file, "🛩️ Aircraft $aircraft path ($(length(chemin)-3) nodes): $path_str")
+        write_both(output_file,"")
     end
     maintenance_flights = [j for j in L_M if sum(sy[j] for k in a_nodes) >= 0.9]
     maintenance_at_node = Dict{String, String}()
@@ -164,7 +160,7 @@ function print_solution(solution, instance_data, output_file, silent=false)
         maintenance_at_node[j] = aircraft       
         rho_val, lambda_val, phi_val = rho[j], lambda[j], phi[j]
         maintenance_info[aircraft] = (rho_val, lambda_val, phi_val)
-        write_both("\n🛠️ Maintenance at node $j by aircraft $aircraft | ρ=$rho_val; λ=$lambda_val; φ=$phi_val")
+        write_both(output_file,"\n🛠️ Maintenance at node $j by aircraft $aircraft | ρ=$rho_val; λ=$lambda_val; φ=$phi_val")
     end
 
     return 1

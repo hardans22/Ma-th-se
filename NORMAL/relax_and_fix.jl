@@ -1,7 +1,7 @@
 
 include("../structures.jl")
 
-function buildM(env, instance_data, output_file, nbr_thread, silent, graph_reduc, time_limit, rf_or_fo)
+function buildM(env, instance_data, nbr_thread, silent, graph_reduc, time_limit, rf_or_fo)
     if graph_reduc
         instance_data = graph_reduction(instance_data)
     end
@@ -62,10 +62,11 @@ function buildM(env, instance_data, output_file, nbr_thread, silent, graph_reduc
     
     # ===================== Model =====================
     model = Model(() -> Gurobi.Optimizer(env))
-    GRBsetintparam(env, "OutputFlag", 0)
+    #GRBsetintparam(env, "OutputFlag", 0)
+    set_optimizer_attribute(model, "OutputFlag", 0)
     set_optimizer_attribute(model, "Threads", nbr_thread)
     set_optimizer_attribute(model, "TimeLimit", time_limit) 
-    set_optimizer_attribute(model, "LogFile", output_file)
+    #set_optimizer_attribute(model, "LogFile", path_file)
     
     
     ft_obj = 0.0
@@ -171,7 +172,7 @@ function solve_model(model, instance_data, fix_set, mip_set, relax_set, sx, rf_o
 end 
 
 
-function relax_and_fix(model, instance_data, size_day, overlap)
+function relax_and_fix(model, instance_data, output_file, size_day, overlap)
     graph = instance_data.graph
     node_sets = graph.node_sets
     other_data = instance_data.other_data
@@ -192,7 +193,7 @@ function relax_and_fix(model, instance_data, size_day, overlap)
     mip_set = [i for i in start_day:start_day + size_day-1]
     relax_set = [i for i in start_day + size_day:end_day]
     rf_or_fo = "RF"
-    iter = 0 
+    iter = 1
     #= println("\n\n--- ITERATION ", iter, " ---")
     println("\nfix_set = ", fix_set)
     println("\nmip_set = ", mip_set)
@@ -200,28 +201,38 @@ function relax_and_fix(model, instance_data, size_day, overlap)
     result = solve_model(model, instance_data, fix_set, mip_set, relax_set, sx, rf_or_fo)
     curseur = start_day
     step_day = size_day - overlap
-    while curseur < end_day 
+    sx = result.sx
+    model = result.model
+    mdl = result.model
+
+    write_both(output_file, "Itération : $iter")
+    write_both(output_file, "objective_value = $(result.obj)\n") 
+
+    #= println("\n\n--- ITERATION ", iter, " ---")
+    println("\nfix_set = ", fix_set)
+    println("\nmip_set = ", mip_set)
+    println("\nrelax_set = ", relax_set)   =#
+
+    while curseur + overlap < end_day 
         iter += 1
-        sx = result.sx
-        model = result.model
-        mdl = result.model
         #mise à jour des ensembles
         curseur += step_day
         #println("\nCurrent curseur at day ", curseur)
-        mip_set = [i for i in curseur:curseur + overlap]
+        mip_set = [i for i in curseur:min(curseur + overlap, end_day)]
         relax_set = [i for i in curseur+overlap+1:end_day]
         fix_set = [i for i in start_day:curseur - 1]
 
         #= println("\n\n--- ITERATION ", iter, " ---")
         println("\nfix_set = ", fix_set)
         println("\nmip_set = ", mip_set)
-        println("\nrelax_set = ", relax_set) =#  
+        println("\nrelax_set = ", relax_set)   =#
         result = solve_model(model, instance_data, fix_set, mip_set, relax_set, sx, rf_or_fo)
         sx = result.sx
         sy = result.sy
         obj = result.obj
         model = result.model
-
+        write_both(output_file, "Itération : $iter")
+        write_both(output_file, "objective_value = $obj\n")
         #if all(isinteger, sx)
         if all(isa(v, Integer) for v in values(sx)) 
             break
@@ -248,5 +259,6 @@ function relax_and_fix(model, instance_data, size_day, overlap)
                     "mtn_stations_used" => mtn_stations_used, "nbr_sts_used" => nbr_sts_used)
     solution = Solution(result.obj, result.sx, result.sy, result.su, sv, sw, result.s_rho, s_lambda, s_phi, other_info)
     #return (obj = result.obj, x = result.sx, y = result.sy, u = result.su, rho = result.s_rho, time = timeElapsed, iter = iter)
+    
     return solution
 end 

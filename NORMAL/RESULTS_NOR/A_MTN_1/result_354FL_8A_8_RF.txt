@@ -1,3 +1,5 @@
+INSTANCE 354FL_8A_8
+GRAPH RÉDUCTION : false
 
 Itération : 1
 objective_value = 0.0
@@ -9,7 +11,7 @@ Itération : 3
 objective_value = 0.0
 
 Itération : 4
-objective_value = 60.0
+objective_value = 0.0
 
 Itération : 5
-objective_value = 270.0
+objective_value = 0.0

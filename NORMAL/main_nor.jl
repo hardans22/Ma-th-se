@@ -2,7 +2,7 @@ using JuMP, Gurobi, JSON, CSV, MathOptInterface, DataFrames, XLSX, Glob
 
 
 include("model_amrp_new.jl")
-include("../build_graph_copy.jl")
+include("../build_graph.jl")
 include("functions.jl")
 env = Gurobi.Env()
 
@@ -31,18 +31,18 @@ DY = false
 option = "MEAN"
 MTN_CAP = false
 #model_amrp(file*".json")
-fold_1 = "RESULTS_NOR/A_MTN_2/"
+fold_1 = "RESULTS_NOR/A_MTN_1/"
 Outputs_fold = fold_1
 
 
-for graph_reduc in [true]
+for graph_reduc in [false]
     Instances, Obj, Obj_rho, Obj_lambda, Obj_phi, Dual_obj, Gap, Nbr_nodes  = [], [], [], [], [], [], [], []
     Time, Opt, Arc_reduc, Node_reduc, Nbr_mtn, Feasibilities = [], [], [], [], [], []
     list_nbr_sts_used = []
     fh_ac, tk_ac, fd_ac = [], [], []
-    for v in 30:30
+    for v in 1:10
         inst_name = instance*string(v)
-        inst_path = "../INSTANCES/instances_literature_json/A_MTN_5/"*inst_name
+        inst_path = "../INSTANCES/instances_literature_json/A_MTN_1/"*inst_name
         if graph_reduc
             path_file = Outputs_fold*"result_"*inst_name*"_graph_reduc.txt"
         else
@@ -75,7 +75,8 @@ for graph_reduc in [true]
         println("obj_lambda = ", solution["obj_lambda"])
         println("obj_phi = ", solution["obj_phi"])
          =#
-        mtn_infos = print_solution(solution, instance_data, Output_file, silent)
+        
+        # mtn_infos = print_solution(solution, instance_data, Output_file, silent)
         
         #= fh_ac_str, tk_ac_str, fd_ac_str = "", "", ""
         for ac in keys(mtn_infos)
