@@ -185,7 +185,7 @@ function build_graph(file)
     # ================================================================
     A_K, A_F, A_T = [], [], []  # Arcs avions->vols, vols->vols, vols->puits
     #a = Dict()  # Matrice d'assignation temporelle
-    a_day = Dict{String, Int}()
+    fl_day = Dict{String, Int}()
     println("Construction des arcs...")
     for i in fl_nodes
         origin, dest = flight_legs[i][1], flight_legs[i][2]
@@ -209,7 +209,11 @@ function build_graph(file)
         (end_h_time - at_i <= 1440) && push!(A_T, (i, st_nodes[2]))
         # Matrice d'assignation par période temporelle
         day = ceil(Int, dt_i / 1440)
-        a_day[i] = day
+        fl_day[i] = day
+    end
+
+    for i in union(a_nodes, st_nodes)
+        fl_day[i] = minimum(values(fl_day))
     end
     
     # ================================================================
@@ -219,6 +223,8 @@ function build_graph(file)
     A_M, L_M = [], []  # Arcs et nœuds de maintenance
     b = Dict()  # Variable binaire jour
     arc_info = Dict{Tuple{String,String},String}()
+    arc_day = Dict{Tuple{String,String}, Int}()
+
     println("Identification des opportunités de maintenance...")
     for x in Set(A)
         i, j = x
@@ -241,6 +247,7 @@ function build_graph(file)
         if i == "s" && j in a_nodes
             b[x] = init_flying_day[j]  # Pas de changement de jour pour les arcs source->avion
         end
+        arc_day[x] = fl_day[i]
     end
     L_M = unique(L_M)
     A_M_bar = setdiff(A, A_M)
@@ -260,15 +267,16 @@ function build_graph(file)
 
     
     NH_aircraft = setdiff(a_nodes, H_aircraft)
-    #merge!(instance, Dict("M_FL_O" => M_FL_O, "M_FL_D" => M_FL_D, "a_day" => a_day))
+    #merge!(instance, Dict("M_FL_O" => M_FL_O, "M_FL_D" => M_FL_D, "fl_day" => fl_day))
     other_data = Dict("mtn_stations" => instance["maintenance_stations"], "fh_day" => instance["fh_day"], 
-                    "fh_tk" => instance["fh_tk"], "M_FL_O" => M_FL_O, "M_FL_D" => M_FL_D, "a_day" => a_day, 
-                    "ms_capacity" => instance["mtn_station_capacity"], "nbr_TP" => nbr_TP)
+                    "fh_tk" => instance["fh_tk"], "M_FL_O" => M_FL_O, "M_FL_D" => M_FL_D, "fl_day" => fl_day, 
+                    "ms_capacity" => instance["mtn_station_capacity"], "nbr_TP" => nbr_TP, "arc_day" => arc_day)
 
     node_sets = NodeSets(st_nodes, fl_nodes, a_nodes, L_M, L_MS, H_aircraft, NH_aircraft)
     arc_sets = ArcSets(A_S, A_K, A_F, A_T, A_M, A_M_bar)
     graph = Graph(V, A, node_sets, arc_sets, arc_info)
     flight_data = FlightData(flight_legs, d, b, tk, DT, AT, init_airport, init_flying_time, init_takeoff, init_flying_day)
+    
     instance_data = InstanceData(graph, flight_data, other_data, TRT, mtn_time, max_flt, max_tk, max_fd, nbr_K)
     #println(L_MS)
     # Mise à jour de l'instance avec toutes les structures calculées
@@ -291,6 +299,7 @@ function graph_reduction(instance_data::InstanceData)
     
     fl_nodes = node_sets.fl_nodes
     a_nodes = node_sets.ac_nodes
+    st_nodes = node_sets.dummy_nodes
     
     A_S = arc_sets.arcs_S
     A_T = arc_sets.arcs_T
@@ -480,14 +489,25 @@ function graph_reduction(instance_data::InstanceData)
         end
     end =#
     # Initialiser le dictionnaire
-    a_day = Dict{String, Int}()
+    fl_day = Dict{String, Int}()
+    arc_day = Dict{Tuple{String, String}, Int}()
 
     # Remplir le dictionnaire
     for i in fl_nodes
         day = ceil(Int, DT[i] / 1440)  # Adapter selon votre structure
-        a_day[i] = day
+        fl_day[i] = day
     end
-    other_data["a_day"] = a_day
+
+    for i in union(a_nodes, st_nodes)
+        fl_day[i] = minimum(values(fl_day))
+    end
+    
+    for x in Set(A)
+        i, j = x
+        arc_day[x] = fl_day[i]
+    end
+    other_data["fl_day"] = fl_day
+    other_data["arc_day"] = arc_day
 
     #= F_bar = Dict(j => instance_data.max_flying_time for j in fl_nodes)
     d_bar = Dict(j => d[j] for j in fl_nodes) =#
@@ -578,7 +598,7 @@ function graph_reduction(instance_data::InstanceData)
     other_data["M_FL_O"] = M_FL_O
     other_data["M_FL_D"] = M_FL_D   
     other_data["L_a_M"] = L_a_M
-    other_data["a_day"] = a_day
+    other_data["fl_day"] = fl_day
     other_data["F_bar"] = F_bar
     other_data["d_bar"] = d_bar
     other_data["arc_reduc"] = arc_reduc

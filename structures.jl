@@ -44,6 +44,31 @@ mutable struct FlightData
     init_flying_day::Dict{String,Int64}     #Initial flying days of each aircraft
 end
 
+mutable struct Solution
+    obj::Float64
+    x::Dict{Tuple{String,String}, Float64}
+    y::Dict{String,Float64}
+    u::Dict{String,Float64}
+    v::Dict{String,Float64}
+    w::Dict{String,Float64}
+    rho::Dict{String,Float64}
+    lambda::Dict{String,Float64}
+    phi::Dict{String,Float64}
+    other_info::Dict{String,Any}   #Any other information to store
+end
+
+mutable struct Solution_newM
+    obj::Float64
+    x::Dict{Tuple{String,String, String}, Float64}
+    y::Dict{Tuple{String,String},Float64}
+    u::Dict{String,Float64}
+    v::Dict{String,Float64}
+    w::Dict{String,Float64}
+    rho::Dict{String,Float64}
+    lambda::Dict{String,Float64}
+    phi::Dict{String,Float64}
+    other_info::Dict{String,Any}   #Any other information to store
+end
 
 
 mutable struct InstanceData
@@ -59,19 +84,6 @@ mutable struct InstanceData
 end
 
 
-mutable struct Solution
-    obj::Float64
-    x::Dict{Tuple{String,String,String}, Float64}
-    y::Dict{Tuple{String,String},Float64}
-    u::Dict{String,Float64}
-    v::Dict{String,Float64}
-    w::Dict{String,Float64}
-    rho::Dict{String,Float64}
-    lambda::Dict{String,Float64}
-    phi::Dict{String,Float64}
-    other_info::Dict{String,Any}   #Any other information to store
-    
-end
 
 mutable struct BendersSolution
     obj::Float64

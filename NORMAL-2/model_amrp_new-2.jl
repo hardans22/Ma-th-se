@@ -58,8 +58,6 @@ function model_amrp(env, instance_file, output_file, nbr_thread, silent, graph_r
     predecessors, successors = update_neighborhood(A, predecessors, successors)
     pred_A_M, succ_A_M = Dict(), Dict()
     pred_A_M, succ_A_M = update_neighborhood(A, pred_A_M, succ_A_M)
-    
-
    
     # ===================== Model =====================
     model = Model(() -> Gurobi.Optimizer(env))
@@ -93,9 +91,7 @@ function model_amrp(env, instance_file, output_file, nbr_thread, silent, graph_r
     @constraint(model, c5[j in L_M, k in a_nodes], y[j,k] <= sum(x[(i,j),k] for i in get(pred_A_M, j, [])))
     #@constraint(model, c14[j in L_M, k in setdiff(a_nodes, acritik_set)], sum(y[j,k] for j in L_M) == 0)
 
-    
-    
-    
+
     #Valid inequalities
     #= @constraint(model, c32[j in V_wt_st], (length(get(pred_A_M_bar, j, []))-1) + sum(x[(i, j)] for i in get(pred_A_M_bar, j, [])) >= 1)
     @constraint(model, c33[i in V_wt_st], (length(get(succ_A_M_bar, i, []))-1) + sum(x[(i, j)] for j in get(succ_A_M_bar, i, [])) >= 1)

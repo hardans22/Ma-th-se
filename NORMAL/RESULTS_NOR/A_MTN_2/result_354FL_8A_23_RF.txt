@@ -1,0 +1,7 @@
+INSTANCE 354FL_8A_23
+GRAPH REDUCTION : true
+Gurobi 12.0.2 (linux64) logging started mar. 13 janv. 2026 17:02:27
+
+
+Gurobi 12.0.2 (linux64) logging started mar. 13 janv. 2026 17:02:27
+

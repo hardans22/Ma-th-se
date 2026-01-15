@@ -55,7 +55,7 @@ function build_aircraft_path(start_aircraft::String, succ::Dict{String, String},
     # Ajouter le nœud terminal si accessible
     haskey(succ, current) && push!(chemin, succ[current])
     
-    return chemin, u_value, v_value, w_value
+    return chemin, round.(u_value, digits = 2), round.(v_value, digits = 2), round.(w_value, digits = 2)
 end 
 
 function find_aircraft_for_maintenance(maintenance_node::String, aircraft_paths::Dict{String, Vector{String}})
@@ -83,33 +83,32 @@ function calculate_path_distance(path::Vector{String}, d::Dict)
 end
 
 
-function print_solution(solution, output_file, silent=false)
-    instance, status = solution["instance"], solution["status"]
-    
+function print_solution(solution, instance_data, output_file, silent=false)
+    other_info = solution.other_info
+    status = other_info["status"]
+    graph = instance_data.graph
+    node_sets = graph.node_sets
+    arc_sets = graph.arc_sets
+    L_M = node_sets.mtn_nodes
+    A = graph.arcs
+    fl_nodes = node_sets.fl_nodes
+    a_nodes = node_sets.ac_nodes
+
     # Vérifier si la solution est valide
     valid_statuses = (MOI.OPTIMAL, MOI.FEASIBLE_POINT, MOI.TIME_LIMIT, MOI.INTERRUPTED)
     !(status in valid_statuses) && return Dict{String, String}()
     
     # Extraire les données de l'instance et de la solution
-    A, L_M, a_nodes, fl_nodes = instance["A"], instance["L_M"], instance["a_nodes"], instance["fl_nodes"]
-    obj_val, time_used, sx, sy = solution["obj"], solution["time"], solution["x"], solution["y"]
-    d = instance["d"]
-
-    rho, lambda, phi = solution["rho"], solution["lambda"], solution["phi"]
-    su, sv, sw = solution["u"], solution["v"], solution["w"]
-    mtn_stations_used, nbr_sts_used = solution["mtn_stations_used"], solution["nbr_sts_used"]
+    obj_val, time_used, sx, sy = solution.obj, other_info["time"], solution.x, solution.y
+    rho, lambda, phi = solution.rho, solution.lambda, solution.phi
+    su, sv, sw = solution.u, solution.v, solution.w
+    mtn_stations_used, nbr_sts_used = other_info["mtn_stations_used"], other_info["nbr_sts_used"]
     #obj_rho, obj_lambda, obj_phi = solution["obj_rho"], solution["obj_lambda"], solution["obj_phi"]
-    
-    # Construire le graphe des successeurs en une seule passe
-    succ = Dict{String, String}()
-    for (i, j) in A
-        sx[(i, j)] >= 0.9 && (succ[i] = j)
-    end
-    
-    # Calculer les statistiques des vols
+
+   #=  # Calculer les statistiques des vols
     fl_satisfied = setdiff(keys(succ), union(["s"], a_nodes))
     not_fl_satisfied = setdiff(fl_nodes, keys(succ))
-    nbr_mtn = sum(sy)
+    nbr_mtn = sum(sy) =#
     
     # Fonction helper pour l'écriture
     function write_both(msg)
@@ -124,78 +123,51 @@ function print_solution(solution, output_file, silent=false)
     write_both("🎯 Objective lambda: $obj_lambda")
     write_both("🎯 Objective phi: $obj_phi")
      =#write_both("⏱️ Time used: $time_used")
-    write_both("Nombre de vols satisfaits: $(length(fl_satisfied))")
-    write_both("Nombre de vols non satisfaits: $(length(not_fl_satisfied))")
+   #=  write_both("Nombre de vols satisfaits: $(length(fl_satisfied))")
+    write_both("Nombre de vols non satisfaits: $(length(not_fl_satisfied))") =#
     write_both("")
     
+    write_both("✈️ Paths for each aircraft:")
     # Extraire les chemins des avions et trouver le plus long
     aircraft_paths = Dict{String, Vector{String}}()
     longest_aircraft = ""
     longest_path = String[]
     longest_length = 0
-    
-    # Identifier les avions et construire leurs chemins
-    aircraft_starts = [(i, j) for (i, j) in A if i == "s" && sx[(i, j)] >= 0.9]
-    
-    write_both("✈️ Paths for each aircraft:")
-    
-    for (_, avion) in aircraft_starts
-        chemin, u_val, v_val, w_val = build_aircraft_path(avion, succ, su, sv, sw)
-        aircraft_paths[avion] = chemin
-        
-        # Vérifier si c'est le chemin le plus long
-        if length(chemin) > longest_length
-            longest_length = calculate_path_distance(chemin, d)
-            longest_path = chemin
-            longest_aircraft = avion
+    aircraft_mtn = Dict{String, String}()
+    # Construire le graphe des successeurs en une seule passe
+    succ = Dict{String, String}()
+    for (i, j) in A
+        if sx[(i, j)] >= 0.9
+            succ[i] = j
+            #println("  Arc selected: $(i) -> $(j)")
         end
+    end
+    for aircraft in a_nodes
+        #println(succ)
+        chemin, u_val, v_val, w_val = build_aircraft_path(aircraft, succ, su, sv, sw)
+        println()
+        #println(chemin)
+        aircraft_paths[aircraft] = chemin
+        # Vérifier si c'est le chemin le plus long
         
         path_with_values = ["$(chemin[i])_(u=$(u_val[i]), v=$(v_val[i]), w=$(w_val[i]))" for i in 1:length(chemin)]
         path_str = join(path_with_values, " ➡️  ")
-        write_both("\n🛩️ Aircraft $avion path ($(length(chemin)-3) nodes): $path_str")
-        #write_both("FLYING TIME (u): $(join(u_val, ", "))")
-        #= write_both("   - Takeoffs (v): $(join(v_val, ", "))")
-        write_both("   - Days (w): $(join(w_val, ", "))")  =#
+        write_both("🛩️ Aircraft $aircraft path ($(length(chemin)-3) nodes): $path_str")
+        #write_both("")
     end
-    
-    #= # Afficher la route la plus longue
-    write_both("")
-    write_both("🏆 ROUTE LA PLUS LONGUE:")
-    write_both("✈️ Aircraft: $longest_aircraft")
-    write_both("📏 Durée: $longest_length")
-    write_both("🛤️ Chemin: $(join(longest_path, " ➡️  "))") =#
-    
-    # Identifier les maintenances actives et les mapper aux avions
-    write_both("")
-    maintenance_flights = [j for j in L_M if sum(sy[j,k] for k in a_nodes) >= 0.9]
+    maintenance_flights = [j for j in L_M if sum(sy[j] for k in a_nodes) >= 0.9]
     maintenance_at_node = Dict{String, String}()
     maintenance_info = Dict{String, Tuple{Float64,Float64,Float64}}()
 
     for j in maintenance_flights
         aircraft = find_aircraft_for_maintenance(j, aircraft_paths)
-        maintenance_at_node[j] = aircraft
-        
+        maintenance_at_node[j] = aircraft       
         rho_val, lambda_val, phi_val = rho[j], lambda[j], phi[j]
         maintenance_info[aircraft] = (rho_val, lambda_val, phi_val)
-
-        write_both("🛠️ Maintenance at node $j by aircraft $aircraft | ρ=$rho_val; λ=$lambda_val; φ=$phi_val")
+        write_both("\n🛠️ Maintenance at node $j by aircraft $aircraft | ρ=$rho_val; λ=$lambda_val; φ=$phi_val")
     end
-    
-    # Afficher les statistiques finales
-    write_both("")
-    write_both("Nombre de maintenances au total: $nbr_mtn")
-    write_both("Stations de maintenance utilisées: $mtn_stations_used")
-    write_both("Nombre de stations de maintenance utilisées: $nbr_sts_used")
-    write_both("")
-    
-    # Retourner des informations sur la route la plus longue
-    #= return Dict(
-        "maintenance_at_node" => maintenance_at_node,
-        "longest_aircraft" => longest_aircraft,
-        "longest_path" => longest_path,
-        "longest_length" => longest_length
-    )  =#
-    return maintenance_info
+
+    return 1
 end
 
 
@@ -274,4 +246,22 @@ function compute_indicators(solution, FH, FC, DY)
         solution["obj_rho"], solution["obj_lambda"] = obj_rho, obj_lambda
     end
     return solution
+end 
+
+function verification(solution, instance)
+    A = solution["instance"]["A"]
+    a_nodes = solution["instance"]["a_nodes"]
+    L_M = solution["instance"]["L_M"]
+    x_val = solution["x"]
+    y_val = solution["y"]
+    for a in A
+        if sum(x_val[a,k] for k in a_nodes) > 1.01
+            println("\nUN ARC EST AFFECTÉ À PLUS D'UN AVION\n")
+        end
+    end 
+    for j in L_M
+        if sum(y_val[j,k] for k in a_nodes) > 1.01
+            println("UN NOEUD DE MAINTENANCE EST AFFECTÉ À PLUS D'UN AVION\n")
+        end
+    end 
 end 

@@ -1,0 +1,1303 @@
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 14:35:48
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 14:35:48
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x0a16054f
+Variable types: 202 continuous, 613 integer (613 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 1529 rows and 711 columns
+Presolve time: 0.01s
+Presolved: 194 rows, 104 columns, 666 nonzeros
+Variable types: 51 continuous, 53 integer (52 binary)
+Found heuristic solution: objective 4232.0000000
+Found heuristic solution: objective 1563.0000000
+Found heuristic solution: objective 621.0000000
+
+Root relaxation: objective 0.000000e+00, 63 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    1  621.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8  621.00000    0.00000   100%     -    0s
+H    0     0                     617.0000000    0.00000   100%     -    0s
+H    0     0                     607.0000000    0.00000   100%     -    0s
+H    0     0                     116.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0   11  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   11  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    7  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    9  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   14  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8  116.00000    0.00000   100%     -    0s
+H    0     0                      23.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    2   23.00000    0.00000   100%     -    0s
+     0     0   23.00000    0   12   23.00000   23.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 2
+  Cover: 1
+  MIR: 5
+  Flow cover: 1
+  RLT: 1
+  Relax-and-lift: 1
+
+Explored 1 nodes (406 simplex iterations) in 0.04 seconds (0.05 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 7: 23 116 607 ... 4232
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.300000000000e+01, best bound 2.300000000000e+01, gap 0.0000%
+
+User-callback calls 1320, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x0a16054f
+Variable types: 202 continuous, 613 integer (613 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 194 rows, 104 columns, 666 nonzeros
+
+Continuing optimization...
+
+
+Cutting planes:
+  Learned: 2
+  Cover: 1
+  MIR: 5
+  Flow cover: 1
+  RLT: 1
+  Relax-and-lift: 1
+
+Explored 1 nodes (406 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 7: 23 116 607 ... 4232
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.300000000000e+01, best bound 2.300000000000e+01, gap 0.0000%
+
+User-callback calls 39, time in user-callback 0.00 sec
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 14:56:26
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 14:56:26
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x0a16054f
+Variable types: 202 continuous, 613 integer (613 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 1529 rows and 711 columns
+Presolve time: 0.02s
+Presolved: 194 rows, 104 columns, 666 nonzeros
+Variable types: 51 continuous, 53 integer (52 binary)
+Found heuristic solution: objective 4232.0000000
+Found heuristic solution: objective 1563.0000000
+Found heuristic solution: objective 621.0000000
+
+Root relaxation: objective 0.000000e+00, 63 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    1  621.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8  621.00000    0.00000   100%     -    0s
+H    0     0                     617.0000000    0.00000   100%     -    0s
+H    0     0                     607.0000000    0.00000   100%     -    0s
+H    0     0                     116.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0   11  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   11  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    7  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    9  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   14  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8  116.00000    0.00000   100%     -    0s
+H    0     0                      23.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    2   23.00000    0.00000   100%     -    0s
+     0     0   23.00000    0   12   23.00000   23.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 2
+  Cover: 1
+  MIR: 5
+  Flow cover: 1
+  RLT: 1
+  Relax-and-lift: 1
+
+Explored 1 nodes (406 simplex iterations) in 0.05 seconds (0.05 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 7: 23 116 607 ... 4232
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.300000000000e+01, best bound 2.300000000000e+01, gap 0.0000%
+
+User-callback calls 1322, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x0a16054f
+Variable types: 202 continuous, 613 integer (613 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 194 rows, 104 columns, 666 nonzeros
+
+Continuing optimization...
+
+
+Cutting planes:
+  Learned: 2
+  Cover: 1
+  MIR: 5
+  Flow cover: 1
+  RLT: 1
+  Relax-and-lift: 1
+
+Explored 1 nodes (406 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 7: 23 116 607 ... 4232
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.300000000000e+01, best bound 2.300000000000e+01, gap 0.0000%
+
+User-callback calls 39, time in user-callback 0.00 sec
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 14:57:14
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 14:57:14
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x0a16054f
+Variable types: 202 continuous, 613 integer (613 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 1529 rows and 711 columns
+Presolve time: 0.01s
+Presolved: 194 rows, 104 columns, 666 nonzeros
+Variable types: 51 continuous, 53 integer (52 binary)
+Found heuristic solution: objective 4232.0000000
+Found heuristic solution: objective 1563.0000000
+Found heuristic solution: objective 621.0000000
+
+Root relaxation: objective 0.000000e+00, 63 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    1  621.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8  621.00000    0.00000   100%     -    0s
+H    0     0                     617.0000000    0.00000   100%     -    0s
+H    0     0                     607.0000000    0.00000   100%     -    0s
+H    0     0                     116.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0   11  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   11  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    7  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    9  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   14  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8  116.00000    0.00000   100%     -    0s
+H    0     0                      23.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    2   23.00000    0.00000   100%     -    0s
+     0     0   23.00000    0   12   23.00000   23.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 2
+  Cover: 1
+  MIR: 5
+  Flow cover: 1
+  RLT: 1
+  Relax-and-lift: 1
+
+Explored 1 nodes (406 simplex iterations) in 0.04 seconds (0.05 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 7: 23 116 607 ... 4232
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.300000000000e+01, best bound 2.300000000000e+01, gap 0.0000%
+
+User-callback calls 1321, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x0a16054f
+Variable types: 202 continuous, 613 integer (613 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 194 rows, 104 columns, 666 nonzeros
+
+Continuing optimization...
+
+
+Cutting planes:
+  Learned: 2
+  Cover: 1
+  MIR: 5
+  Flow cover: 1
+  RLT: 1
+  Relax-and-lift: 1
+
+Explored 1 nodes (406 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 7: 23 116 607 ... 4232
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.300000000000e+01, best bound 2.300000000000e+01, gap 0.0000%
+
+User-callback calls 39, time in user-callback 0.00 sec
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 15:01:34
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 15:01:34
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x0a16054f
+Variable types: 202 continuous, 613 integer (613 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 1529 rows and 711 columns
+Presolve time: 0.01s
+Presolved: 194 rows, 104 columns, 666 nonzeros
+Variable types: 51 continuous, 53 integer (52 binary)
+Found heuristic solution: objective 4232.0000000
+Found heuristic solution: objective 1563.0000000
+Found heuristic solution: objective 621.0000000
+
+Root relaxation: objective 0.000000e+00, 63 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    1  621.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8  621.00000    0.00000   100%     -    0s
+H    0     0                     617.0000000    0.00000   100%     -    0s
+H    0     0                     607.0000000    0.00000   100%     -    0s
+H    0     0                     116.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0   11  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   11  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    7  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    9  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   14  116.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8  116.00000    0.00000   100%     -    0s
+H    0     0                      23.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    2   23.00000    0.00000   100%     -    0s
+     0     0   23.00000    0   12   23.00000   23.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 2
+  Cover: 1
+  MIR: 5
+  Flow cover: 1
+  RLT: 1
+  Relax-and-lift: 1
+
+Explored 1 nodes (406 simplex iterations) in 0.04 seconds (0.05 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 7: 23 116 607 ... 4232
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.300000000000e+01, best bound 2.300000000000e+01, gap 0.0000%
+
+User-callback calls 1322, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x0a16054f
+Variable types: 202 continuous, 613 integer (613 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 194 rows, 104 columns, 666 nonzeros
+
+Continuing optimization...
+
+
+Cutting planes:
+  Learned: 2
+  Cover: 1
+  MIR: 5
+  Flow cover: 1
+  RLT: 1
+  Relax-and-lift: 1
+
+Explored 1 nodes (406 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 7: 23 116 607 ... 4232
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.300000000000e+01, best bound 2.300000000000e+01, gap 0.0000%
+
+User-callback calls 39, time in user-callback 0.00 sec
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 15:17:19
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 15:23:25
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 15:23:25
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 487 rows and 236 columns
+Presolve time: 0.01s
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+Variable types: 522 continuous, 57 integer (57 binary)
+Found heuristic solution: objective 0.0000000
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.02 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 503, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 15:26:09
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 15:26:09
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 487 rows and 236 columns
+Presolve time: 0.01s
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+Variable types: 522 continuous, 57 integer (57 binary)
+Found heuristic solution: objective 0.0000000
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.02 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 503, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 15:33:19
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 15:33:19
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 487 rows and 236 columns
+Presolve time: 0.01s
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+Variable types: 522 continuous, 57 integer (57 binary)
+Found heuristic solution: objective 0.0000000
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.02 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 503, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xe3acbc31
+Variable types: 747 continuous, 68 integer (68 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolved: 1236 rows, 579 columns, 4987 nonzeros
+
+Continuing optimization...
+
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 31, time in user-callback 0.00 sec
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 16:03:53
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 16:03:53
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xfb5bbe11
+Variable types: 483 continuous, 332 integer (332 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 1131 rows and 532 columns
+Presolve time: 0.01s
+Presolved: 592 rows, 283 columns, 2373 nonzeros
+Variable types: 231 continuous, 52 integer (51 binary)
+Found heuristic solution: objective 303.0000000
+Found heuristic solution: objective 0.0000000
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.03 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 2: 0 303 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 1128, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x2e3e0245
+Variable types: 412 continuous, 403 integer (403 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+
+MIP start from previous solve did not produce a new incumbent solution
+
+Presolve removed 1264 rows and 594 columns
+Presolve time: 0.01s
+Presolved: 459 rows, 221 columns, 1774 nonzeros
+Variable types: 184 continuous, 37 integer (35 binary)
+Found heuristic solution: objective 1062.0000000
+Found heuristic solution: objective 116.0000000
+
+Root relaxation: objective 0.000000e+00, 81 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    8  116.00000    0.00000   100%     -    0s
+
+Explored 1 nodes (81 simplex iterations) in 0.02 seconds (0.02 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 2: 116 1062 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.160000000000e+02, best bound 1.160000000000e+02, gap 0.0000%
+
+User-callback calls 1101, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xbb83c934
+Variable types: 313 continuous, 502 integer (502 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+
+MIP start from previous solve produced solution with objective 116 (0.00s)
+Loaded MIP start from previous solve with objective 116
+
+Presolve removed 1562 rows and 737 columns
+Presolve time: 0.01s
+Presolved: 161 rows, 78 columns, 576 nonzeros
+Variable types: 62 continuous, 16 integer (14 binary)
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.01 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 116 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.160000000000e+02, best bound 1.160000000000e+02, gap 0.0000%
+
+User-callback calls 903, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x40e1a568
+Variable types: 255 continuous, 560 integer (560 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+
+MIP start from previous solve did not produce a new incumbent solution
+MIP start from previous solve violates constraint c1[TPA_SEA_17773_17981] by 1.000000000
+
+Presolve removed 1606 rows and 750 columns
+Presolve time: 0.01s
+Presolved: 117 rows, 65 columns, 373 nonzeros
+Variable types: 34 continuous, 31 integer (30 binary)
+Found heuristic solution: objective 116.0000000
+
+Root relaxation: cutoff, 0 iterations, 0.00 seconds (0.00 work units)
+
+Explored 1 nodes (0 simplex iterations) in 0.01 seconds (0.01 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 116 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.160000000000e+02, best bound 1.160000000000e+02, gap 0.0000%
+
+User-callback calls 977, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x74a8bb5b
+Variable types: 202 continuous, 613 integer (613 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+
+MIP start from previous solve did not produce a new incumbent solution
+
+Presolve removed 1628 rows and 759 columns
+Presolve time: 0.00s
+Presolved: 95 rows, 56 columns, 304 nonzeros
+Variable types: 26 continuous, 30 integer (28 binary)
+Found heuristic solution: objective 116.0000000
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.01 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 116 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.160000000000e+02, best bound 1.160000000000e+02, gap 0.0000%
+
+User-callback calls 836, time in user-callback 0.00 sec
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 16:07:06
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+
+Gurobi 12.0.2 (linux64) logging started lun. 12 janv. 2026 16:07:06
+
+Set parameter LogFile to value "RESULTS_NOR/A_MTN_2/result_127FL_5A_9_RF.txt"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0xa458d934
+Variable types: 412 continuous, 403 integer (403 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 1223 rows and 576 columns
+Presolve time: 0.01s
+Presolved: 500 rows, 239 columns, 1968 nonzeros
+Variable types: 191 continuous, 48 integer (47 binary)
+Found heuristic solution: objective 973.0000000
+Found heuristic solution: objective 120.0000000
+
+Root relaxation: objective 0.000000e+00, 85 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    1  120.00000    0.00000   100%     -    0s
+H    0     0                      27.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    6   27.00000    0.00000   100%     -    0s
+H    0     0                      25.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    6   25.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    6   25.00000    0.00000   100%     -    0s
+H    0     0                      25.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    6   25.00000    0.00000   100%     -    0s
+H    0     0                      23.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    6   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    4   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    3   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    4   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    1   23.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    2   23.00000    0.00000   100%     -    0s
+
+Cutting planes:
+  Gomory: 2
+  MIR: 4
+  RLT: 1
+
+Explored 1 nodes (619 simplex iterations) in 0.08 seconds (0.08 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 6: 23 23 25 ... 973
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.300000000000e+01, best bound 2.300000000000e+01, gap 0.0000%
+
+User-callback calls 1278, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x492365ef
+Variable types: 255 continuous, 560 integer (560 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+
+MIP start from previous solve did not produce a new incumbent solution
+
+Presolve removed 1581 rows and 735 columns
+Presolve time: 0.01s
+Presolved: 142 rows, 80 columns, 463 nonzeros
+Variable types: 42 continuous, 38 integer (37 binary)
+Found heuristic solution: objective 4232.0000000
+Found heuristic solution: objective 392.0000000
+Found heuristic solution: objective 25.0000000
+
+Root relaxation: objective 0.000000e+00, 47 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    1   25.00000    0.00000   100%     -    0s
+H    0     0                      23.0000000    0.00000   100%     -    0s
+     0     0 infeasible    0        23.00000   23.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 1
+
+Explored 1 nodes (92 simplex iterations) in 0.01 seconds (0.01 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 4: 23 25 392 4232 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.300000000000e+01, best bound 2.300000000000e+01, gap 0.0000%
+
+User-callback calls 1112, time in user-callback 0.00 sec
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (linux64 - "Ubuntu 24.04.3 LTS")
+
+CPU model: AMD Ryzen 7 8845HS w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+Threads  8
+
+Optimize a model with 1723 rows, 815 columns and 6776 nonzeros
+Model fingerprint: 0x54ceaa35
+Variable types: 202 continuous, 613 integer (613 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+03]
+  RHS range        [1e+00, 6e+03]
+
+MIP start from previous solve did not produce a new incumbent solution
+
+Presolve removed 1595 rows and 739 columns
+Presolve time: 0.01s
+Presolved: 128 rows, 76 columns, 405 nonzeros
+Variable types: 37 continuous, 39 integer (36 binary)
+Found heuristic solution: objective 4228.0000000
+Found heuristic solution: objective 392.0000000
+Found heuristic solution: objective 23.0000000
+
+Root relaxation: objective 0.000000e+00, 37 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    3   23.00000    0.00000   100%     -    0s
+
+Explored 1 nodes (76 simplex iterations) in 0.01 seconds (0.01 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 3: 23 392 4228 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.300000000000e+01, best bound 2.300000000000e+01, gap 0.0000%
+
+User-callback calls 938, time in user-callback 0.00 sec
