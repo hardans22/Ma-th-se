@@ -115,6 +115,34 @@ function calc_b(i, j, DT)
     return (floor(Int, DT[j]/1440) - floor(Int, DT[i]/1440)) 
 end
 
+function add_index_to_duplicates(fl_nodes)
+    # Compter les occurrences en un seul passage
+    counts = Dict{String, Int}()
+    for node in fl_nodes
+        counts[node] = get(counts, node, 0) + 1
+    end
+    
+    # Identifier les doublons
+    duplicates = Set(k for (k, v) in counts if v > 1)
+    
+    # Réinitialiser pour l'indexation
+    foreach(k -> counts[k] = 0, keys(counts))
+    
+    # Créer le vecteur indexé
+    indexed_nodes = Vector{String}(undef, length(fl_nodes))
+    
+    for (i, node) in enumerate(fl_nodes)
+        if node in duplicates
+            counts[node] += 1
+            indexed_nodes[i] = string(node, "_", counts[node])
+        else
+            indexed_nodes[i] = node
+        end
+    end
+    
+    return indexed_nodes
+end
+
 # ====================================================================
 # FONCTION PRINCIPALE DE CONSTRUCTION DU GRAPHE
 # ====================================================================
@@ -147,9 +175,13 @@ function build_graph(file)
     # Nœuds de vols : "origine_destination_départ_arrivée"
     fl_nodes = [f_legs[i][1]*"_"*f_legs[i][2]*"_"*string(f_legs[i][3])*"_"*string(f_legs[i][4]) 
                 for i in 1:nbr_FL]
+
+    fl_nodes = add_index_to_duplicates(fl_nodes)
+    
     a_nodes = aircrafts
     st_nodes = ["s", "t"]
     V = vcat(fl_nodes, a_nodes, st_nodes)
+
     #V_wt_st = vcat(a_nodes, fl_nodes)
     
     # ================================================================

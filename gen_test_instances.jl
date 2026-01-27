@@ -45,7 +45,7 @@ function process_xlsx_files_timer(folder_path)
     recent_files = filter(xlsx_files) do filename
         filepath = joinpath(folder_path, filename)
         file_mtime = mtime(filepath)  # Temps de modification
-        (current_time - file_mtime) <= 120  # 120 secondes = 2 minutes
+        (current_time - file_mtime) <= 600 # 120 secondes = 2 minutes
     end
     
     for filename in recent_files
@@ -75,8 +75,27 @@ function computation(df_flights)
     return (fh_ac_day = fh_ac_day, tk_ac_day = tk_ac_day, fh_tk = fh_tk)
 end 
 
+function computation_new(df_flights, nbr_ac)
+    # Agrégation par jour pour obtenir les totaux quotidiens
+    daily_stats = combine(groupby(df_flights, :DAY),
+        :AIR_TIME => sum => :FLYING_TIME,
+        :AIR_TIME => length => :TAKEOFF
+    )
+    
+    # Calcul des moyennes par avion et par jour
+    total_flying_time = sum(daily_stats.FLYING_TIME)
+    total_takeoffs = sum(daily_stats.TAKEOFF)
+    nbr_days = length(unique(df_flights.DAY))
+    
+    fh_ac_day = round(Int, total_flying_time / nbr_ac / nbr_days)
+    tk_ac_day = round(Int, total_takeoffs / nbr_ac / nbr_days)
+    fh_tk = round(Int, total_flying_time / total_takeoffs, digits=2)
+    
+    return (fh_ac_day = fh_ac_day, tk_ac_day = tk_ac_day, fh_tk = fh_tk)
+end
 
-month = "01"
+
+#= month = "01"
 file = "AS_2024-"*month*"_real_fl"
 df_flights = DataFrame(XLSX.readtable("./Notebook/" * file * ".xlsx", "Sheet1"))
 
@@ -106,7 +125,7 @@ for nbr_day in [1]
         df_fl_ac = filter(row -> row.TAIL_NUMBER in aircrafts && row.DAY in nbr_day:nbr_day+6, df_flights)
         nbr_flights = size(df_fl_ac, 1)
 
-        origin_airports = df_fl_ac.ORIGIN_AIRPORT
+        origin_airports = df_fl_ac.ORIGIN_AIRPORnbr_flT
         sorted_o_apt = sort(collect(countmap(origin_airports)), by = x -> x[2], rev = true)
         cap_mat = [rand() < 0.2 ? 0 : rand(1:3) for _ in 1:length(sorted_o_apt), _ in 1:7]
         nbr_mtn_st = 7
@@ -170,10 +189,10 @@ for nbr_day in [1]
         end
     end
 end
-
+ =#
 println()
-for ac_critique in [1]
-    folder_path ="INSTANCES/instances_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
+for ac_critique in [3,5]
+    folder_path ="INSTANCES/instances_literature_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
     xlsx_files = process_xlsx_files_timer(folder_path)
 
     for file in xlsx_files
@@ -244,7 +263,7 @@ for ac_critique in [1]
         )
 
         # S'assurer que le dossier existe avant d'écrire le fichier JSON
-        json_filepath = "INSTANCES/instances_json/A_MTN_"*string(ac_critique)*"/" * string(splitext(file)[1]) * ".json"
+        json_filepath = "INSTANCES/instances_literature_json/A_MTN_"*string(ac_critique)*"/" * string(splitext(file)[1]) * ".json"
         dirpath = dirname(json_filepath)
         if !isdir(dirpath)
             mkpath(dirpath)

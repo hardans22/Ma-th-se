@@ -162,8 +162,6 @@ function print_solution(solution, instance_data, output_file, silent=false)
         maintenance_info[aircraft] = (rho_val, lambda_val, phi_val)
         write_both(output_file,"\n🛠️ Maintenance at node $j by aircraft $aircraft | ρ=$rho_val; λ=$lambda_val; φ=$phi_val")
     end
-
-    return 1
 end
 
 

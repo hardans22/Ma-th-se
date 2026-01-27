@@ -22,16 +22,16 @@ inst_list = ["136FL_5A_2"]
  =#
 preprocess = false
 
-nbr_thread = 8
+nbr_thread = 1
 silent = false
-time_limit = 1800
+time_limit = 300
 FH = true
 FC = false
 DY = false
 option = "MEAN"
 MTN_CAP = false
 #model_amrp(file*".json")
-fold_1 = "RESULTS_NOR/A_MTN_1/"
+fold_1 = "RESULTS_NOR/A_MTN_3/"
 Outputs_fold = fold_1
 
 
@@ -40,9 +40,9 @@ for graph_reduc in [false]
     Time, Opt, Arc_reduc, Node_reduc, Nbr_mtn, Feasibilities = [], [], [], [], [], []
     list_nbr_sts_used = []
     fh_ac, tk_ac, fd_ac = [], [], []
-    for v in 1:10
+    for v in 16:16
         inst_name = instance*string(v)
-        inst_path = "../INSTANCES/instances_literature_json/A_MTN_1/"*inst_name
+        inst_path = "../INSTANCES/instances_literature_json/A_MTN_3/"*inst_name
         if graph_reduc
             path_file = Outputs_fold*"result_"*inst_name*"_graph_reduc.txt"
         else
@@ -62,33 +62,14 @@ for graph_reduc in [false]
         solution = model_amrp(env, instance_data, path_file, nbr_thread, silent, graph_reduc, time_limit, FH, FC, DY, MTN_CAP, option, option)
         Output_file = open(path_file, "a") 
         other_info = solution.other_info
+        print_solution(solution, instance_data, Output_file, silent)
+
         println("AVANT POSTPROCESSING")
         println("obj_rho = ", other_info["obj_rho"])
         println("obj_lambda = ", other_info["obj_lambda"])
         println("obj_phi = ", other_info["obj_phi"])
         other_info["feasible"] = 1
         
-        
-        #= println("APRÈS POSTPROCESSING")
-        solution = compute_indicators(solution, FH, FC, DY)
-        println("obj_rho = ", solution["obj_rho"])
-        println("obj_lambda = ", solution["obj_lambda"])
-        println("obj_phi = ", solution["obj_phi"])
-         =#
-        
-        # mtn_infos = print_solution(solution, instance_data, Output_file, silent)
-        
-        #= fh_ac_str, tk_ac_str, fd_ac_str = "", "", ""
-        for ac in keys(mtn_infos)
-            fh_ac_str *= ac*" : "*string(mtn_infos[ac][1])*" | "
-            tk_ac_str *= ac*" : "*string(mtn_infos[ac][2])*" | "     
-            fd_ac_str *= ac*" : "*string(mtn_infos[ac][3])*" | "     
-        end
-        push!(fh_ac, fh_ac_str)
-        push!(tk_ac, tk_ac_str)
-        push!(fd_ac, fd_ac_str)
-         =#
-        #solution["feasible"] = 1
         push!(Obj, solution.obj)
         push!(Time, other_info["time"])
         push!(Obj_rho, other_info["obj_rho"])

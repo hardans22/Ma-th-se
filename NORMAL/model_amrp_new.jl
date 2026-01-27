@@ -70,6 +70,7 @@ function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_r
     #set_optimizer_attribute(model, "LogToConsole", 0)
     #set_optimizer_attribute(model, "Presolve", 0)
     #set_optimizer_attribute(model, "Cuts", 2)           # Aggressive
+    #set_optimizer_attribute(model, "Cutoff", 120.0)
 
     #= if silent
         set_silent(model)

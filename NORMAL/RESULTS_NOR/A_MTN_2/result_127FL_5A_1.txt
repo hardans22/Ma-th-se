@@ -1,0 +1,10 @@
+INSTANCE 127FL_5A_1
+GRAPH REDUCTION : false
+Gurobi 13.0.0 (linux64) logging started mer. 21 janv. 2026 13:12:13
+
+
+Gurobi 13.0.0 (linux64) logging started mer. 21 janv. 2026 13:12:17
+
+
+Gurobi 13.0.0 (linux64) logging started mer. 21 janv. 2026 13:12:20
+
