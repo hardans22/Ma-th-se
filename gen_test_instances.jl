@@ -45,7 +45,7 @@ function process_xlsx_files_timer(folder_path)
     recent_files = filter(xlsx_files) do filename
         filepath = joinpath(folder_path, filename)
         file_mtime = mtime(filepath)  # Temps de modification
-        (current_time - file_mtime) <= 600 # 120 secondes = 2 minutes
+        (current_time - file_mtime) <= 1200 # 120 secondes = 2 minutes
     end
     
     for filename in recent_files
@@ -125,7 +125,7 @@ for nbr_day in [1]
         df_fl_ac = filter(row -> row.TAIL_NUMBER in aircrafts && row.DAY in nbr_day:nbr_day+6, df_flights)
         nbr_flights = size(df_fl_ac, 1)
 
-        origin_airports = df_fl_ac.ORIGIN_AIRPORnbr_flT
+        origin_airports = df_fl_ac.ORIGIN_AIRPORT
         sorted_o_apt = sort(collect(countmap(origin_airports)), by = x -> x[2], rev = true)
         cap_mat = [rand() < 0.2 ? 0 : rand(1:3) for _ in 1:length(sorted_o_apt), _ in 1:7]
         nbr_mtn_st = 7
@@ -191,8 +191,8 @@ for nbr_day in [1]
 end
  =#
 println()
-for ac_critique in [3,5]
-    folder_path ="INSTANCES/instances_literature_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
+for ac_critique in [1, 3, 5]
+    folder_path ="INSTANCES/instances_lit_small_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
     xlsx_files = process_xlsx_files_timer(folder_path)
 
     for file in xlsx_files
@@ -263,7 +263,7 @@ for ac_critique in [3,5]
         )
 
         # S'assurer que le dossier existe avant d'écrire le fichier JSON
-        json_filepath = "INSTANCES/instances_literature_json/A_MTN_"*string(ac_critique)*"/" * string(splitext(file)[1]) * ".json"
+        json_filepath = "INSTANCES/instances_lit_small_json/A_MTN_"*string(ac_critique)*"/" * string(splitext(file)[1]) * ".json"
         dirpath = dirname(json_filepath)
         if !isdir(dirpath)
             mkpath(dirpath)

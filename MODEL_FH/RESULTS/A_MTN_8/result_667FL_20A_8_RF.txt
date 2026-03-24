@@ -1,0 +1,32 @@
+
+======================= INSTANCE 667FL_20A_8=======================
+
+GRAPH RÉDUCTION : false
+
+RELAX AND FIX
+	Itération : 1
+	objective_value = 35.0
+
+	Itération : 2
+	objective_value = 55.0
+
+	Itération : 3
+	objective_value = 94.99999999032303
+
+	ON VERIFIE SI X ET Y SONT BINAIRES : true
+	RF OBJECTIVE VALUE : 94.99999999032303
+	RF TIME  :  180.845 seconds
+
+FIX AND OPTIMIZE
+	Itération : 1
+	objective_value = 49.99999999487634
+
+	Itération : 2
+	objective_value = 44.99999998159933
+
+	Itération : 3
+	objective_value = 45.0
+
+	ON VERIFIE SI X ET Y SONT BINAIRES : true
+	FO OBJECTIVE VALUE : 45.0
+	FO TIME  : 121.1522 seconds

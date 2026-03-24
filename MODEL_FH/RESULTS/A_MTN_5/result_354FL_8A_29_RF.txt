@@ -1,0 +1,44 @@
+
+======================= INSTANCE 354FL_8A_29=======================
+
+GRAPH RÉDUCTION : false
+
+RELAX AND FIX
+	Itération : 1
+	objective_value = 145.0
+
+	Itération : 2
+	objective_value = 145.0
+
+	Itération : 3
+	objective_value = 145.0
+
+	Itération : 4
+	objective_value = 145.0
+
+	Itération : 5
+	objective_value = 145.0
+
+	ON VERIFIE SI X ET Y SONT BINAIRES : true
+	RF OBJECTIVE VALUE : 145.0
+	RF TIME  :  11.1053 seconds
+
+FIX AND OPTIMIZE
+	Itération : 1
+	objective_value = 145.0
+
+	Itération : 2
+	objective_value = 145.0
+
+	Itération : 3
+	objective_value = 145.0
+
+	Itération : 4
+	objective_value = 145.0
+
+	Itération : 5
+	objective_value = 145.0
+
+	ON VERIFIE SI X ET Y SONT BINAIRES : true
+	FO OBJECTIVE VALUE : 145.0
+	FO TIME  : 1.3 seconds

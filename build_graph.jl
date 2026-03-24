@@ -201,7 +201,7 @@ function build_graph(file)
     for k in a_nodes
         d[k],tk[k] = init_flying_time[k], init_takeoff[k]
         if max_flt - init_flying_time[k] < 240
-            DT[k], AT[k] = temp-mtn_time-35, temp-mtn_time-35  # Initialisation au plus tôt
+            DT[k], AT[k] = temp-mtn_time-TRT, temp-mtn_time-TRT  # Initialisation au plus tôt
         else
             DT[k], AT[k] = temp, temp  # Initialisation au plus tôt
         end

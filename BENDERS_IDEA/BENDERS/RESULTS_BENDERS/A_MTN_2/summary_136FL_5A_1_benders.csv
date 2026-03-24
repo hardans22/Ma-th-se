@@ -1,0 +1,2 @@
+Instances,UB,MP_Time,SP_Time,Prep1_time,Prep2_time,Time,Nbr_iterations,Nbr_feasibility_cuts,Nbr_optimality_cuts,Nbr_cover_cuts,Nbr_cuts
+136FL_5A_1,33.99999999647726,718.48,29.85,0.48,0.88,749.69,7438,1983,5447,5826,13256

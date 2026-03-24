@@ -91,13 +91,18 @@ function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_r
     @constraint(model, c1[i in fl_nodes], sum(x[(i,j)] for j in get(successors, i, [])) == 1)
     @constraint(model, c2[i in V_wt_st], sum(x[(j,i)] for j in get(predecessors, i, [])) == sum(x[(i,j)] for j in get(successors, i, [])))
     @constraint(model, c3[j in L_M], y[j] <= sum(x[(i, j)] for i in get(pred_A_M, j, [])))
-    #@constraint(model, sum(y[j] for j in L_M) <= length(H_aircraft))
+    @constraint(model, sum(y[j] for j in L_M) <= length(H_aircraft))
     
     
     #Valid inequalities
     #= @constraint(model, c32[j in V_wt_st], (length(get(pred_A_M_bar, j, []))-1) + sum(x[(i, j)] for i in get(pred_A_M_bar, j, [])) >= 1)
     @constraint(model, c33[i in V_wt_st], (length(get(succ_A_M_bar, i, []))-1) + sum(x[(i, j)] for j in get(succ_A_M_bar, i, [])) >= 1)
      =# 
+    if FC
+        # =========== Variables ===========                        
+        @variable(model, tk[j] <= v[j in V] <= max_tk)                      #Accumulatad number of takeoff at node j
+        @variable(model, lambda[j in L_M] >= 0, Int)                         #Remaining number of takeoff time at node j
+    end 
     if FH 
         # =========== Variables ===========                        
         if graph_reduc 
@@ -108,11 +113,11 @@ function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_r
         @variable(model, rho[j in L_M] >= 0)                              #Remaining flying time at node j
 
         # =========== Objective ===========
-        gamma_f = 1      
+        gamma_f = 1     
         ft_obj = sum(gamma_f*rho[j] for j in L_M)
 
         # ========  Flying time constraints ========
-        @constraint(model, c4[(i,j) in A_M], rho[j] >= max_flt*x[(i, j)] - u[i] - (max_flt - d[i])*(1 - y[j]))
+        @constraint(model, c4[(i,j) in A_M], rho[j] - 76*lambda[j] >= max_flt*x[(i, j)] - u[i] - (max_flt - d[i])*(1 - y[j]))
         @constraint(model, [(i,j) in A; j != "t"], u[j] <= u[i] + d[j] + (max_flt - d[i] - d[j])*(1 - x[(i,j)]), base_name = "c5[($i,$j)]")
         @constraint(model, c6[j in L_M], u[j] <= max_flt -(max_flt - d[j])*y[j])
         @constraint(model, [(i,j) in A_M_bar; j != "t"], u[j] >= u[i] + d[j] - max_flt*(1 - x[(i,j)]), base_name = "c7[($i,$j)]")
@@ -122,9 +127,6 @@ function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_r
     end 
 
     if FC
-        # =========== Variables ===========                        
-        @variable(model, tk[j] <= v[j in V] <= max_tk)                      #Accumulatad number of takeoff at node j
-        @variable(model, lambda[j in L_M] >= 0, Int)                         #Remaining number of takeoff time at node j
         
         # =========== Objective ===========
         #= if tk_option == "MIN"
@@ -139,11 +141,11 @@ function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_r
             gamma_t = 1
         end     =#
         #gamma_t = other_data["fh_tk"]
-        gamma_t = 1
-        #tk_obj = sum(gamma_t*lambda[j] for j in L_M)
+        gamma_t = 0
+        tk_obj = sum(gamma_t*lambda[j] for j in L_M)
 
         # ========= Takeoff constraints ========
-        @constraint(model, c10[(i,j) in A_M], lambda[j] >= max_tk*x[(i, j)] - v[i] - (max_tk - tk[i])*(1 - y[j]))
+        @constraint(model, c10[(i,j) in A_M], lambda[j] >=  max_tk*x[(i, j)] - v[i] - (max_tk - tk[i])*(1 - y[j]))
         @constraint(model, [(i,j) in A; j != "t"], v[j] <= v[i] + tk[j] + (max_tk - tk[i] - tk[j])*(1 - x[(i,j)]), base_name = "c11[($i,$j)]")
         @constraint(model, c12[j in L_M], v[j] <= max_tk -(max_tk - tk[j])*y[j])
         @constraint(model, [(i,j) in A_M_bar; j != "t"], v[j] >= v[i] + tk[j] - max_tk*(1 - x[(i,j)]), base_name = "c13[($i,$j)]")

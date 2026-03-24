@@ -13,10 +13,10 @@ option = "MIN"
 
 nbr_thread = 8
 silent = false
-time_limit = 600
+time_limit = 43200
 FH = true
-FC = false
-DY = false
+FC = true
+DY = true
 MTN_CAP = false
 
 # --- Gestion des fichiers de sortie ---
@@ -49,7 +49,7 @@ write_both(Output_file, "AVANT POSTPROCESSING")
 write_both(Output_file, "obj_rho = " * string(other_info["obj_rho"]))
 write_both(Output_file, "obj_lambda = " * string(other_info["obj_lambda"]))
 write_both(Output_file, "obj_phi = " * string(other_info["obj_phi"]))
-#solution["feasible"] = 1
+Feasibility = 1
 #print_solution(solution, Output_file, silent)
 
 write_both(Output_file, "APRÈS POSTPROCESSING")
@@ -57,7 +57,7 @@ solution = compute_indicators(solution, instance_data, FH, FC, DY)
 write_both(Output_file, "obj_rho = " * string(other_info["obj_rho"]))
 write_both(Output_file, "obj_lambda = " * string(other_info["obj_lambda"]))
 write_both(Output_file, "obj_phi = " * string(other_info["obj_phi"]))
-
+Feasibility = solution.other_info["feasible"]
 print_solution(solution, instance_data, Output_file, silent)
 
 Obj =  solution.obj

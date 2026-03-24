@@ -1,0 +1,55 @@
+INSTANCE 354FL_8A_18
+GRAPH REDUCTION : false
+Gurobi 13.0.0 (linux64) logging started lun. 23 févr. 2026 10:49:59
+
+Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_18_WS.txt"
+
+Gurobi 13.0.0 (linux64) logging started lun. 23 févr. 2026 10:49:59
+
+Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_18_WS.txt"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
+
+CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  300
+Threads  8
+
+Optimize a model with 8628 rows, 3753 columns and 38110 nonzeros (Min)
+Model fingerprint: 0xb61d41a7
+Model has 199 linear objective coefficients
+Variable types: 563 continuous, 3190 integer (3190 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e+01, 6e+03]
+  RHS range        [1e+00, 6e+03]
+
+User MIP start produced solution with objective 50 (0.01s)
+Loaded user MIP start with objective 50
+
+Presolve removed 1293 rows and 525 columns
+Presolve time: 0.12s
+Presolved: 7335 rows, 3228 columns, 48715 nonzeros
+Variable types: 364 continuous, 2864 integer (2862 binary)
+
+Root relaxation: cutoff, 1713 iterations, 0.06 seconds (0.06 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0     cutoff    0        50.00000   50.00000  0.00%     -    0s
+
+Explored 1 nodes (1713 simplex iterations) in 0.22 seconds (0.25 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 50 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 5.000000000000e+01, best bound 5.000000000000e+01, gap 0.0000%
+
+User-callback calls 162, time in user-callback 0.00 sec
+
+	CM OBJECTIVE VALUE : 50.0
+	CM TIME  : 0.22 seconds

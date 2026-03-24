@@ -22,27 +22,29 @@ inst_list = ["136FL_5A_2"]
  =#
 preprocess = false
 
-nbr_thread = 8
+nbr_thread = 1
 silent = false
-time_limit = 7200
+time_limit = 10
 FH = true
 FC = true
-DY = true
+DY = false
 option = "MEAN"
 MTN_CAP = false
 #model_amrp(file*".json")
-fold_1 = "RESULTS_NOR/A_MTN_1/"
-Outputs_fold = fold_1
-
+Outputs_fold = "RESULTS_NOR/A_MTN_1/"
 
 for graph_reduc in [false]
     Instances, Obj, Obj_rho, Obj_lambda, Obj_phi, Dual_obj, Gap, Nbr_nodes  = [], [], [], [], [], [], [], []
     Time, Opt, Arc_reduc, Node_reduc, Nbr_mtn, Feasibilities = [], [], [], [], [], []
     list_nbr_sts_used = []
     fh_ac, tk_ac, fd_ac = [], [], []
-    for v in 2:2
+    # Avec chemins complets
+    for v in 1:10
         inst_name = instance*string(v)
-        inst_path = "../INSTANCES/instances_literature_json/A_MTN_1/"*inst_name
+        inst_path = "../INSTANCES/instances_lit_small_json/A_MTN_1/"*inst_name
+        
+        path_file = Outputs_fold*"result_"*inst_name*"_RF.txt"
+        Output_file = open(path_file, "w")
         if graph_reduc
             path_file = Outputs_fold*"result_"*inst_name*"_graph_reduc.txt"
         else
@@ -50,34 +52,34 @@ for graph_reduc in [false]
         end
         Output_file = open(path_file, "w") 
         write(Output_file, "INSTANCE "*inst_name)
-        write_both(Output_file, "\nGRAPH REDUCTION : " *string(graph_reduc))
+        println("\nGRAPH REDUCTION : ", graph_reduc)
+        write(Output_file, "\nGRAPH REDUCTION : "*string(graph_reduc))
         
-        write_both(Output_file, "-----------------------INSTANCE $inst_name--------------------------")
+        println("-----------------------INSTANCE $inst_name--------------------------")
         #write(Output_file, "\n-----------------------INSTANCE "*inst_name*"--------------------------")
         push!(Instances, inst_name)
         close(Output_file)
         instance_file = inst_path*".json"
         instance_data = build_graph(instance_file)
         solution = model_amrp(env, instance_data, path_file, nbr_thread, silent, graph_reduc, time_limit, FH, FC, DY, MTN_CAP)
+        
         Output_file = open(path_file, "a") 
         other_info = solution.other_info
-
         write_both(Output_file, "AVANT POSTPROCESSING")
         write_both(Output_file, "obj_rho = " * string(other_info["obj_rho"]))
         write_both(Output_file, "obj_lambda = " * string(other_info["obj_lambda"]))
         write_both(Output_file, "obj_phi = " * string(other_info["obj_phi"]))
-        #solution["feasible"] = 1
+        Feasibility = 1
         #print_solution(solution, Output_file, silent)
-        
-        write_both(Output_file, "APRÈS POSTPROCESSING")
+
+        write_both(Output_file, "\nAPRÈS POSTPROCESSING")
         solution = compute_indicators(solution, instance_data, FH, FC, DY)
         write_both(Output_file, "obj_rho = " * string(other_info["obj_rho"]))
         write_both(Output_file, "obj_lambda = " * string(other_info["obj_lambda"]))
         write_both(Output_file, "obj_phi = " * string(other_info["obj_phi"]))
-        
+        Feasibility = solution.other_info["feasible"]
         print_solution(solution, instance_data, Output_file, silent)
         
-        other_info = solution.other_info
         push!(Obj, solution.obj)
         push!(Time, other_info["time"])
         push!(Obj_rho, other_info["obj_rho"])
@@ -118,6 +120,6 @@ for graph_reduc in [false]
     CSV.write(csv_summary_path, dataframe)
     #CSV.write(csv_aircrafts_path, dataframe2)
 
-    #write_both(Output_file, "\nCSV Summary saved to: " * string(csv_summary_path))
-    #write_both(Output_file, "CSV Aircrafts saved to: ", csv_aircrafts_path)
+    println("\nCSV Summary saved to: ", csv_summary_path)
+    #println("CSV Aircrafts saved to: ", csv_aircrafts_path)
 end

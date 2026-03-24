@@ -1,0 +1,95 @@
+INSTANCE 354FL_8A_20
+GRAPH REDUCTION : false
+Gurobi 13.0.0 (linux64) logging started lun. 23 févr. 2026 10:51:52
+
+Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_20_WS.txt"
+
+Gurobi 13.0.0 (linux64) logging started lun. 23 févr. 2026 10:51:52
+
+Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_20_WS.txt"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
+
+CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  300
+Threads  8
+
+Optimize a model with 8630 rows, 3754 columns and 38118 nonzeros (Min)
+Model fingerprint: 0xaef535c4
+Model has 199 linear objective coefficients
+Variable types: 563 continuous, 3191 integer (3191 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e+01, 6e+03]
+  RHS range        [1e+00, 6e+03]
+
+User MIP start produced solution with objective 20 (0.01s)
+Loaded user MIP start with objective 20
+
+Presolve removed 1300 rows and 516 columns
+Presolve time: 0.12s
+Presolved: 7330 rows, 3238 columns, 49295 nonzeros
+Variable types: 364 continuous, 2874 integer (2872 binary)
+
+Root relaxation: objective 0.000000e+00, 1654 iterations, 0.06 seconds (0.05 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0   45   20.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   35   20.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   35   20.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   46   20.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   20.00000    0.00000   100%     -    0s
+H    0     0                      10.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    8   10.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   12   10.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   11   10.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   11   10.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    9   10.00000    0.00000   100%     -    1s
+     0     0    0.00000    0   15   10.00000    0.00000   100%     -    1s
+     0     0    0.00000    0   15   10.00000    0.00000   100%     -    1s
+     0     0    0.00000    0   15   10.00000    0.00000   100%     -    1s
+     0     0    0.00000    0   15   10.00000    0.00000   100%     -    1s
+     0     0    0.00000    0   12   10.00000    0.00000   100%     -    1s
+     0     2    0.00000    0   12   10.00000    0.00000   100%     -    1s
+  1044  1642    0.00000  182  104   10.00000    0.00000   100%  34.0    5s
+H 2991  2057                      10.0000000    0.00000   100%  31.1    7s
+  3065  2111    0.00000   19  129   10.00000    0.00000   100%  37.1   10s
+  3439  3149    0.00000   26  135   10.00000    0.00000   100%  42.6   16s
+  5817  2760    0.00000   45   45   10.00000    0.00000   100%  52.8   21s
+  7889  2420    0.00000   42   18   10.00000    0.00000   100%  61.3   26s
+  8612  2503     cutoff   97        10.00000    0.00000   100%  64.0   30s
+ 10963  2734    0.00000   33   23   10.00000    0.00000   100%  66.6   35s
+ 12839  3062 infeasible   50        10.00000    0.00000   100%  69.5   40s
+ 14657  3246    0.00000   91   21   10.00000    0.00000   100%  70.6   45s
+ 15886  4383    0.00000  111  207   10.00000    0.00000   100%  73.0   50s
+ 17378  4870    0.00000  146   46   10.00000    0.00000   100%  71.3   55s
+ 21688  4654    0.00000   96  167   10.00000    0.00000   100%  68.8   60s
+ 26710  4580    0.00000   68  149   10.00000    0.00000   100%  66.1   65s
+ 30202  4914 infeasible  115        10.00000    0.00000   100%  66.8   70s
+ 31905  5374    0.00000   97  226   10.00000    0.00000   100%  66.6   75s
+H34138  5301                       5.0000000    0.00000   100%  66.8   77s
+ 35347  5616 infeasible   74         5.00000    0.00000   100%  67.2   80s
+ 38462  6061    0.00000   58  191    5.00000    0.00000   100%  67.9   86s
+H42922   670                       0.0000000    0.00000  0.00%  67.6   89s
+
+Cutting planes:
+  Flow cover: 2
+  GUB cover: 1
+
+Explored 43341 nodes (2928872 simplex iterations) in 89.47 seconds (101.40 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 5: 0 5 10 ... 20
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 25432, time in user-callback 0.01 sec
+
+	CM OBJECTIVE VALUE : 0.0
+	CM TIME  : 89.48 seconds

@@ -1,0 +1,23 @@
+
+-----------------------INSTANCE 181FL_7A_3--------------------------
+Gurobi 12.0.2 (linux64) logging started Wed Dec  3 22:23:17 2025
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_2/result_181FL_7A_3_benders.txt"
+Set parameter PoolSearchMode to value 2
+Set parameter PoolSolutions to value 10
+Set parameter PoolGap to value 0.1
+
+Gurobi 12.0.2 (linux64) logging started Wed Dec  3 22:23:19 2025
+
+
+
+=== Résultat final ===
+Objectif: 0.0
+Temps total du master: 62.47s
+Temps total du sp: 19.48s
+Temps total: 83.22s
+Nombre de coupes: 9193
+Nombre de coupes faisabilité: 1306
+Nombre de cover inequalities: 5738
+Nombre de coupes d'optimalité: 2149
+Nombre d'itérations: 3467

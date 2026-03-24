@@ -44,6 +44,17 @@ mutable struct FlightData
     init_flying_day::Dict{String,Int64}     #Initial flying days of each aircraft
 end
 
+
+mutable struct Solution_FH
+    obj::Float64
+    x::Dict{Tuple{String,String}, Float64}
+    y::Dict{String,Float64}
+    u::Dict{String,Float64}
+    rho::Dict{String,Float64}
+    other_info::Dict{String,Any}   #Any other information to store
+end
+
+
 mutable struct Solution
     obj::Float64
     x::Dict{Tuple{String,String}, Float64}
@@ -57,7 +68,7 @@ mutable struct Solution
     other_info::Dict{String,Any}   #Any other information to store
 end
 
-mutable struct Solution_newM
+mutable struct Solution_new
     obj::Float64
     x::Dict{Tuple{String,String, String}, Float64}
     y::Dict{Tuple{String,String},Float64}
