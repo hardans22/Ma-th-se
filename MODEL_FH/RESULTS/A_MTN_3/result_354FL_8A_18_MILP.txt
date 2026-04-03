@@ -3,11 +3,11 @@
 
 GRAPH RÉDUCTION : false
 
-Gurobi 13.0.0 (linux64) logging started mar. 17 mars 2026 10:01:39
+Gurobi 13.0.0 (linux64) logging started jeu. 02 avril 2026 13:27:14
 
 Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_18_MILP.txt"
 
-Gurobi 13.0.0 (linux64) logging started mar. 17 mars 2026 10:01:39
+Gurobi 13.0.0 (linux64) logging started jeu. 02 avril 2026 13:27:14
 
 Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_18_MILP.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
@@ -20,20 +20,20 @@ TimeLimit  300
 Threads  8
 
 Optimize a model with 8634 rows, 3753 columns and 38111 nonzeros (Min)
-Model fingerprint: 0x3f295615
+Model fingerprint: 0xc90d8a41
 Model has 199 linear objective coefficients
 Variable types: 563 continuous, 3190 integer (3190 binary)
 Coefficient statistics:
   Matrix range     [1e+00, 6e+03]
   Objective range  [1e+00, 1e+00]
   Bounds range     [6e+01, 6e+03]
-  RHS range        [1e+00, 1e+04]
+  RHS range        [1e+00, 6e+03]
 Presolve removed 1300 rows and 549 columns
-Presolve time: 0.12s
+Presolve time: 0.07s
 Presolved: 7334 rows, 3204 columns, 48687 nonzeros
 Variable types: 364 continuous, 2840 integer (2838 binary)
 
-Root relaxation: objective 5.000000e+01, 1590 iterations, 0.06 seconds (0.06 work units)
+Root relaxation: objective 5.000000e+01, 1590 iterations, 0.03 seconds (0.06 work units)
 
     Nodes    |    Current Node    |     Objective Bounds      |     Work
  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
@@ -48,9 +48,9 @@ H    0     0                     150.0000000   50.00000  66.7%     -    0s
      0     0   50.00000    0   49  150.00000   50.00000  66.7%     -    0s
      0     0   50.00000    0    3  150.00000   50.00000  66.7%     -    0s
      0     0   50.00000    0    3  150.00000   50.00000  66.7%     -    0s
-     0     2   50.00000    0    3  150.00000   50.00000  66.7%     -    1s
-H   47    68                     120.0000000   50.00000  58.3%  44.4    1s
-H   49    68                      70.0000000   50.00000  28.6%  45.0    1s
+     0     2   50.00000    0    3  150.00000   50.00000  66.7%     -    0s
+H   47    68                     120.0000000   50.00000  58.3%  44.4    0s
+H   49    68                      70.0000000   50.00000  28.6%  45.0    0s
 H  185   165                      65.0000000   50.00000  23.1%  39.2    1s
 H  699   656                      50.0000000   50.00000  0.00%  36.9    2s
 
@@ -63,7 +63,7 @@ Cutting planes:
   RLT: 3
   Relax-and-lift: 4
 
-Explored 868 nodes (35432 simplex iterations) in 2.98 seconds (2.72 work units)
+Explored 868 nodes (35432 simplex iterations) in 2.40 seconds (2.72 work units)
 Thread count was 8 (of 16 available processors)
 
 Solution count 8: 50 65 70 ... 620
@@ -71,11 +71,11 @@ Solution count 8: 50 65 70 ... 620
 Optimal solution found (tolerance 1.00e-04)
 Best objective 5.000000000000e+01, best bound 5.000000000000e+01, gap 0.0000%
 
-User-callback calls 1042, time in user-callback 0.00 sec
+User-callback calls 872, time in user-callback 0.00 sec
 
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective global: 50.0
-⏱️ Time used: 2.98
+⏱️ Time used: 2.4
 
 ✈️ Paths for each aircraft:
 🛩️ Aircraft N121 path (40 nodes): s_(u=0.0) ➡️  N121_(u=5880.0) ➡️  ECN_ESB_31920_31990_(u=5950.0) ➡️  ESB_ADB_32490_32570_(u=80.0) ➡️  ADB_ESB_32605_32680_(u=155.0) ➡️  ESB_ECN_32865_32935_(u=225.0) ➡️  ECN_ESB_33360_33430_(u=295.0) ➡️  ESB_BAL_33505_33595_(u=385.0) ➡️  BAL_ESB_33630_33725_(u=480.0) ➡️  ESB_ADB_33930_34010_(u=560.0) ➡️  ADB_ESB_34045_34120_(u=635.0) ➡️  ESB_MLX_34300_34375_(u=710.0) ➡️  MLX_ESB_34800_34875_(u=785.0) ➡️  ESB_AJI_34930_35025_(u=880.0) ➡️  AJI_ESB_35060_35165_(u=985.0) ➡️  ESB_ECN_35220_35290_(u=1055.0) ➡️  ECN_HTY_35400_35465_(u=1120.0) ➡️  HTY_ECN_35505_35570_(u=1185.0) ➡️  ECN_ESB_35615_35685_(u=1255.0) ➡️  ESB_BAL_36385_36475_(u=1345.0) ➡️  BAL_ESB_36510_36605_(u=1440.0) ➡️  ESB_ECN_36660_36730_(u=1510.0) ➡️  ECN_HTY_36840_36905_(u=1575.0) ➡️  HTY_ECN_36945_37010_(u=1640.0) ➡️  ECN_ESB_37055_37125_(u=1710.0) ➡️  ESB_BAL_37825_37915_(u=1800.0) ➡️  BAL_ESB_37950_38045_(u=1895.0) ➡️  ESB_MQM_38090_38185_(u=1990.0) ➡️  MQM_ESB_38220_38315_(u=2085.0) ➡️  ESB_SZF_38420_38480_(u=2145.0) ➡️  SZF_ESB_38515_38575_(u=2205.0) ➡️  ESB_TZX_39240_39320_(u=2285.0) ➡️  TZX_ESB_39355_39435_(u=2365.0) ➡️  ESB_SAW_39600_39660_(u=2425.0) ➡️  SAW_ADB_39810_39870_(u=2485.0) ➡️  ADB_SAW_39905_39965_(u=2545.0) ➡️  SAW_ESB_40800_40860_(u=2605.0) ➡️  ESB_SAW_40920_40980_(u=2665.0) ➡️  SAW_AYT_41025_41090_(u=2730.0) ➡️  AYT_SAW_41130_41195_(u=2795.0) ➡️  SAW_ADB_41250_41310_(u=2855.0) ➡️  ADB_SAW_41345_41405_(u=2915.0) ➡️  t_(u=0.0)

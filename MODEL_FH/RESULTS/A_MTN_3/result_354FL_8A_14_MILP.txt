@@ -3,11 +3,11 @@
 
 GRAPH RÉDUCTION : false
 
-Gurobi 13.0.0 (linux64) logging started mar. 17 mars 2026 10:07:32
+Gurobi 13.0.0 (linux64) logging started jeu. 02 avril 2026 13:26:02
 
 Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_14_MILP.txt"
 
-Gurobi 13.0.0 (linux64) logging started mar. 17 mars 2026 10:07:32
+Gurobi 13.0.0 (linux64) logging started jeu. 02 avril 2026 13:26:02
 
 Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_14_MILP.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
@@ -58,7 +58,8 @@ H  367   370                      65.0000000   50.00000  23.1%  36.5    2s
   1961  1869   50.00000   26    4   65.00000   50.00000  23.1%  33.3    5s
 H 1963  1776                      65.0000000   50.00000  23.1%  33.3    6s
 H 1963  1687                      55.0000000   50.00000  9.09%  33.3    6s
-H 2103  1720                      50.0000000   50.00000  0.00%  38.4    9s
+  2059  1819   50.00000   22   71   55.00000   50.00000  9.09%  38.4   10s
+H 2103  1720                      50.0000000   50.00000  0.00%  38.4   10s
 
 Cutting planes:
   Gomory: 1
@@ -67,7 +68,7 @@ Cutting planes:
   Flow cover: 18
   Relax-and-lift: 2
 
-Explored 2126 nodes (86336 simplex iterations) in 9.83 seconds (10.07 work units)
+Explored 2126 nodes (86336 simplex iterations) in 10.45 seconds (10.07 work units)
 Thread count was 8 (of 16 available processors)
 
 Solution count 10: 50 55 65 ... 605
@@ -75,11 +76,11 @@ Solution count 10: 50 55 65 ... 605
 Optimal solution found (tolerance 1.00e-04)
 Best objective 5.000000000000e+01, best bound 5.000000000000e+01, gap 0.0000%
 
-User-callback calls 3555, time in user-callback 0.00 sec
+User-callback calls 3782, time in user-callback 0.00 sec
 
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective global: 50.0
-⏱️ Time used: 9.83
+⏱️ Time used: 10.46
 
 ✈️ Paths for each aircraft:
 🛩️ Aircraft N121 path (43 nodes): s_(u=0.0) ➡️  N121_(u=5950.0) ➡️  ESB_ECN_32340_32410_(u=70.0) ➡️  ECN_HTY_32520_32585_(u=135.0) ➡️  HTY_ECN_32625_32690_(u=200.0) ➡️  ECN_ESB_32735_32805_(u=270.0) ➡️  ESB_ECN_32865_32935_(u=340.0) ➡️  ECN_ESB_33360_33430_(u=410.0) ➡️  ESB_AJI_33490_33585_(u=505.0) ➡️  AJI_ESB_33620_33725_(u=610.0) ➡️  ESB_MQM_33770_33865_(u=705.0) ➡️  MQM_ESB_33900_33995_(u=800.0) ➡️  ESB_ADA_34080_34140_(u=860.0) ➡️  ADA_ESB_34180_34245_(u=925.0) ➡️  ESB_MLX_34300_34375_(u=1000.0) ➡️  MLX_ESB_34800_34875_(u=1075.0) ➡️  ESB_AJI_34930_35025_(u=1170.0) ➡️  AJI_ESB_35060_35165_(u=1275.0) ➡️  ESB_MQM_35210_35305_(u=1370.0) ➡️  MQM_ESB_35340_35435_(u=1465.0) ➡️  ESB_SZF_35540_35600_(u=1525.0) ➡️  SZF_ESB_35635_35695_(u=1585.0) ➡️  ESB_ECN_35745_35815_(u=1655.0) ➡️  ECN_ESB_36240_36310_(u=1725.0) ➡️  ESB_SAW_36360_36420_(u=1785.0) ➡️  SAW_TZX_36465_36565_(u=1885.0) ➡️  TZX_SAW_36600_36705_(u=1990.0) ➡️  SAW_KYA_36990_37060_(u=2060.0) ➡️  KYA_SAW_37095_37165_(u=2130.0) ➡️  SAW_ADB_37680_37740_(u=2190.0) ➡️  ADB_SAW_37775_37835_(u=2250.0) ➡️  SAW_TZX_37905_38005_(u=2350.0) ➡️  TZX_SAW_38040_38145_(u=2455.0) ➡️  SAW_ASR_38415_38500_(u=2540.0) ➡️  ASR_SAW_38535_38625_(u=2630.0) ➡️  SAW_NAJ_39350_39490_(u=2770.0) ➡️  NAJ_SAW_39555_39710_(u=2925.0) ➡️  SAW_ADB_39810_39870_(u=2985.0) ➡️  ADB_SAW_39905_39965_(u=3045.0) ➡️  SAW_ESB_40800_40860_(u=3105.0) ➡️  ESB_SAW_40920_40980_(u=3165.0) ➡️  SAW_AYT_41025_41090_(u=3230.0) ➡️  AYT_SAW_41130_41195_(u=3295.0) ➡️  SAW_ASR_41295_41380_(u=3380.0) ➡️  ASR_SAW_41415_41505_(u=3470.0) ➡️  t_(u=0.0)

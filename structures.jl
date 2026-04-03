@@ -115,3 +115,8 @@ mutable struct BendersSolution
                            Dict{Tuple{String,String}, Float64}(), 
                            Dict{Tuple{String,String}, Float64}())
 end
+
+mutable struct AircraftPath
+    path::Vector{String}
+    len_path::Int
+end

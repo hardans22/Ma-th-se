@@ -1,0 +1,125 @@
+Set parameter Username
+Set parameter LicenseID to value 2765716
+Academic license - for non-commercial use only - expires 2027-01-14
+-----------------------INSTANCE 354FL_8A_12--------------------------
+Set parameter OutputFlag to value 1
+Set parameter Threads to value 8
+Set parameter TimeLimit to value 300
+Set parameter LazyConstraints to value 1
+Set parameter IntFeasTol to value 1e-09
+Set parameter LogFile to value "RESULTS_BENDERS/result_354FL_8A_12_benders.txt"
+Set parameter LazyConstraints to value 1
+Set parameter Threads to value 8
+Set parameter IntFeasTol to value 1e-09
+Set parameter TimeLimit to value 300
+Set parameter LogFile to value "RESULTS_BENDERS/result_354FL_8A_12_benders.txt"
+Set parameter LazyConstraints to value 1
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
+
+CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  300
+IntFeasTol  1e-09
+Threads  8
+LazyConstraints  1
+
+Optimize a model with 724 rows, 3000 columns and 8908 nonzeros (Min)
+Model fingerprint: 0xc891b98a
+Model has 8 linear objective coefficients
+Variable types: 8 continuous, 2992 integer (2992 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 341 rows and 295 columns
+Presolve time: 0.01s
+Presolved: 383 rows, 2705 columns, 5370 nonzeros
+Variable types: 8 continuous, 2697 integer (2697 binary)
+
+Root relaxation: objective 0.000000e+00, 841 iterations, 0.00 seconds (0.01 work units)
+Set parameter DualReductions to value 0
+Set parameter InfUnbdInfo to value 1
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0   14          -    0.00000      -     -    1s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0   12          -    0.00000      -     -    1s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0   10          -    0.00000      -     -    1s
+     0     0    0.00000    0   20          -    0.00000      -     -    1s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0   20          -    0.00000      -     -    1s
+     0     0    0.00000    0    -          -    0.00000      -     -    2s
+     0     0    0.00000    0    -          -    0.00000      -     -    2s
+     0     0    0.00000    0    -          -    0.00000      -     -    2s
+     0     0    0.00000    0   14          -    0.00000      -     -    2s
+     0     0    0.00000    0   17          -    0.00000      -     -    2s
+     0     0    0.00000    0    -          -    0.00000      -     -    3s
+     0     0    0.00000    0    6          -    0.00000      -     -    3s
+     0     0    0.00000    0   20          -    0.00000      -     -    3s
+     0     0    0.00000    0   20          -    0.00000      -     -    3s
+     0     0    0.00000    0   20          -    0.00000      -     -    3s
+     0     0    0.00000    0    -          -    0.00000      -     -    3s
+     0     0    0.00000    0   11          -    0.00000      -     -    3s
+     0     2    0.00000    0   11          -    0.00000      -     -    3s
+   525   296   10.00000   18    -          -    0.00000      -   5.2    5s
+  2231  1110   10.00000   22   20          -   10.00000      -   7.3   10s
+
+Z_VAL = 2230.0 | OBJ DU SP = 505.0 | GAP = -1725.0
+* 3807  1947              38    2230.0000000   10.00000   100%   8.5   14s
+  3900  2006   10.00000   22    - 2230.00000   10.00000   100%   8.6   15s
+
+Z_VAL = 2725.0 | OBJ DU SP = 505.0 | GAP = -2220.0
+
+Z_VAL = 3675.0 | OBJ DU SP = 505.0 | GAP = -3170.0
+  5594  2908   10.00000   28   11 2230.00000   10.00000   100%   9.7   20s
+
+Z_VAL = 689.9999999999984 | OBJ DU SP = 690.0 | GAP = 1.5916157281026244e-12
+H 5595  2763                     690.0000000   10.00000  98.6%   9.6   20s
+
+Z_VAL = 315.0000000000003 | OBJ DU SP = 315.0 | GAP = -2.8421709430404007e-13
+H 5595  2625                     315.0000000   10.00000  96.8%   9.6   20s
+  7578  2925   10.00000   50    -  315.00000   10.00000  96.8%  10.5   25s
+  9942  3417   10.00000   62   22  315.00000   10.00000  96.8%  10.1   30s
+ 11957  3807   10.00000   46    -  315.00000   10.00000  96.8%   9.8   35s
+ 13971  4446   10.00000   63    -  315.00000   10.00000  96.8%   9.6   40s
+ 15795  5462   10.00000   76   16  315.00000   10.00000  96.8%   9.4   45s
+ 17380  6384   10.00000   49   31  315.00000   10.00000  96.8%   9.4   50s
+ 19057  7346   10.00000   62    -  315.00000   10.00000  96.8%   9.1   55s
+ 20907  8419   10.00000   75    -  315.00000   10.00000  96.8%   8.9   60s
+
+Z_VAL = 10.0 | OBJ DU SP = 10.0 | GAP = 0.0
+*22419   497              66      10.0000000   10.00000  0.00%   8.8   63s
+
+Cutting planes:
+  Lazy constraints: 5065
+
+Explored 22609 nodes (200650 simplex iterations) in 63.82 seconds (12.00 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 4: 10 315 690 2230 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.000000000000e+01, best bound 1.000000000000e+01, gap 0.0000%
+
+User-callback calls 51510, time in user-callback 55.31 sec
+LAST SP OBJ = 10.0
+
+=== Résultat final ===
+Objectif: 10.0
+Temps total du master: 36.87s
+Temps total du sp: 26.96s
+Temps total: 63.83s
+Nombre de coupes: 4600
+Nombre de coupes faisabilité: 2338
+Nombre de cover inequalities: 0
+Nombre de coupes d'optimalité: 2262
+Nombre d'itérations: 4606

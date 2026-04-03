@@ -3,11 +3,11 @@
 
 GRAPH RÉDUCTION : false
 
-Gurobi 13.0.0 (linux64) logging started mar. 17 mars 2026 10:06:40
+Gurobi 13.0.0 (linux64) logging started jeu. 02 avril 2026 13:25:08
 
 Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_12_MILP.txt"
 
-Gurobi 13.0.0 (linux64) logging started mar. 17 mars 2026 10:06:40
+Gurobi 13.0.0 (linux64) logging started jeu. 02 avril 2026 13:25:08
 
 Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_12_MILP.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
@@ -72,16 +72,16 @@ H   26    41                     185.0000000    0.00000   100%  77.5    2s
 H   34    41                      60.0000000    0.00000   100%  65.4    2s
 H  276   282                      50.0000000    0.00000   100%  33.9    4s
    687  1146    0.00000   60  108   50.00000    0.00000   100%  36.3    5s
-H 1524  1427                      50.0000000    0.00000   100%  37.7    6s
+H 1524  1427                      50.0000000    0.00000   100%  37.7    5s
 H 1923  1358                      45.0000000    0.00000   100%  35.9    7s
-H 1931  1295                      15.0000000    0.00000   100%  35.8    8s
-  1937  1299    0.00000   38   23   15.00000    0.00000   100%  35.7   10s
-H 2013  1244                      10.0000000    0.00000   100%  47.0   12s
-  2478  1356    0.00000   39   88   10.00000    0.00000   100%  56.2   15s
-  3231  1166    0.00000   88  142   10.00000    0.00000   100%  70.0   20s
-  4789   631    0.00000   46   63   10.00000    0.00000   100%  83.5   25s
-  6653   257     cutoff   39        10.00000    0.00000   100%  92.9   30s
-  8417    88 infeasible   46        10.00000    0.00000   100%   100   35s
+H 1931  1295                      15.0000000    0.00000   100%  35.8    9s
+  1933  1297    0.00000   93   14   15.00000    0.00000   100%  35.8   10s
+H 2013  1244                      10.0000000    0.00000   100%  47.0   13s
+  2253  1408    0.00000   36   59   10.00000    0.00000   100%  50.7   15s
+  3231  1166    0.00000   88  142   10.00000    0.00000   100%  70.0   21s
+  4789   631    0.00000   46   63   10.00000    0.00000   100%  83.5   26s
+  6294   263    0.00000   31   99   10.00000    0.00000   100%  91.3   30s
+  8095   136     cutoff   44        10.00000    0.00000   100%  98.5   35s
 
 Cutting planes:
   Learned: 9
@@ -94,7 +94,7 @@ Cutting planes:
   Zero half: 2
   Relax-and-lift: 1
 
-Explored 9287 nodes (959286 simplex iterations) in 38.72 seconds (45.19 work units)
+Explored 9287 nodes (959286 simplex iterations) in 39.86 seconds (45.19 work units)
 Thread count was 8 (of 16 available processors)
 
 Solution count 10: 10 15 45 ... 425
@@ -102,11 +102,11 @@ Solution count 10: 10 15 45 ... 425
 Optimal solution found (tolerance 1.00e-04)
 Best objective 1.000000000000e+01, best bound 1.000000000000e+01, gap 0.0000%
 
-User-callback calls 8668, time in user-callback 0.01 sec
+User-callback calls 9081, time in user-callback 0.01 sec
 
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective global: 10.0
-⏱️ Time used: 38.73
+⏱️ Time used: 39.87
 
 ✈️ Paths for each aircraft:
 🛩️ Aircraft N121 path (48 nodes): s_(u=0.0) ➡️  N121_(u=5750.0) ➡️  YEI_ESB_31920_31980_(u=5810.0) ➡️  ESB_SAW_32400_32460_(u=5870.0) ➡️  SAW_ADB_32610_32670_(u=5930.0) ➡️  ADB_SAW_32705_32765_(u=5990.0) ➡️  SAW_ESB_33420_33480_(u=60.0) ➡️  ESB_MQM_33770_33865_(u=155.0) ➡️  MQM_ESB_33900_33995_(u=250.0) ➡️  ESB_ADA_34080_34140_(u=310.0) ➡️  ADA_ESB_34180_34245_(u=375.0) ➡️  ESB_ECN_34305_34375_(u=445.0) ➡️  ECN_ESB_34800_34870_(u=515.0) ➡️  ESB_TZX_34920_35000_(u=595.0) ➡️  TZX_ESB_35035_35115_(u=675.0) ➡️  ESB_ERC_35250_35330_(u=755.0) ➡️  ERC_ESB_35365_35445_(u=835.0) ➡️  ESB_ADA_35520_35580_(u=895.0) ➡️  ADA_ESB_35620_35685_(u=960.0) ➡️  ESB_ECN_35745_35815_(u=1030.0) ➡️  ECN_ESB_36240_36310_(u=1100.0) ➡️  ESB_AJI_36370_36465_(u=1195.0) ➡️  AJI_ESB_36500_36605_(u=1300.0) ➡️  ESB_ERC_36690_36770_(u=1380.0) ➡️  ERC_ESB_36805_36885_(u=1460.0) ➡️  ESB_ADA_36960_37020_(u=1520.0) ➡️  ADA_ESB_37060_37125_(u=1585.0) ➡️  ESB_YEI_37195_37255_(u=1645.0) ➡️  YEI_ESB_37680_37740_(u=1705.0) ➡️  ESB_BAL_37825_37915_(u=1795.0) ➡️  BAL_ESB_37950_38045_(u=1890.0) ➡️  ESB_MQM_38090_38185_(u=1985.0) ➡️  MQM_ESB_38220_38315_(u=2080.0) ➡️  ESB_SZF_38420_38480_(u=2140.0) ➡️  SZF_ESB_38515_38575_(u=2200.0) ➡️  ESB_BAL_39265_39355_(u=2290.0) ➡️  BAL_ESB_39390_39485_(u=2385.0) ➡️  ESB_EZS_39555_39630_(u=2460.0) ➡️  EZS_ESB_39665_39745_(u=2540.0) ➡️  ESB_GNY_39820_39895_(u=2615.0) ➡️  GNY_ESB_39930_40010_(u=2695.0) ➡️  ESB_MLX_40060_40135_(u=2770.0) ➡️  MLX_ESB_40560_40635_(u=2845.0) ➡️  ESB_TZX_40680_40760_(u=2925.0) ➡️  TZX_ESB_40795_40875_(u=3005.0) ➡️  ESB_ECN_40980_41050_(u=3075.0) ➡️  ECN_HTY_41160_41225_(u=3140.0) ➡️  HTY_ECN_41265_41330_(u=3205.0) ➡️  ECN_ESB_41375_41445_(u=3275.0) ➡️  ESB_MLX_41500_41575_(u=3350.0) ➡️  t_(u=0.0)

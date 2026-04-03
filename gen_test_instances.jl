@@ -191,8 +191,8 @@ for nbr_day in [1]
 end
  =#
 println()
-for ac_critique in [1, 3, 5]
-    folder_path ="INSTANCES/instances_lit_small_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
+for ac_critique in [3]
+    folder_path ="INSTANCES/instances_literature_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
     xlsx_files = process_xlsx_files_timer(folder_path)
 
     for file in xlsx_files
@@ -263,7 +263,7 @@ for ac_critique in [1, 3, 5]
         )
 
         # S'assurer que le dossier existe avant d'écrire le fichier JSON
-        json_filepath = "INSTANCES/instances_lit_small_json/A_MTN_"*string(ac_critique)*"/" * string(splitext(file)[1]) * ".json"
+        json_filepath = "INSTANCES/instances_literature_json/A_MTN_"*string(ac_critique)*"/" * string(splitext(file)[1]) * ".json"
         dirpath = dirname(json_filepath)
         if !isdir(dirpath)
             mkpath(dirpath)

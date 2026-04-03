@@ -20,7 +20,7 @@ FH = true
 FC = false
 DY = false
 option = "MEAN"
-MTN_CAP = false
+MTN_CAP = true
 #model_amrp(file*".json")
 fold_1 = "RESULTS_NOR/A_MTN_1/"
 Outputs_fold = fold_1

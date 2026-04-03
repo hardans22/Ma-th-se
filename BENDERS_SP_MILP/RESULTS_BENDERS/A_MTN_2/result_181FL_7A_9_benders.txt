@@ -1,0 +1,11 @@
+
+-----------------------INSTANCE 181FL_7A_9--------------------------
+Gurobi 12.0.2 (linux64) logging started Wed Dec  3 22:28:37 2025
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_2/result_181FL_7A_9_benders.txt"
+Set parameter PoolSearchMode to value 2
+Set parameter PoolSolutions to value 10
+Set parameter PoolGap to value 0.1
+
+Gurobi 12.0.2 (linux64) logging started Wed Dec  3 22:28:38 2025
+

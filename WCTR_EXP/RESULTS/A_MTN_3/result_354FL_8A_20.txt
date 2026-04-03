@@ -1,0 +1,94 @@
+INSTANCE 354FL_8A_20
+GRAPH REDUCTION : false
+Gurobi 13.0.0 (linux64) logging started mer. 25 mars 2026 09:40:25
+
+Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_20.txt"
+
+Gurobi 13.0.0 (linux64) logging started mer. 25 mars 2026 09:40:25
+
+Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_20.txt"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
+
+CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  30
+Threads  8
+
+Optimize a model with 24486 rows, 4915 columns and 90882 nonzeros (Min)
+Model fingerprint: 0xcb5d5948
+Model has 199 linear objective coefficients
+Variable types: 1326 continuous, 3589 integer (3191 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+01, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 6383 rows and 1297 columns
+Presolve time: 0.27s
+Presolved: 18103 rows, 3618 columns, 103855 nonzeros
+Variable types: 742 continuous, 2876 integer (2874 binary)
+Root relaxation presolved: 18103 rows, 3618 columns, 103855 nonzeros
+
+
+Root relaxation: objective 0.000000e+00, 1862 iterations, 0.16 seconds (0.18 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0  110          -    0.00000      -     -    0s
+     0     0    0.00000    0  118          -    0.00000      -     -    1s
+H    0     0                     230.0000000    0.00000   100%     -    1s
+     0     0    0.00000    0  106  230.00000    0.00000   100%     -    1s
+     0     0    0.00000    0  115  230.00000    0.00000   100%     -    1s
+     0     0    0.00000    0   11  230.00000    0.00000   100%     -    2s
+     0     0    0.00000    0   16  230.00000    0.00000   100%     -    2s
+     0     0    0.00000    0   19  230.00000    0.00000   100%     -    2s
+     0     0    0.00000    0    9  230.00000    0.00000   100%     -    3s
+     0     0    0.00000    0   22  230.00000    0.00000   100%     -    3s
+     0     0    0.00000    0   20  230.00000    0.00000   100%     -    3s
+     0     0    0.00000    0   19  230.00000    0.00000   100%     -    3s
+     0     0    0.00000    0   15  230.00000    0.00000   100%     -    4s
+     0     0    0.00000    0   19  230.00000    0.00000   100%     -    4s
+     0     0    0.00000    0   11  230.00000    0.00000   100%     -    4s
+     0     0    0.00000    0   17  230.00000    0.00000   100%     -    4s
+     0     0    0.00000    0   21  230.00000    0.00000   100%     -    4s
+     0     0    0.00000    0   21  230.00000    0.00000   100%     -    4s
+H    0     0                     205.0000000    0.00000   100%     -    5s
+     0     0    0.00000    0   21  205.00000    0.00000   100%     -    5s
+     0     0    0.00000    0   33  205.00000    0.00000   100%     -    5s
+     0     0    0.00000    0    7  205.00000    0.00000   100%     -    5s
+     0     0    0.00000    0   13  205.00000    0.00000   100%     -    5s
+     0     0    0.00000    0   23  205.00000    0.00000   100%     -    5s
+     0     0    0.00000    0   13  205.00000    0.00000   100%     -    6s
+     0     0    0.00000    0   13  205.00000    0.00000   100%     -    6s
+     0     0    0.00000    0   13  205.00000    0.00000   100%     -    6s
+H    0     0                     200.0000000    0.00000   100%     -    6s
+     0     2    0.00000    0   13  200.00000    0.00000   100%     -    6s
+H   31    40                     165.0000000    0.00000   100%   113    7s
+H   32    40                     140.0000000    0.00000   100%   110    7s
+H   41   108                     100.0000000    0.00000   100%  96.7    8s
+H   47   108                      55.0000000    0.00000   100%  91.6    8s
+   458   707    0.00000   46   85   55.00000    0.00000   100%  79.2   11s
+H  494   707                      40.0000000    0.00000   100%  81.4   11s
+  1583  1678    0.00000  150   50   40.00000    0.00000   100%  86.2   15s
+H 2016  1600                      30.0000000    0.00000   100%  84.1   19s
+  2020  1603    0.00000   92   12   30.00000    0.00000   100%  83.9   20s
+
+Cutting planes:
+  Cover: 3
+  Projected implied bound: 1
+  MIR: 14
+  Flow cover: 30
+  Relax-and-lift: 4
+
+Explored 2020 nodes (195793 simplex iterations) in 20.39 seconds (25.11 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 9: 30 40 55 ... 230
+
+Solve interrupted
+Best objective 3.000000000000e+01, best bound 0.000000000000e+00, gap 100.0000%
+
+User-callback calls 6049, time in user-callback 0.00 sec

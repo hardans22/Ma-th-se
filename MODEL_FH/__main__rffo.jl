@@ -31,9 +31,9 @@ Instances, RF_Obj, FO_Obj  = [], [], []
 RF_Time, FO_Time = [], []
 list_nbr_sts_used = []
 
-for v in 28:28
+for v in 1:1
     inst_name = instance*string(v)
-    inst_path = "../INSTANCES/instances_literature_json/A_MTN_5/"*inst_name
+    inst_path = "../INSTANCES/instances_literature_json/A_MTN_1/"*inst_name
     
     if graph_reduc
         path_file = Outputs_fold * "result_" * inst_name * "_RF_GR.txt"
