@@ -51,7 +51,8 @@ function combine_csv(folder, type)
             # Arrondir les colonnes décimales à 2 chiffres
             for col in names(df_combined)
                 if col != "Instances" && eltype(df_combined[!, col]) <: AbstractFloat
-                    df_combined[!, col] = round.(df_combined[!, col], digits=1)
+                    digits = occursin(r"time|temps|cpu"i, col) ? 4 : 1
+                    df_combined[!, col] = round.(df_combined[!, col], digits=digits)
                 end
             end
         end
@@ -65,9 +66,9 @@ function combine_csv(folder, type)
 end
 
 
-for fold in ["A_MTN_1/", "A_MTN_3/", "A_MTN_5/", "A_MTN_8/"]
+for fold in ["A_MTN_1/", "A_MTN_3/", "A_MTN_5/", "A_MTN_8/", "A_MTN_12/"]
     println("FOLD = ", fold)
-    folder = "/home/dansou/Téléchargements/RESULTS/"*fold
+    folder = "/home/dansou/Téléchargements/RESULTS_BENDERS/"*fold
     type = "_MILP.csv"
     combine_csv(folder,type)
 end

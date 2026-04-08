@@ -9,7 +9,7 @@ env = Gurobi.Env()
 
 instance = ARGS[1]
 graph_reduc = parse(Bool, ARGS[2])
-option = "MIN"
+
 
 nbr_thread = 8
 silent = false
