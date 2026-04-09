@@ -25,7 +25,7 @@ nbr_feas_cuts, nbr_opti_cuts, nbr_cuts, nbr_iter = [], [], [], []
 MP_time, SP_time = [], []
 
 #for v in [3,4,7,8,10]
-for v in 29:29
+for v in 30:30
     inst_name = instance*string(v)
     file_path = "../INSTANCES/instances_literature_json/"*s_fold*inst_name
     
