@@ -1,2 +1,5 @@
-Instances,UB,MP_Time,SP_Time,Time,Nbr_mtn,Nbr_iter,Nbr_feasi_cuts,Nbr_opti_cuts,Nbr_cuts
-354FL_8A_30,120.0,4.5429,0.0206,4.5635,5,232,127,655,782
+Instances,UB,MP_Time,SP_Time,Time,Nbr_mtn,Nbr_iter,Nbr_feasi_cuts,Nbr_opti_cuts,Nbr_fix_cuts,Nbr_cuts
+354FL_8A_21,35.0,4.1941,0.0223,4.2164,5,256,143,253,3,399
+354FL_8A_22,0.0,10.8801,0.1508,11.0309,5,1679,660,1508,4,2172
+354FL_8A_23,80.0,2.2003,0.0278,2.2281,4,307,79,534,3,616
+354FL_8A_24,115.0,5.1793,0.0694,5.2487,5,782,125,1403,3,1531

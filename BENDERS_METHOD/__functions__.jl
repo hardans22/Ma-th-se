@@ -1,39 +1,53 @@
 
-function build_opti_cut(sub_paths, x, Z, rho_val)
-    cut_list = []
+function build_opti_cut(sub_paths, x, Z, rho_val, fix_dict, added_cuts)
+    cut_dict = Dict("opti" => Vector(), "fix" => Vector())
     sum_1 = AffExpr(0.0) 
     for (aircraft, (sub_path, len_sp, mtn_node)) in sub_paths
-        if rho_val[mtn_node] > 0
+        if rho_val[mtn_node] > 0 && !(sub_path in added_cuts)
             sum_1 = rho_val[mtn_node]*(1 - sum((1 - x[(sub_path[i],sub_path[i+1])]) for i in 1:len_sp-1))
             cut = @build_constraint(sum_1 <= Z[aircraft]) 
-            push!(cut_list, cut)
+            push!(cut_dict["opti"], cut)
+            push!(added_cuts, sub_path)
         elseif rho_val[mtn_node] == 0
+            fix_dict[aircraft] += 1
+            if fix_dict[aircraft] == 1
+                cut = @build_constraint(sum((1 - x[(sub_path[i],sub_path[i+1])]) for i in 1:len_sp-1) <= 0)
+                push!(cut_dict["fix"], cut)
+            end 
+        end  
+    end
+    return cut_dict
+end 
+
+function build_opti_cut_agg(sub_paths, x, Z, obj_sp, rho_val)
+    summ = AffExpr(0.0) 
+    cut_list = []
+    for (aircraft, (sub_path, len_sp, mtn_node)) in sub_paths
+        if len_sp != 0
+            summ += sum((1 - x[(sub_path[i],sub_path[i+1])]) for i in 1:len_sp-1)
+        end
+        if rho_val[mtn_node] == 0
             #println(aircraft)
             cut = @build_constraint(sum((1 - x[(sub_path[i],sub_path[i+1])]) for i in 1:len_sp-1) <= 0)
             #cut = @build_constraint(Z[aircraft] <= 0)
-            push!(cut_list, cut)
-        end 
-    end
-    return cut_list
-end 
-
-function build_opti_cut_agg(sub_paths, x, Z, obj_sp)
-    summ = AffExpr(0.0) 
-    big_set = []
-    big_set_len = 0.0 
-    for (aircraft, (sub_path, len_sp)) in sub_paths
-        if len_sp != 0
-            summ += 1 - sum((1 - x[(sub_path[i],sub_path[i+1])]) for i in 1:len_sp-1)
+            push!(cut_list, cut) 
         end
     end
-    cut = @build_constraint(obj_sp*(summ) <= Z) 
-    return cut  
+    cut = @build_constraint(obj_sp*(1-summ) <= Z) 
+    push!(cut_list, cut) 
+
+    return cut_list 
 end 
 
 
-function build_feas_cut(infeas_subpaths, x)
+function build_feas_cut(infeas_subpaths, x, d, A_M)
     cut_list = []
     for (_, (sub_path, len_sp)) in infeas_subpaths
+        temp = sum(d[i] for i in sub_path[1:end-1])
+        if temp == 6000 && (sub_path[end-1], sub_path[end]) in A_M
+            println("\nFeas cuts : ", temp)
+            println(sub_path)
+        end 
         cut  = @build_constraint(sum(x[(sub_path[i],sub_path[i+1])] for  i in 1:len_sp-1) <= len_sp - 2)    
         push!(cut_list, cut)
     end 

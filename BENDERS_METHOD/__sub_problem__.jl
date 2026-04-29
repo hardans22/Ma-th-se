@@ -461,9 +461,9 @@ function check_cuts(benders_cuts, x_val; tol=1e-12)
         rhs_val = cut.set.upper
         slack = rhs_val - lhs_val
 
-        status = slack >= -tol ? " ❌pas utile" : "✅ satisfait"
+        status = slack >= -tol ? " ❌pas saturée" : "✅ Saturée"
         if slack < -tol
-            println("Coupe de l'iteration: lhs = $(round(lhs_val, digits=4)) | rhs = $(round(rhs_val, digits=4)) | slack = $(round(slack, digits=4)) → $status")
+            println("\nCoupe : lhs = $(round(lhs_val, digits=4)) | rhs = $(round(rhs_val, digits=4)) | slack = $(round(slack, digits=4)) → $status")
             println(cut)
         end 
     end

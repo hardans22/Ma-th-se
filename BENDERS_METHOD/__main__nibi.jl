@@ -12,6 +12,7 @@ sp_method = ARGS[2]
 nbr_thread = 8
 silent = false
 time_limit = 7200
+cut_type = "desagg"
 
 parts = split(instance, "/")
 f_fold = parts[end-1]
@@ -19,14 +20,14 @@ Outputs_fold = "RESULTS_BENDERS/"*f_fold*"/"
 
 inst_name = splitext(basename(instance))[1]
 println(inst_name)
-path_file = Outputs_fold*"result_"*inst_name*"_benders.txt"
+path_file = Outputs_fold*"result_"*inst_name*"_benders"*sp_method*".txt"
 
 Output_file = open(path_file, "w") 
 write_both(Output_file, "-----------------------INSTANCE $inst_name--------------------------")
 close(Output_file)
 
 instance_data = build_graph(instance)
-solution = benders_decomp(env, instance_data, sp_method, path_file, nbr_thread, silent, time_limit)
+solution = benders_decomp(env, instance_data, sp_method, cut_type, path_file, nbr_thread, silent, time_limit)
 other_info = solution.other_info
 Output_file = open(path_file, "a") 
 

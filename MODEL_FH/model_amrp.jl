@@ -175,9 +175,9 @@ function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_r
     @variable(model, y[j in L_M], Bin)                        #1 if a maintenance is performed at node j 
 
     # ===================== Route Constraints =====================
-    #= @constraint(model, sum(x[i] for i in A_S) == nbr_K)
-    @constraint(model, sum(x[i] for i in A_T) == nbr_K)
-     =#
+    #@constraint(model, sum(x[i] for i in A_S) == nbr_K)
+    #@constraint(model, sum(x[i] for i in A_T) == nbr_K)
+    
     #@constraint(model, sum(x[i] for i in A_T) == sum(x[i] for i in A_S))
     @constraint(model, c1[i in V_wt_st], sum(x[(i,j)] for j in get(successors, i, [])) == 1)
     @constraint(model, c2[i in V_wt_st], sum(x[(j,i)] for j in get(predecessors, i, [])) == sum(x[(i,j)] for j in get(successors, i, [])))

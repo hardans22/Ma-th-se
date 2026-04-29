@@ -1,0 +1,19 @@
+
+-----------------------INSTANCE 354FL_8A_16--------------------------
+Gurobi 13.0.0 (linux64) logging started lun. 27 avril 2026 09:55:12
+
+
+Gurobi 13.0.0 (linux64) logging started lun. 27 avril 2026 09:55:12
+
+
+
+=== Résultat final ===
+Objectif: 95.0
+Temps total du master: 4.8026s
+Temps total du sp: 0.0661s
+Temps total: 4.8687s
+Nombre de coupes: 802
+Nombre de coupes faisabilité: 284
+Nombre de coupes d'optimalité: 517
+Nombre de coupes de fixing: 1
+Nombre d'itérations: 699

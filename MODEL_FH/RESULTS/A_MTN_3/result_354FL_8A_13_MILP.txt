@@ -3,11 +3,11 @@
 
 GRAPH RÉDUCTION : false
 
-Gurobi 13.0.0 (linux64) logging started jeu. 02 avril 2026 13:25:48
+Gurobi 13.0.0 (linux64) logging started ven. 24 avril 2026 10:41:51
 
 Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_13_MILP.txt"
 
-Gurobi 13.0.0 (linux64) logging started jeu. 02 avril 2026 13:25:49
+Gurobi 13.0.0 (linux64) logging started ven. 24 avril 2026 10:41:51
 
 Set parameter LogFile to value "RESULTS/A_MTN_3/result_354FL_8A_13_MILP.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
@@ -75,7 +75,7 @@ Cutting planes:
   MIR: 6
   Flow cover: 12
 
-Explored 3982 nodes (153596 simplex iterations) in 13.02 seconds (13.73 work units)
+Explored 3982 nodes (153596 simplex iterations) in 13.37 seconds (13.73 work units)
 Thread count was 8 (of 16 available processors)
 
 Solution count 10: 0 5 15 ... 375
@@ -83,11 +83,11 @@ Solution count 10: 0 5 15 ... 375
 Optimal solution found (tolerance 1.00e-04)
 Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
 
-User-callback calls 4128, time in user-callback 0.00 sec
+User-callback calls 4212, time in user-callback 0.00 sec
 
 ✅ Solution trouvée (status: OPTIMAL)
 🎯 Objective global: 0.0
-⏱️ Time used: 13.02
+⏱️ Time used: 13.37
 
 ✈️ Paths for each aircraft:
 🛩️ Aircraft N121 path (42 nodes): s_(u=0.0) ➡️  N121_(u=5105.0) ➡️  ECN_ESB_31920_31990_(u=5175.0) ➡️  ESB_VAN_32125_32220_(u=5270.0) ➡️  VAN_ESB_32255_32360_(u=5375.0) ➡️  ESB_SAW_32400_32460_(u=5435.0) ➡️  SAW_KYA_32670_32740_(u=5505.0) ➡️  KYA_SAW_32775_32845_(u=5575.0) ➡️  SAW_ESB_33600_33660_(u=5635.0) ➡️  ESB_SAW_33720_33780_(u=5695.0) ➡️  SAW_AYT_33825_33890_(u=5760.0) ➡️  AYT_SAW_33930_33995_(u=5825.0) ➡️  SAW_ASR_34095_34180_(u=5910.0) ➡️  ASR_SAW_34215_34305_(u=6000.0) ➡️  SAW_ADB_34800_34860_(u=60.0) ➡️  ADB_SAW_34895_34955_(u=120.0) ➡️  SAW_TZX_35025_35125_(u=220.0) ➡️  TZX_SAW_35160_35265_(u=325.0) ➡️  SAW_KYA_35550_35620_(u=395.0) ➡️  KYA_SAW_35655_35725_(u=465.0) ➡️  SAW_ADB_36240_36300_(u=525.0) ➡️  ADB_SAW_36335_36395_(u=585.0) ➡️  SAW_VAS_36690_36770_(u=665.0) ➡️  VAS_SAW_36805_36885_(u=745.0) ➡️  SAW_ASR_36975_37060_(u=830.0) ➡️  ASR_SAW_37095_37185_(u=920.0) ➡️  SAW_ADB_37680_37740_(u=980.0) ➡️  ADB_SAW_37775_37835_(u=1040.0) ➡️  SAW_VAS_38130_38210_(u=1120.0) ➡️  VAS_SAW_38245_38325_(u=1200.0) ➡️  SAW_ADB_38370_38430_(u=1260.0) ➡️  ADB_SAW_38465_38525_(u=1320.0) ➡️  SAW_ESB_39360_39420_(u=1380.0) ➡️  ESB_SAW_39480_39540_(u=1440.0) ➡️  SAW_AYT_39585_39650_(u=1505.0) ➡️  AYT_SAW_39690_39755_(u=1570.0) ➡️  SAW_ADB_39810_39870_(u=1630.0) ➡️  ADB_SAW_39905_39965_(u=1690.0) ➡️  SAW_TZX_40785_40885_(u=1790.0) ➡️  TZX_SAW_40920_41025_(u=1895.0) ➡️  SAW_ESB_41160_41220_(u=1955.0) ➡️  ESB_ADA_41280_41340_(u=2015.0) ➡️  ADA_ESB_41380_41445_(u=2080.0) ➡️  ESB_YEI_41515_41575_(u=2140.0) ➡️  t_(u=0.0)

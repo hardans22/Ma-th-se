@@ -1,0 +1,92 @@
+
+-----------------------INSTANCE 667FL_20A_19--------------------------
+Gurobi 13.0.0 (linux64) logging started ven. 24 avril 2026 11:20:30
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_12/result_667FL_20A_19_benders.txt"
+Set parameter Cuts to value 0
+
+Gurobi 13.0.0 (linux64) logging started ven. 24 avril 2026 11:20:32
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_12/result_667FL_20A_19_benders.txt"
+Set parameter LazyConstraints to value 1
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
+
+CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1800
+FeasibilityTol  1e-09
+IntFeasTol  1e-09
+Cuts  0
+Threads  8
+LazyConstraints  1
+
+Optimize a model with 1376 rows, 12378 columns and 37054 nonzeros (Min)
+Model fingerprint: 0xe71fe220
+Model has 20 linear objective coefficients
+Variable types: 20 continuous, 12358 integer (12358 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+00, 2e+01]
+Presolve removed 580 rows and 893 columns
+Presolve time: 0.04s
+Presolved: 796 rows, 11485 columns, 22914 nonzeros
+Variable types: 20 continuous, 11465 integer (11465 binary)
+
+Root relaxation: objective 0.000000e+00, 1740 iterations, 0.02 seconds (0.03 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    -          -    0.00000      -     -    2s
+     0     0    0.00000    0    -          -    0.00000      -     -    2s
+     0     0    0.00000    0   24          -    0.00000      -     -    2s
+     0     0    0.00000    0    -          -    0.00000      -     -    2s
+     0     0    0.00000    0   12          -    0.00000      -     -    2s
+     0     0    0.00000    0   12          -    0.00000      -     -    2s
+     0     0    0.00000    0    -          -    0.00000      -     -    2s
+     0     0    0.00000    0   16          -    0.00000      -     -    2s
+     0     2    0.00000    0    8          -    0.00000      -     -    3s
+   735   480    0.00000   19   61          -    0.00000      -  10.1    5s
+  5045  2741    0.00000    8    8          -    0.00000      -  16.2   10s
+  5899  3151   20.00000   19   69          -   20.00000      -  18.6   15s
+  8315  3949 infeasible   55               -   20.00000      -  19.1   20s
+ 11797  4899   20.00000   55   40          -   20.00000      -  18.8   25s
+ 14260  5690   21.19002   49  131          -   20.00000      -  19.2   30s
+ 17072  7885   20.88319   65   88          -   20.00000      -  20.0   35s
+ 20168  9578   20.00000   48    -          -   20.00000      -  20.3   40s
+ 22033 10648   20.00000   58   14          -   20.00000      -  20.9   45s
+ 24843 13056   26.79012   48   78          -   20.00000      -  21.4   51s
+ 27542 13609   20.00000   62    -          -   20.00000      -  21.4   55s
+ 30819 14432   20.00000   91   20          -   20.00000      -  22.0   61s
+ 33337 14814   20.00000   84    -          -   20.00000      -  22.2   65s
+ 35318 13644 infeasible   87               -   20.00000      -  21.4   71s
+*36270  9468             107      55.0000000   20.00000  63.6%  21.1   76s
+*36703   561              82      20.0000000   20.00000  0.00%  21.0   80s
+
+Cutting planes:
+  Lazy constraints: 3612
+
+Explored 37165 nodes (783204 simplex iterations) in 80.10 seconds (26.51 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 2: 20 55 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.000000000000e+01, best bound 2.000000000000e+01, gap 0.0000%
+
+User-callback calls 79311, time in user-callback 56.74 sec
+
+
+=== Résultat final ===
+Objectif: 20.0
+Temps total du master: 79.8262s
+Temps total du sp: 0.2819s
+Temps total: 80.1081s
+Nombre de coupes: 5086
+Nombre de coupes faisabilité: 804
+Nombre de coupes d'optimalité: 4282
+Nombre d'itérations: 1508
