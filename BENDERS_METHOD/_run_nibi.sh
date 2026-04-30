@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=7G
-#SBATCH --time=2:10:00
-#SBATCH --array=1-50
-#SBATCH --output=arrayjob_%A_%a.out
-#SBATCH --partition=interac
-#SBATCH --nodelist=g4
+#SBATCH --mem=3G
+#SBATCH --time=1:10:00
+#SBATCH --array=1-100
+#SBATCH --output=arrayjob_%A_%a.ou
+#SBATCH --partition=cpubase_bycore_b2
+#SBATCH --nodelist=c500
 #SBATCH --mail-user=harcenagedansou@gmail.com
 #SBATCH --mail-type=END
 

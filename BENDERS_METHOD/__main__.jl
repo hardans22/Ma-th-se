@@ -22,7 +22,7 @@ Time, Opt, nbr_mtn = [], [], []
 nbr_feas_cuts, nbr_opti_cuts, nbr_cuts, nbr_iter = [], [], [], []
 nbr_fix_cuts, MP_time, SP_time = [], [], []
 
-for v in 21:24
+for v in 21:30
     inst_name = instance*string(v)
     file_path = "../INSTANCES/instances_literature_json/"*s_fold*inst_name
     
