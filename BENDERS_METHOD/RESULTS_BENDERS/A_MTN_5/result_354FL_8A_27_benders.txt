@@ -1,7 +1,0 @@
-
------------------------INSTANCE 354FL_8A_27--------------------------
-Gurobi 13.0.0 (linux64) logging started lun. 27 avril 2026 10:14:39
-
-
-Gurobi 13.0.0 (linux64) logging started lun. 27 avril 2026 10:14:39
-
