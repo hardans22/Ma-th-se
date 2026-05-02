@@ -4,13 +4,10 @@
 #SBATCH --time=01:00:00
 #SBATCH --array=1-40
 #SBATCH --output=arrayjob_%A_%a.out
-#SBATCH --partition=interac
-#SBATCH --nodelist=g4
+#SBATCH --partition=cpubase_bycore_b2
+#SBATCH --nodelist=c500
 #SBATCH --mail-user=harcenagedansou@gmail.com
 ##SBATCH --mail-type=END
-
-# Dossier contenant les fichiers JSON
-#JSON_DIR="/home/danhar/projects/def-mattgru/danhar/Code/INSTANCES/instances_literature_json/A_MTN_1"
 
 # Parcourir tous les fichiers JSON
 

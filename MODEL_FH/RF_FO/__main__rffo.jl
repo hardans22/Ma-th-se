@@ -13,7 +13,7 @@ sp_time_limit = 60
 
 # =============== Sur Nibi ===============
 #instance = ARGS[1]
-
+#graph_reduc = parse(Bool, ARGS[2])
 # =============== En local sur mon ordi ===============
 inst = ARGS[1]
 instance = "../../INSTANCES/instances_literature_json/"*inst

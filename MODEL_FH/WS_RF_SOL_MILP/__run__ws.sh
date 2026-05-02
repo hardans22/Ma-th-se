@@ -2,10 +2,10 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=7G
 #SBATCH --time=01:00:00
-#SBATCH --array=1-40
+#SBATCH --array=1-30
 #SBATCH --output=arrayjob_%A_%a.out
-#SBATCH --partition=interac
-#SBATCH --nodelist=g4
+#SBATCH --partition=cpubase_bycore_b2
+#SBATCH --nodelist=c500
 #SBATCH --mail-user=harcenagedansou@gmail.com
 ##SBATCH --mail-type=END
 
