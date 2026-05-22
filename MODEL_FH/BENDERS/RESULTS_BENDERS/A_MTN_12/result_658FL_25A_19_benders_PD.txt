@@ -1,0 +1,10 @@
+
+-----------------------INSTANCE 658FL_25A_19--------------------------
+Gurobi 13.0.0 (linux64) logging started ven. 15 mai 2026 11:32:43
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_12/result_658FL_25A_19_benders_PD.txt"
+Set parameter MIPGap to value 0
+Set parameter MIPGapAbs to value 0
+
+Gurobi 13.0.0 (linux64) logging started ven. 15 mai 2026 11:32:44
+

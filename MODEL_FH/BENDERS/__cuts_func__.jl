@@ -125,5 +125,15 @@ function analyse_contrainte(c::ScalarConstraint)
 end
 
 
+function format_gap(UB, LB)
+    if UB == Inf || UB == -Inf
+        return "N/A"
+    end
+    if UB == LB  # inclut le cas 0/0
+        return "0.0%"
+    end
+    gap = (UB - LB)/UB*100
+    return "$(round(gap, digits=2))%"
+end
 
 

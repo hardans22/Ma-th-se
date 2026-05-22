@@ -191,7 +191,7 @@ for nbr_day in [1]
 end
  =#
 println()
-for ac_critique in [3]
+for ac_critique in [15]
     folder_path ="INSTANCES/instances_literature_xlsx/A_MTN_"*string(ac_critique)*"/"  # ou le chemin vers votre dossier
     xlsx_files = process_xlsx_files_timer(folder_path)
 

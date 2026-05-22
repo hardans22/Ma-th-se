@@ -71,7 +71,7 @@ function solve_sp(sp_model, x_val, L_M, V)
         u_val = Dict(j => value(sp_model[:u][j]) for j in V)
         y_val = Dict(j => value(sp_model[:y][j]) for j in L_M)
         rho_val = Dict(j => value(sp_model[:rho][j]) for j in L_M)
-        return (status = "OPTIMAL", obj = objective_value(sp_model), time = round(solve_time(sp_model), digits = 6), y = y_val, u = u_val, rho = rho_val)
+        return (status = "OPTIMAL", obj = round(objective_value(sp_model)), time = round(solve_time(sp_model), digits = 6), y = y_val, u = u_val, rho = rho_val)
     else 
         #= if termination_status(sp_model) == MOI.INFEASIBLE
             println("MODEL INFEASIBLE")

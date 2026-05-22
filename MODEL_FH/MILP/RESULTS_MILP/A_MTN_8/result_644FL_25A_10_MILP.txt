@@ -1,0 +1,41 @@
+
+======================= INSTANCE 644FL_25A_10 =======================
+
+GRAPH RÉDUCTION : false
+
+Gurobi 13.0.0 (linux64) logging started mar. 05 mai 2026 17:11:33
+
+Set parameter LogFile to value "RESULTS_MILP/A_MTN_8/result_644FL_25A_10_MILP.txt"
+
+Gurobi 13.0.0 (linux64) logging started mar. 05 mai 2026 17:11:36
+
+Set parameter LogFile to value "RESULTS_MILP/A_MTN_8/result_644FL_25A_10_MILP.txt"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
+
+CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  30
+Threads  8
+
+Optimize a model with 23538 rows, 9625 columns and 108062 nonzeros (Min)
+Model fingerprint: 0x542ee9f3
+Model has 345 linear objective coefficients
+Variable types: 1016 continuous, 8609 integer (8609 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e+01, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 16 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+User-callback calls 29, time in user-callback 0.00 sec

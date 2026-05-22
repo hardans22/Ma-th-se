@@ -10,7 +10,7 @@ env = Gurobi.Env()
 nbr_thread = 8
 silent = false
 graph_reduc = false
-time_limit = 18000
+time_limit = 300
 
 
 # =============== Sur Nibi ===============
@@ -19,7 +19,7 @@ time_limit = 18000
 
 # =============== En local sur mon ordi ===============
 inst = ARGS[1]
-instance = "../../INSTANCES/instances_literature_json/"*inst
+instance = "../../INSTANCES/instances_new_json/"*inst
 
 # ============== Gestion des fichiers et la sortie =================
 parts = split(instance, "/")

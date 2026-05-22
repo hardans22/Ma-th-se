@@ -1,4 +1,4 @@
-using JuMP, Gurobi, JSON, MathOptInterface, DataFrames, XLSX, CSV
+using JuMP, Gurobi, JSON, MathOptInterface, DataFrames, XLSX, CSV, Dates
 
 include("../../build_graph.jl")
 include("__benders__.jl")
@@ -9,9 +9,9 @@ env = Gurobi.Env()
 instance = ARGS[1]
 sp_method = ARGS[2]
 
-nbr_thread = 8
+nbr_thread = 14
 silent = false
-time_limit = 7200
+time_limit = 1800
 cut_type = "desagg"
 
 # =============== Sur Nibi ===============
@@ -22,7 +22,7 @@ cut_type = "desagg"
 # =============== En local sur mon ordi ===============
 inst = ARGS[1]
 sp_method = ARGS[2]
-instance = "../../INSTANCES/instances_literature_json/"*inst
+instance = "../../INSTANCES/instances_new_json/"*inst
 
 # ============== Gestion des fichiers et la sortie =================
 parts = split(instance, "/")
@@ -40,17 +40,22 @@ instance_data = build_graph(instance)
 solution = benders_decomp(env, instance_data, sp_method, cut_type, path_file, nbr_thread, silent, time_limit)
 other_info = solution.other_info
 Output_file = open(path_file, "a") 
+#print_solution(solution, instance_data, Output_file)
 
 Obj = solution.obj
 MP_time = other_info["mp_time"]
 SP_time = other_info["sp_time"]
 Time = other_info["time"]
-nbr_mtn = other_info["nbr_mtn"]
 nbr_feas_cuts = other_info["nbr_feas_cuts"]
 nbr_opti_cuts = other_info["nbr_opti_cuts"]
 nbr_fix_cuts = other_info["nbr_fix_cuts"]
 nbr_cuts = other_info["nbr_cuts"]
 nbr_iter = other_info["nbr_iter"]
+if solution.other_info["status"] != "NO SOLUTION FOUND"
+    nbr_mtn = other_info["nbr_mtn"]
+else
+    nbr_mtn = 0
+end
 
 write_both(Output_file, "\n=== Résultat final ===")
 write_both(Output_file, "Objectif: $(solution.obj)")

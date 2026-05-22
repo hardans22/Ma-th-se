@@ -54,6 +54,7 @@ function model_amrp_with_warm_start(env, instance_data, x_start, y_start, obj_st
     set_optimizer_attribute(model, "Threads", nbr_thread)
     set_optimizer_attribute(model, "TimeLimit", time_limit) 
     set_optimizer_attribute(model, "LogFile", output_file)
+    set_optimizer_attribute(model, "MIPFocus", 3)
     #set_optimizer_attribute(model, "Presolve", 0)
     #set_optimizer_attribute(model, "Cuts", 2)           # Aggressive
 

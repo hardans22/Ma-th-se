@@ -1,0 +1,23 @@
+
+-----------------------INSTANCE 667FL_20A_23--------------------------
+Gurobi 13.0.0 (linux64) logging started ven. 15 mai 2026 10:58:21
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_15/result_667FL_20A_23_benders_PD.txt"
+Set parameter MIPGap to value 0
+Set parameter MIPGapAbs to value 0
+Set parameter Cuts to value 0
+
+Gurobi 13.0.0 (linux64) logging started ven. 15 mai 2026 10:58:22
+
+
+
+=== Résultat final ===
+Objectif: 75.0
+Temps total du master: 127.2247s
+Temps total du sp: 0.246s
+Temps total: 127.4707s
+Nombre de coupes: 5588
+Nombre de coupes faisabilité: 817
+Nombre de coupes d'optimalité: 4763
+Nombre de coupes de fixing: 8
+Nombre d'itérations: 1246
