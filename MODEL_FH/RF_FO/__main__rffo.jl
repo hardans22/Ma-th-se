@@ -10,6 +10,7 @@ nbr_thread = 8
 silent = true 
 graph_reduc = false
 sp_time_limit = 60
+sp_work_limit = 30
 
 # =============== Sur Nibi ===============
 #instance = ARGS[1]
@@ -29,7 +30,8 @@ inst_data = build_graph(file_essai)
 path_f = "RESULTS_RF_FO/result_127FL_5A_1_RFFO.txt"
 Otp_file = open(path_f, "w")
 t_limit = 15
-mdl = buildM(env, inst_data, nbr_thread, silent, graph_reduc, t_limit)
+w_limit = 30
+mdl = buildM(env, inst_data, nbr_thread, silent, graph_reduc, t_limit, w_limit)
 sz_day, ovlap = 3, 2
 sol = relax_and_fix(mdl, inst_data, Otp_file, sz_day, ovlap)
 sol_ = fix_and_optimize(mdl, sol.x, sol.y, inst_data, Otp_file, sz_day, ovlap)
@@ -49,7 +51,7 @@ write_both(Output_file, "======================= INSTANCE "*inst_name*"=========
 write_both(Output_file, "\nGRAPH RÉDUCTION : "*string(graph_reduc)*"\n")
 
 instance_data = build_graph(instance)
-model = buildM(env, instance_data, nbr_thread, silent, graph_reduc, sp_time_limit)
+model = buildM(env, instance_data, nbr_thread, silent, graph_reduc, sp_time_limit, sp_work_limit)
 size_day, overlap = 3, 2
 write_both(Output_file, "RELAX AND FIX")
 solution = relax_and_fix(model, instance_data, Output_file, size_day, overlap)
@@ -57,6 +59,7 @@ other_info = solution.other_info
 
 rf_obj = solution.obj
 rf_time = other_info["time"]
+rf_work = round(other_info["work"], digits = 2)
 rf_nbr_iter = other_info["nbr_iter"]
 
 write_both(Output_file, "\nRF OBJECTIVE VALUE : $rf_obj")
@@ -76,15 +79,18 @@ if solution.obj > 0
 
     fo_obj = solution.obj
     fo_time = solution.other_info["time"]
+    fo_work = round(solution.other_info["work"], digits = 2)
     fo_nbr_iter = other_info["nbr_iter"]
 
 else
     write_both(Output_file, "NO FIX AND OPTIMIZE")
     fo_obj = solution.obj
     fo_time = 0.0
+    fo_work = 0.0
     fo_nbr_iter = 0
 end 
 rffo_time = rf_time + fo_time
+rffo_work = rf_work + fo_work
 rffo_nbr_iter = rf_nbr_iter + fo_nbr_iter
 nbr_mtn = other_info["nbr_mtn"]
 nbr_sts_used = other_info["nbr_stations_used"]
@@ -96,9 +102,9 @@ print_solution(solution, instance_data, Output_file, silent)
 
 #close(Output_file)
 
-dataframe = DataFrames.DataFrame(Instances = [inst_name], RF_Obj = [rf_obj], RF_Time = [rf_time], 
-                                 RF_Iter = [rf_nbr_iter], FO_Obj = [fo_obj], FO_Time = [fo_time],
-                                 FO_Iter = [fo_nbr_iter], RFFO_Time = [rffo_time], 
+dataframe = DataFrames.DataFrame(Instances = [inst_name], RF_Obj = [rf_obj], RF_Time = [rf_time], RF_Work_U = [rf_work], 
+                                 RF_Iter = [rf_nbr_iter], FO_Obj = [fo_obj], FO_Time = [fo_time], FO_Work_U = [fo_work],
+                                 FO_Iter = [fo_nbr_iter], RFFO_Time = [rffo_time], RFFO_Work_U = [rffo_work], 
                                  RFFO_Iter = [rffo_nbr_iter], Nbr_mtn = [nbr_mtn], 
                                  Nbr_sts_used = nbr_sts_used)
 

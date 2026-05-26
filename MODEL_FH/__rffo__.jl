@@ -21,7 +21,7 @@ function verify_binarity(sx, sy, A, L_M)
     return true
 end 
 
-function buildM(env, instance_data, nbr_thread, silent, graph_reduc, time_limit)
+function buildM(env, instance_data, nbr_thread, silent, graph_reduc, time_limit, work_limit)
     if graph_reduc
         instance_data = graph_reduction(instance_data)
     end
@@ -68,7 +68,8 @@ function buildM(env, instance_data, nbr_thread, silent, graph_reduc, time_limit)
         set_optimizer_attribute(model, "OutputFlag", 0)
     end 
     set_optimizer_attribute(model, "Threads", nbr_thread)
-    set_optimizer_attribute(model, "TimeLimit", time_limit) 
+    set_optimizer_attribute(model, "TimeLimit", time_limit)
+    #set_optimizer_attribute(model, "WorkLimit", work_limit)
     #set_optimizer_attribute(model, "MIPGap", 0.05) #5% de gap relatif
     # Gap absolu de 5
     #set_optimizer_attribute(model, "MIPGapAbs", 30.0)
@@ -196,8 +197,9 @@ function solve_model(model, instance_data, fix_set, mip_set, relax_set, sx, sy, 
     su = Dict(j => round(JuMP.value(u[j]), digits = 3) for j in V)
     s_rho = Dict(j => round(Int, JuMP.value(rho[j])) for j in L_M)
     sp_time = round(solve_time(model), digits = 4)
+    sp_work = round(MOI.get(model, Gurobi.ModelAttribute("Work")), digits = 2)
     
-    return (obj = obj, sx = sx, sy = sy, su = su, s_rho = s_rho, sp_time = sp_time, model = model)
+    return (obj = obj, sx = sx, sy = sy, su = su, s_rho = s_rho, sp_time = sp_time, sp_work = sp_work, model = model)
 end
  
 function relax_and_fix(model, instance_data, output_file, size_day, overlap)
@@ -232,7 +234,7 @@ function relax_and_fix(model, instance_data, output_file, size_day, overlap)
     sx = result.sx
     sy = result.sy
     model = result.model
-    mdl = result.model
+    work_unit = 0 
 
     write_both(output_file, "\tItération : $iter")
     write_both(output_file, "\tobjective_value = $(result.obj)\n") 
@@ -265,6 +267,7 @@ function relax_and_fix(model, instance_data, output_file, size_day, overlap)
         sy = result.sy
         obj = result.obj
         model = result.model
+        work_unit += result.sp_work
         write_both(output_file, "\tItération : $iter")
         write_both(output_file, "\tobjective_value = $obj\n")
         #if all(isinteger, sx)
@@ -291,7 +294,7 @@ function relax_and_fix(model, instance_data, output_file, size_day, overlap)
     nbr_sts_used = round(Int, length(mtn_stations_used))
 
     
-    other_info = Dict("model" => model, "time" => timeElapsed, "status" => termination_status(model), "nbr_iter" => iter, 
+    other_info = Dict("model" => model, "time" => timeElapsed, "work" => work_unit, "status" => termination_status(model), "nbr_iter" => iter, 
                     "nbr_mtn" => nbr_mtn, "mtn_stations_used" => mtn_stations_used, "nbr_stations_used" => nbr_sts_used)
     solution = Solution(result.obj, result.sx, result.sy, result.su, sv, sw, result.s_rho, s_lambda, s_phi, other_info)
     
@@ -323,6 +326,7 @@ function fix_and_optimize(model, sx, sy, instance_data, output_file, size_day, o
     curseur = start_day
     no_overlap = size_day - overlap
     result = NamedTuple()
+    work_unit = 0 
 
     rf_or_fo = "RF"
     iter = 0
@@ -341,6 +345,7 @@ function fix_and_optimize(model, sx, sy, instance_data, output_file, size_day, o
         sy = result.sy
         obj = result.obj
         model = result.model
+        work_unit += result.sp_work
         write_both(output_file, "\tItération : $iter")
         write_both(output_file, "\tobjective_value = $obj\n")
         #if all(isinteger, sx)
@@ -373,7 +378,7 @@ function fix_and_optimize(model, sx, sy, instance_data, output_file, size_day, o
     nbr_sts_used = round(Int, length(mtn_stations_used))
 
     
-    other_info = Dict("time" => timeElapsed, "status" => termination_status(model), "nbr_mtn" => nbr_mtn, 
+    other_info = Dict("time" => timeElapsed, "work" => work_unit, "status" => termination_status(model), "nbr_mtn" => nbr_mtn, 
                     "nbr_iter" => iter, "mtn_stations_used" => mtn_stations_used, "nbr_stations_used" => nbr_sts_used)
 
     solution = Solution(result.obj, result.sx, result.sy, result.su, sv, sw, result.s_rho, s_lambda, s_phi, other_info)

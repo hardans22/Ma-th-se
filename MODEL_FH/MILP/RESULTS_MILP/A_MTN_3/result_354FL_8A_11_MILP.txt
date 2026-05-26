@@ -3,11 +3,11 @@
 
 GRAPH RÉDUCTION : false
 
-Gurobi 13.0.0 (linux64) logging started mar. 26 mai 2026 15:44:14
+Gurobi 13.0.0 (linux64) logging started mar. 26 mai 2026 22:41:45
 
 Set parameter LogFile to value "RESULTS_MILP/A_MTN_3/result_354FL_8A_11_MILP.txt"
 
-Gurobi 13.0.0 (linux64) logging started mar. 26 mai 2026 15:44:16
+Gurobi 13.0.0 (linux64) logging started mar. 26 mai 2026 22:41:47
 
 Set parameter LogFile to value "RESULTS_MILP/A_MTN_3/result_354FL_8A_11_MILP.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
@@ -72,7 +72,7 @@ Cutting planes:
   RLT: 4
   Relax-and-lift: 11
 
-Explored 2897 nodes (95437 simplex iterations) in 4.91 seconds (4.98 work units)
+Explored 2897 nodes (95437 simplex iterations) in 4.94 seconds (4.98 work units)
 Thread count was 8 (of 16 available processors)
 
 Solution count 10: 0 35 50 ... 735
@@ -80,6 +80,6 @@ Solution count 10: 0 35 50 ... 735
 Optimal solution found (tolerance 1.00e-04)
 Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
 
-User-callback calls 1676, time in user-callback 0.00 sec
+User-callback calls 1679, time in user-callback 0.00 sec
 
 CSV Summary saved to: RESULTS_MILP/A_MTN_3/summary_354FL_8A_11_MILP.csv

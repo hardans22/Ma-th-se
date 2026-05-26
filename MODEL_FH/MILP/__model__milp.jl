@@ -111,6 +111,8 @@ function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_r
         nbr_nodes =  MOI.get(model, MOI.NodeCount())
         dual_obj = round(objective_bound(model); digits = 2)
         time = round(solve_time(model), digits = 2)
+        work_unit = round(MOI.get(model, Gurobi.ModelAttribute("Work")), digits = 2)
+
 
         nbr_mtn = round(Int, sum(values(sy)))
 
@@ -127,7 +129,7 @@ function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_r
         nbr_sts_used = round(Int, length(mtn_stations_used))
 
         other_info = Dict("obj_rho" => obj_rho, "gap" => gap, "nbr_nodes" => nbr_nodes, "status" => status, 
-                    "time" => time, "dual_obj" => dual_obj, "nbr_mtn" => nbr_mtn, 
+                    "time" => time, "work" => work_unit, "dual_obj" => dual_obj, "nbr_mtn" => nbr_mtn, 
                     "nbr_sts_used" => nbr_sts_used, "mtn_stations_used" => mtn_stations_used)
         
         solution = Solution_FH(obj_val, sx, sy, su, s_rho, other_info)

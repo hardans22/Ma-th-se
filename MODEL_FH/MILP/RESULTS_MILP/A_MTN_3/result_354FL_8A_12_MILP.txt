@@ -3,11 +3,11 @@
 
 GRAPH RÉDUCTION : false
 
-Gurobi 13.0.0 (linux64) logging started mar. 26 mai 2026 15:45:46
+Gurobi 13.0.0 (linux64) logging started mar. 26 mai 2026 22:47:52
 
 Set parameter LogFile to value "RESULTS_MILP/A_MTN_3/result_354FL_8A_12_MILP.txt"
 
-Gurobi 13.0.0 (linux64) logging started mar. 26 mai 2026 15:45:48
+Gurobi 13.0.0 (linux64) logging started mar. 26 mai 2026 22:47:54
 
 Set parameter LogFile to value "RESULTS_MILP/A_MTN_3/result_354FL_8A_12_MILP.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
@@ -63,7 +63,7 @@ H    0     0                     455.0000000    0.00000   100%     -    1s
 H    0     0                     440.0000000    0.00000   100%     -    1s
 H    0     0                     105.0000000    0.00000   100%     -    1s
      0     0    0.00000    0   10  105.00000    0.00000   100%     -    1s
-     0     0    0.00000    0   18  105.00000    0.00000   100%     -    1s
+     0     0    0.00000    0   18  105.00000    0.00000   100%     -    2s
      0     0    0.00000    0   18  105.00000    0.00000   100%     -    2s
      0     0    0.00000    0   18  105.00000    0.00000   100%     -    2s
      0     0    0.00000    0   18  105.00000    0.00000   100%     -    2s
@@ -78,7 +78,7 @@ H   36    42                      50.0000000    0.00000   100%  93.2    3s
   1646  1724   35.00000  154   94   50.00000    0.00000   100%  35.0    5s
 H 1694  1145                      25.0000000    0.00000   100%  34.7    5s
 H 1821   932                      10.0000000    0.00000   100%  34.5    7s
-  1830   938    0.00000   83   13   10.00000    0.00000   100%  34.3   10s
+  1831   939    0.00000   27   15   10.00000    0.00000   100%  34.3   10s
   2641  1444     cutoff   46        10.00000    0.00000   100%  53.7   15s
   4043   954 infeasible   55        10.00000    0.00000   100%  76.4   20s
   5042   981 infeasible   45        10.00000    0.00000   100%  94.2   25s
@@ -93,8 +93,8 @@ H17703   690                      10.0000000    0.00000   100%   110   63s
  18097   650     cutoff   29        10.00000    0.00000   100%   110   65s
  18967   585 infeasible   35        10.00000    0.00000   100%   110   71s
  20607   393     cutoff   92        10.00000    0.00000   100%   109   75s
- 23871   158    0.00000   65   11   10.00000    0.00000   100%   105   82s
- 25639    30     cutoff   75        10.00000    0.00000   100%   104   86s
+ 23871   158    0.00000   65   11   10.00000    0.00000   100%   105   81s
+ 25639    30     cutoff   75        10.00000    0.00000   100%   104   85s
 
 Cutting planes:
   Learned: 1
@@ -105,7 +105,7 @@ Cutting planes:
   Flow cover: 9
   Relax-and-lift: 4
 
-Explored 26543 nodes (2752845 simplex iterations) in 87.61 seconds (106.46 work units)
+Explored 26543 nodes (2752845 simplex iterations) in 87.12 seconds (106.46 work units)
 Thread count was 8 (of 16 available processors)
 
 Solution count 10: 10 10 25 ... 1395
@@ -113,6 +113,6 @@ Solution count 10: 10 10 25 ... 1395
 Optimal solution found (tolerance 1.00e-04)
 Best objective 9.999999998890e+00, best bound 9.999999998890e+00, gap 0.0000%
 
-User-callback calls 21368, time in user-callback 0.02 sec
+User-callback calls 21423, time in user-callback 0.02 sec
 
 CSV Summary saved to: RESULTS_MILP/A_MTN_3/summary_354FL_8A_12_MILP.csv

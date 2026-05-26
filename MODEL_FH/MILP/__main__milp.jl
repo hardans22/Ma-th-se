@@ -53,6 +53,7 @@ other_info = solution.other_info
 #feasible = 1
 Obj =  solution.obj
 Time = other_info["time"]
+Work = other_info["work"]
 
 Dual_obj = other_info["dual_obj"]
 Gap = other_info["gap"]
@@ -68,7 +69,7 @@ else
 end
 
 dataframe = DataFrames.DataFrame(Instances = [inst_name], UB = [Obj], LB = [Dual_obj], Gap = Gap, Nodes = Nbr_nodes, 
-    Time = [Time], Opt = [Opt], Nbr_mtn = [Nbr_mtn], Nbr_sts_used = [Nbr_sts_used])
+    Time = [Time], Work_U = [Work], Opt = [Opt], Nbr_mtn = [Nbr_mtn], Nbr_sts_used = [Nbr_sts_used])
 
 
 # --- Définir le chemin des fichiers CSV ---
