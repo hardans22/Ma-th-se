@@ -1,7 +1,7 @@
 include("../../structures.jl")
 
 
-function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_reduc, time_limit)
+function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_reduc, time_limit, work_limit)
     if graph_reduc
         instance_data = graph_reduction(instance_data)
     end
@@ -53,6 +53,7 @@ function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_r
     set_optimizer_attribute(model, "Threads", nbr_thread)
     set_optimizer_attribute(model, "TimeLimit", time_limit) 
     set_optimizer_attribute(model, "LogFile", output_file)
+    #set_optimizer_attribute(model, "WorkLimit", work_limit)
     #set_optimizer_attribute(model, "Presolve", 0)
     #set_optimizer_attribute(model, "Cuts", 2)           # Aggressive
 
@@ -97,7 +98,7 @@ function model_amrp(env, instance_data, output_file, nbr_thread, silent, graph_r
     # Contrôle du statut
     status = termination_status(model)
     println("STATUT : ", status)
-    if status == MOI.OPTIMAL || status == MOI.FEASIBLE_POINT || status == MOI.TIME_LIMIT || status == MOI.INTERRUPTED
+    if status == MOI.OPTIMAL || status == MOI.FEASIBLE_POINT || status == MOI.TIME_LIMIT || status == MOI.OTHER_LIMIT || status == MOI.INTERRUPTED
         # ===================== Variables =====================
         sx, sy = Dict((i,j) => JuMP.value(x[(i,j)]) for (i,j) in A), Dict(j => JuMP.value(y[j]) for j in L_M)
         su, s_rho = Dict(j => JuMP.value(u[j]) for j in V), Dict(j => round(Int, JuMP.value(rho[j])) for j in L_M)

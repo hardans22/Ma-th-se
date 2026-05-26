@@ -1,0 +1,114 @@
+
+======================= INSTANCE 354FL_8A_24 =======================
+
+GRAPH RÉDUCTION : false
+
+Gurobi 13.0.0 (linux64) logging started mar. 26 mai 2026 14:50:22
+
+Set parameter LogFile to value "RESULTS_MILP/A_MTN_5/result_354FL_8A_24_MILP.txt"
+
+Gurobi 13.0.0 (linux64) logging started mar. 26 mai 2026 14:50:24
+
+Set parameter LogFile to value "RESULTS_MILP/A_MTN_5/result_354FL_8A_24_MILP.txt"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
+
+CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  300
+Threads  8
+
+Optimize a model with 8635 rows, 3753 columns and 37972 nonzeros (Min)
+Model fingerprint: 0xec060db4
+Model has 199 linear objective coefficients
+Variable types: 563 continuous, 3190 integer (3190 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e+01, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 1295 rows and 520 columns
+Presolve time: 0.12s
+Presolved: 7340 rows, 3233 columns, 48622 nonzeros
+Variable types: 364 continuous, 2869 integer (2867 binary)
+
+Root relaxation: objective 0.000000e+00, 1656 iterations, 0.06 seconds (0.06 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0   51          -    0.00000      -     -    0s
+     0     0    0.00000    0   83          -    0.00000      -     -    0s
+     0     0    0.00000    0   83          -    0.00000      -     -    0s
+     0     0  115.00000    0   77          -  115.00000      -     -    0s
+     0     0  115.00000    0   25          -  115.00000      -     -    0s
+H    0     0                    1715.0000000  115.00000  93.3%     -    1s
+     0     0  115.00000    0   31 1715.00000  115.00000  93.3%     -    1s
+H    0     0                    1690.0000000  115.00000  93.2%     -    1s
+H    0     0                    1670.0000000  115.00000  93.1%     -    1s
+     0     0  115.00000    0   28 1670.00000  115.00000  93.1%     -    1s
+     0     0  115.00000    0   28 1670.00000  115.00000  93.1%     -    1s
+     0     0  115.00000    0    9 1670.00000  115.00000  93.1%     -    1s
+H    0     0                    1590.0000000  115.00000  92.8%     -    1s
+H    0     0                    1470.0000000  115.00000  92.2%     -    1s
+H    0     0                    1170.0000000  115.00000  90.2%     -    1s
+H    0     0                    1150.0000000  115.00000  90.0%     -    1s
+     0     0  115.00000    0    8 1150.00000  115.00000  90.0%     -    1s
+     0     0  115.00000    0    8 1150.00000  115.00000  90.0%     -    1s
+     0     0  115.00000    0    8 1150.00000  115.00000  90.0%     -    1s
+H    0     0                     995.0000000  115.00000  88.4%     -    1s
+H    0     0                     800.0000000  115.00000  85.6%     -    1s
+H    0     2                     780.0000000  115.00000  85.3%     -    1s
+     0     2  115.00000    0    8  780.00000  115.00000  85.3%     -    1s
+H   16    24                     430.0000000  115.00000  73.3%  41.7    1s
+H   61    84                     395.0000000  115.00000  70.9%  34.8    2s
+H  457   809                     355.0000000  115.00000  67.6%  24.9    2s
+H  769   809                     335.0000000  115.00000  65.7%  23.6    2s
+H  840  1036                     305.0000000  115.00000  62.3%  22.6    3s
+  2402  2252  115.00000   71   74  305.00000  115.00000  62.3%  28.5    5s
+H 2411  2144                     275.0000000  115.00000  58.2%  28.4    8s
+H 2415  2040                     255.0000000  115.00000  54.9%  28.3    9s
+H 2415  1937                     205.0000000  115.00000  43.9%  28.3    9s
+H 2415  1840                     200.0000000  115.00000  42.5%  28.3    9s
+  2419  1843  115.00000  171   14  200.00000  115.00000  42.5%  28.3   10s
+H 2420  1751                     195.0000000  115.00000  41.0%  28.3   10s
+H 2534  1784                     155.0000000  115.00000  25.8%  33.8   12s
+  3001  2885  115.00000   55   89  155.00000  115.00000  25.8%  39.8   16s
+H 3532  2624                     150.0000000  115.00000  23.3%  45.0   16s
+  4664  3124  115.00000  128   16  150.00000  115.00000  23.3%  50.0   21s
+H 4686  3038                     145.0000000  115.00000  20.7%  50.0   21s
+H 4783  2930                     135.0000000  115.00000  14.8%  51.2   21s
+H 6972  3900                     120.0000000  115.00000  4.17%  53.3   24s
+  7250  3717  115.00000  183   64  120.00000  115.00000  4.17%  52.9   25s
+  9126  4629 infeasible  156       120.00000  115.00000  4.17%  55.2   30s
+ 12339  5371  115.00000  141   52  120.00000  115.00000  4.17%  59.5   35s
+H14540  5359                     120.0000000  115.00000  4.17%  59.3   39s
+ 14544  5362  115.00000  134   28  120.00000  115.00000  4.17%  59.3   40s
+ 15014  5953  115.00000   62  219  120.00000  115.00000  4.17%  60.2   45s
+H15229  5612                     115.0000000  115.00000  0.00%  60.1   45s
+
+Cutting planes:
+  Learned: 12
+  Gomory: 5
+  Cover: 1
+  Implied bound: 7
+  Projected implied bound: 6
+  MIR: 12
+  Mixing: 2
+  Flow cover: 64
+  GUB cover: 1
+  RLT: 5
+  Relax-and-lift: 6
+
+Explored 15291 nodes (923605 simplex iterations) in 45.65 seconds (45.45 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 10: 115 120 135 ... 255
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.150000000000e+02, best bound 1.150000000000e+02, gap 0.0000%
+
+User-callback calls 16572, time in user-callback 0.01 sec
+
+CSV Summary saved to: RESULTS_MILP/A_MTN_5/summary_354FL_8A_24_MILP.csv

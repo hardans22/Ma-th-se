@@ -8,7 +8,7 @@ function build_opti_cut(sub_paths, x, Z, rho_val, fix_dict, added_cuts)
             cut = @build_constraint(sum_1 <= Z[aircraft]) 
             push!(cut_dict["opti"], cut)
             #push!(added_cuts, sub_path)
-        elseif rho_val[mtn_node] == 0
+        elseif rho_val[mtn_node] <= 25
             fix_dict[aircraft] += 1
             if fix_dict[aircraft] == 5
                 cut = @build_constraint(sum((1 - x[(sub_path[i],sub_path[i+1])]) for i in 1:len_sp-1) <= 0)

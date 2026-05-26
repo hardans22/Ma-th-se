@@ -11,6 +11,7 @@ nbr_thread = 8
 silent = false
 graph_reduc = false
 time_limit = 300
+work_limit = 40
 
 
 # =============== Sur Nibi ===============
@@ -19,7 +20,7 @@ time_limit = 300
 
 # =============== En local sur mon ordi ===============
 inst = ARGS[1]
-instance = "../../INSTANCES/instances_new_json/"*inst
+instance = "../../INSTANCES/instances_literature_json/"*inst
 
 # ============== Gestion des fichiers et la sortie =================
 parts = split(instance, "/")
@@ -41,13 +42,13 @@ close(Output_file)
 
 # --- Résolution du modèle ---
 instance_data = build_graph(instance)
-solution = model_amrp(env, instance_data, path_file, nbr_thread, silent, graph_reduc, time_limit)
+solution = model_amrp(env, instance_data, path_file, nbr_thread, silent, graph_reduc, time_limit, work_limit)
         
 Output_file = open(path_file, "a")
 
 other_info = solution.other_info
 
-print_solution(solution, instance_data, Output_file, silent)
+#print_solution(solution, instance_data, Output_file, silent)
 
 #feasible = 1
 Obj =  solution.obj

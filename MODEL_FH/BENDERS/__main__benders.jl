@@ -11,7 +11,7 @@ sp_method = ARGS[2]
 
 nbr_thread = 14
 silent = false
-time_limit = 1800
+time_limit = 60
 cut_type = "desagg"
 
 # =============== Sur Nibi ===============
