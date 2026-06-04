@@ -9,9 +9,9 @@ env = Gurobi.Env()
 instance = ARGS[1]
 sp_method = ARGS[2]
 
-nbr_thread = 14
+nbr_thread = 8
 silent = false
-time_limit = 60
+time_limit = 300
 cut_type = "desagg"
 
 # =============== Sur Nibi ===============
@@ -22,7 +22,7 @@ cut_type = "desagg"
 # =============== En local sur mon ordi ===============
 inst = ARGS[1]
 sp_method = ARGS[2]
-instance = "../../INSTANCES/instances_new_json/"*inst
+instance = "../../INSTANCES/instances_literature_json/"*inst
 
 # ============== Gestion des fichiers et la sortie =================
 parts = split(instance, "/")

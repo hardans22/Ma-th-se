@@ -1,2 +1,2 @@
-Instances,UB,LB,Gap,Nodes,Time,Opt,Nbr_mtn,Nbr_sts_used
-276FL_10A_11,123.99999994743558,120.0,3.23,1089914,300.01,0,5,2
+Instances,UB,LB,Gap,Nodes,Time,Work_U,Opt,Nbr_mtn,Nbr_sts_used
+276FL_10A_11,124.0,103.0,16.94,179440,62.26,54.78,0,5,2

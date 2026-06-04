@@ -348,10 +348,6 @@ function fix_and_optimize(model, sx, sy, instance_data, output_file, size_day, o
         work_unit += result.sp_work
         write_both(output_file, "\tItération : $iter")
         write_both(output_file, "\tobjective_value = $obj\n")
-        #if all(isinteger, sx)
-        if all(isa(v, Integer) for v in values(sx)) 
-            break
-        end
         #mise à jour des ensembles
         curseur += no_overlap
         #println("Curseur = ", curseur)
