@@ -62,7 +62,6 @@ function benders_decomp(env, instance_data, sp_method, cut_type, output_file, nb
     set_optimizer_attribute(master_model, "MIPGapAbs", Inf)
      =#
     set_optimizer_attribute(master_model, "Cuts", 0)
-    set_optimizer_attribute(master_model, "Symmetry", 2)
     
     
     # ===================== Decision Variables =====================

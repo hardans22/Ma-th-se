@@ -2,6 +2,7 @@ using JuMP, Gurobi, JSON, MathOptInterface, DataFrames, XLSX, CSV, Dates
 
 include("../../build_graph.jl")
 include("__benders__.jl")
+include("__benders__2.jl")
 include("__cuts_func__.jl")
 
 env = Gurobi.Env()
