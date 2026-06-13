@@ -153,73 +153,6 @@ function solve_sp_pd(aircraft_paths, instance_data, a_nodes)
 end 
 
 
-function solve_sp_pd_2(aircraft, ac_path, instance_data)
-    graph       = instance_data.graph
-    node_sets   = graph.node_sets
-    arc_sets    = graph.arc_sets
-    fl_data     = instance_data.fl_data
-
-    L_M = node_sets.mtn_nodes
-    V   = graph.nodes
-    A_M = arc_sets.arcs_M
-    f   = fl_data.init_flying_time
-    d   = fl_data.d
-
-    #a_nodes     = node_sets.ac_nodes
-    max_flt     = instance_data.max_flying_time
-    A_M_set      = Set(A_M)                  
-    infeasible = false
-
-    time = @elapsed begin
-        u   = Dict{String, Float64}(j => 0.0 for j in V)
-        y   = Dict{String, Int}(j => 0 for j in L_M)
-        rho = Dict{String, Float64}(j => 0.0 for j in L_M)
-        obj = 0.0
-        status = "OPTIMAL"
-        path = ac_path.[aircraft].path
-        len_path = ac_path.len_path
-        u[aircraft] = f[aircraft]
-        mtn_node = nothing
-        pred_mtn_node = nothing
-        mtn_node_idx = nothing
-        idx = 2 
-        while idx < len_path-1
-            node_cur  = path[idx]
-            node_next = path[idx+1]
-
-            if (node_cur, node_next) in A_M_set
-                mtn_node      = node_next
-                pred_mtn_node = node_cur
-                mtn_node_idx  = idx + 1
-            end
-            if u[node_cur] + d[node_next] > max_flt
-                if mtn_node !== nothing
-                    y[mtn_node]   = 1
-                    rho[mtn_node] = max_flt - u[pred_mtn_node]
-                    u[mtn_node]   = d[mtn_node]
-                    idx           = mtn_node_idx
-                    obj          += rho[mtn_node]
-                    continue
-                else
-                    status = "INFEASIBLE"
-                    infeasible = true
-                    break
-                end
-            end
-
-            u[node_next] = u[node_cur] + d[node_next]
-            idx += 1
-        end  
-        u["t"] = 0.0
-    end 
-    if infeasible
-        return (status = status, obj = Inf, time = round(time, digits = 6))
-    end 
-    return (status = status, obj = obj, y = y, u = u, 
-            rho = rho, time = round(time, digits = 6))
-end 
-
-
 
 function find_subpath_mtn(result, instance_data, aircraft_paths)
     graph      = instance_data.graph
@@ -279,7 +212,7 @@ function find_subpath_mtn(result, instance_data, aircraft_paths)
     end
 end
 
-function irreductible_path(result, instance_data, ac_path)
+function irreductible_path(ac_path, result, instance_data)
     graph      = instance_data.graph
     fl_data    = instance_data.fl_data
     A          = graph.arcs
