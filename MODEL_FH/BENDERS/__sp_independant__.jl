@@ -21,7 +21,7 @@ function set_for_SP(aircraft_paths, instance_data)
 
     for ac in a_nodes
         path = aircraft_paths[ac].path
-        len_p = aircraft_paths[ac].len_p
+        len_p = aircraft_paths[ac].len_path
         rdc_V = copy(path)
         rdc_A = [(path[i], path[i+1]) for i in 1:len_p-1]
         rdc_L_M = filter(i -> i in L_M, rdc_V)
@@ -40,6 +40,7 @@ function build_sp_ind(env, aircraft, set_for_SP, instance_data)
     d       = fl_data.d
 
     rdc_V       = set_for_SP.rdc_V
+    rdc_L_M       = set_for_SP.rdc_L_M
     rdc_A       = set_for_SP.rdc_A
     rdc_A_M     = set_for_SP.rdc_A_M
     rdc_A_M_bar = set_for_SP.rdc_A_M_bar
@@ -51,6 +52,7 @@ function build_sp_ind(env, aircraft, set_for_SP, instance_data)
     set_optimizer_attribute(sp_model, "OutputFlag", 0)
     set_optimizer_attribute(sp_model, "InfUnbdInfo", 1)
     set_optimizer_attribute(sp_model, "DualReductions", 0)
+    set_silent(sp_model)
 
     # ===================Decision variables ===================
     sp_model[:x_copy] = @variable(sp_model, x_copy[k in rdc_A])                         #Copy of x
@@ -64,25 +66,27 @@ function build_sp_ind(env, aircraft, set_for_SP, instance_data)
     # ========  Flying time constraints ========
 
     @constraint(sp_model, sum(y[j] for j in rdc_L_M) <= 1)
-    @constraint(sp_model, c3[j in rdc_L_M], y[j] <= sum(x_copy[(i,j)] for i in get(pred_rdc_A_M, j, [])))
+    @constraint(sp_model, c3[j in rdc_L_M], y[j] <= sum(x_copy[(i,j)] for i in get(pred_A_M, j, [])))
     @constraint(sp_model, c4[(i,j) in rdc_A_M], rho[j] >= max_flt*x_copy[(i, j)] - u[i] - (max_flt - d[i])*(1 - y[j]))
     @constraint(sp_model, c5[(i,j) in rdc_A; j != "t"], u[j] <= u[i] + d[j] + (max_flt - d[i] - d[j])*(1 - x_copy[(i,j)]))
     @constraint(sp_model, c6[j in rdc_L_M], u[j] <= max_flt -(max_flt - d[j])*y[j])
     @constraint(sp_model, c7[(i,j) in rdc_A_M_bar; j != "t"], u[j] >= u[i] + d[j] - max_flt*(1 - x_copy[(i,j)]))
     @constraint(sp_model, c8[(i,j) in rdc_A_M], u[j] >= u[i] + d[j] - max_flt*(1 - x_copy[(i,j)]) - max_flt*y[j])
     @constraint(sp_model, u["s"] == 0)
-    @constraint(sp_model, u[k] == f[k])
+    @constraint(sp_model, u[aircraft] == f[aircraft])
 
     return sp_model
 end
 
-function solve_sp_ind(sp_model, x_val, rdc_L_M, rdc_V)
+function solve_sp_ind(sp_model, x_val, rdc_L_M, rdc_V, rdc_A)
     # Fixer x_copy
     x_copy = sp_model[:x_copy]
-    for arc in keys(x_val)
+    for arc in rdc_A
         fix(x_copy[arc], abs(x_val[arc]); force = true)
     end
-
+    
+    #write_to_file(sp_model, "sp.lp")
+    
     optimize!(sp_model)
     sp_status = termination_status(sp_model)
     if sp_status == MOI.OPTIMAL
@@ -174,7 +178,7 @@ function irreductible_path_ind(ac_path, set_for_SP, result, instance_data)
 
     if result.status == "OPTIMAL"
         y_val = result.y
-        mtn_sub_path = Tuple{Vector{String}, Int, String}
+        mtn_sub_path = nothing
 
         path  = ac_path.path
         len_p = ac_path.len_path
@@ -195,7 +199,7 @@ function irreductible_path_ind(ac_path, set_for_SP, result, instance_data)
         return mtn_sub_path
 
     elseif result.status == "INFEASIBLE"
-        infeas_sub_path = Tuple{Vector{String}, Int}
+        infeas_sub_path = nothing
         
         path  = ac_path.path
         len_p = ac_path.len_path

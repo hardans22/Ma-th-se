@@ -1,5 +1,6 @@
 include("../../structures.jl")
 include("__cuts_func__.jl")
+include("__cuts_func_ind__.jl")
 include("__printing__.jl")
 include("__sub_problem__.jl")
 include("__sp_independant__.jl")
@@ -354,20 +355,39 @@ function benders_decomp_ind(env, instance_data, sp_method, cut_type, output_file
     best_x, best_y, best_u, best_rho = Dict{Tuple{String,String}, Float64}(), Dict{String, Float64}(), Dict{String, Float64}(), Dict{String, Float64}()
     
     if sp_method == "MILP"
-        sp_model = build_sp(env, instance_data)
+        sp_model_c = build_sp(env, instance_data)
     end
-
+    
+    
     fix_dict = Dict(k => 0 for k in H_aircraft)
     added_cuts = Set()
     last_print = 0.0 
+    obj_Z = nothing
     # ===================== Callback function =====================
     println()
     start_time = time() 
     function my_callback(cb_data, cb_where::Cint)
-        if cb_where != Gurobi.GRB_CB_MIPSOL
+        # On ne traite que les nœuds relâchés et les solutions entières candidates
+        if cb_where != GRB_CB_MIPSOL && cb_where != GRB_CB_MIPNODE
             return
-        end 
+        end
+
+        # Pour MIPNODE, on vérifie que la relaxation a bien été résolue à l'optimalité
+        if cb_where == GRB_CB_MIPNODE
+            resultP = Ref{Cint}()
+            GRBcbget(cb_data, cb_where, GRB_CB_MIPNODE_STATUS, resultP)
+            if resultP[] != GRB_OPTIMAL
+                return
+            end
+        end
+
+        status = callback_node_status(cb_data, master_model)
+        if status != MOI.CALLBACK_NODE_STATUS_INTEGER
+            return
+        end
         nbr_iter += 1
+
+        Gurobi.load_callback_variable_primal(cb_data, cb_where)
         x_val = Dict((i,j) => round(callback_value(cb_data, x[(i,j)])) for (i,j) in A)
         if cut_type == "desagg"
             Z_val = Dict(k => round(callback_value(cb_data, Z[k])) for k in a_nodes)
@@ -379,48 +399,63 @@ function benders_decomp_ind(env, instance_data, sp_method, cut_type, output_file
 
         aircraft_paths = build_all_paths(x_val, A, a_nodes) 
         sets_for_SP = set_for_SP(aircraft_paths, instance_data)
+        #= for ac in a_nodes
+            println("PATH : ", aircraft_paths[ac])
+            println("rdc_V : ", sets_for_SP[ac].rdc_V)
+        end 
+         =#
         if sp_method == "MILP" 
             all_result, all_irr_path = Dict(), Dict()
             sp_obj, sp_time = 0.0, 0.0 
             sp_status = "OPTIMAL"
-            
-            for ac in a_node
+            #= time_cmp = @elapsed begin
+                result_c = solve_sp(sp_model_c, x_val, L_M, V)
+                sub_paths = find_subpath_mtn(result_c, instance_data, aircraft_paths)     
+            end
+             =#
+            for ac in a_nodes
                 set_for_SP = sets_for_SP[ac]
-                result =  solve_sp_ind(sp_model, x_val, set_for_SP.rdc_L_M, set_for_SP.rdc_V)
+                sp_model = build_sp_ind(env, ac, sets_for_SP[ac], instance_data)
+                result =  solve_sp_ind(sp_model, x_val, set_for_SP.rdc_L_M, set_for_SP.rdc_V, set_for_SP.rdc_A )
                 sp_obj += result.obj
                 sp_time += result.time 
                 if result.status == "INFEASIBLE"
                     sp_status = "INFEASIBLE"
                 end
-                irr_path = irreductible_path_ind(ac_path, set_for_SP, result, instance_data)
+                irr_path = irreductible_path_ind(aircraft_paths[ac], set_for_SP, result, instance_data)
                 all_result[ac] = result
                 all_irr_path[ac] = irr_path
-            end 
+            end
         elseif sp_method == "PD"
             all_result, all_irr_path = Dict(), Dict()
             sp_obj, sp_time = 0.0, 0.0 
             sp_status = "OPTIMAL"
-            for ac in a_node
+            for ac in a_nodes
                 set_for_SP = sets_for_SP[ac]
-                result =  solve_sp_H_ind(aircraft, set_for_SP, ac_path, instance_data)
+                result =  solve_sp_H_ind(ac, sets_for_SP[ac], aircraft_paths[ac], instance_data)
                 sp_obj += result.obj
                 sp_time += result.time 
                 if result.status == "INFEASIBLE"
                     sp_status = "INFEASIBLE"
                 end
-                irr_path = irreductible_path_ind(ac_path, set_for_SP, result, instance_data)
+                irr_path = irreductible_path_ind(aircraft_paths[ac], sets_for_SP[ac], all_result[ac], instance_data)
                 all_result[ac] = result
                 all_irr_path[ac] = irr_path
             end
         end 
 
-           
+        #= println("\nTEMPS MODEL COMPLET : ", result_c.time)
+        println("TEMPS MODEL INDEPENDANT : ", sp_time)
+        println("TEMPS MODEL CMP: ", time_cmp)
+        println("TEMPS MODEL IND: ", time_ind)
+         =#
         all_sptime += sp_time
     
         if sp_status == "OPTIMAL"
-            #=println("\n\n SP STATUS: ", result.status)
-            println("Z_VAL = ", obj_Z, " | SP = ", sp_obj, ")
-            print_x_y(x_val, y_val, rho_val, A, L_M, d, H_aircraft)=#  
+            #= println("\n\n SP STATUS: ", sp_status)
+            println("Z_VAL = ", obj_Z, " | SP = ", sp_obj)
+             =#
+            #print_x_y(x_val, y_val, rho_val, A, L_M, d, H_aircraft) 
             
             gap = abs(sp_obj - obj_Z)
             #= rho_val = result.rho
@@ -429,14 +464,16 @@ function benders_decomp_ind(env, instance_data, sp_method, cut_type, output_file
             
             if gap > 1e-6
                 #ADD OPTIMALITY CUT
-                for ac in a_nodes
-                    cut, cut_type = build_opti_cut_ind(ac, all_irr_path[ac], x, Z, all_result[ac], fix_dict, added_cuts)
-                    MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
-                    if cut_type == "opti"
-                        nbr_opti += 1
-                    elseif cut_type == "fix"
-                        nbr_fix += 1
-                    end 
+                for ac in H_aircraft
+                    cut, cut_tp = build_opti_cut_ind(ac, all_irr_path[ac], x, Z, all_result[ac], fix_dict, added_cuts)
+                    if cut !== nothing
+                        MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
+                        if cut_tp == "opti"
+                            nbr_opti += 1
+                        elseif cut_tp == "fix"
+                            nbr_fix += 1
+                        end 
+                    end  
                 end
 
                 #println("COUPE AJOUTÉE | Z_VAL = ", obj_Z, " | SP = ", sp_obj, " | nbr_cuts = ", nbr_opti)
@@ -457,26 +494,34 @@ function benders_decomp_ind(env, instance_data, sp_method, cut_type, output_file
                     best_obj, best_x, best_y, best_u, best_rho = obj_Z, copy(x_val), copy(y_val), copy(u_val), copy(rho_val)
                 end
 
-                #println("\nZ_VAL = ", obj_Z, " | OBJ DU SP = ", result.obj, " | GAP_MP_SP = ", gap)
+                println("\nZ_VAL = ", obj_Z, " | OBJ DU SP = ", sp_obj, " | GAP_MP_SP = ", gap)
                 #println("*INCUMBENT = $best_obj | LB = $LB | OPT_GAP = $(format_gap(best_obj, LB)) | TIME = $(round(current_time))")
             end
              
-        elseif result.status == "INFEASIBLE" 
+        elseif sp_status == "INFEASIBLE" 
             #ADD FEASIBILITY_CUTS
             #println("\nSP STATUS: ", result.status)
-            for ac in a_nodes
+            for ac in H_aircraft
+                #= println(ac)
+                println(all_result[ac].status)
+                println(aircraft_paths[ac])
+                println(sum(d[i] for i in aircraft_paths[ac].path))
+                 =#
                 if all_result[ac].status == "INFEASIBLE" 
-                    cut = build_feas_cut_ind(irr_path, x)
+                    #println(all_irr_path[ac])
+                    cut = build_feas_cut_ind(all_irr_path[ac], x)
                     MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
                     nbr_fais += 1  
                 elseif all_result[ac].status == "OPTIMAL"
-                    cut, cut_type = build_opti_cut_ind(ac, all_irr_path[ac], x, Z, all_result[ac], fix_dict, added_cuts)
-                    MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
-                    if cut_type == "opti"
-                        nbr_opti += 1
-                    elseif cut_type == "fix"
-                        nbr_fix += 1
-                    end 
+                    cut, cut_tp = build_opti_cut_ind(ac, all_irr_path[ac], x, Z, all_result[ac], fix_dict, added_cuts)
+                    if cut !== nothing
+                        MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
+                        if cut_tp == "opti"
+                            nbr_opti += 1
+                        elseif cut_tp == "fix"
+                            nbr_fix += 1
+                        end 
+                    end
                 end
             end 
         else

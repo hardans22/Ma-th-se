@@ -1,11 +1,11 @@
 
 -----------------------INSTANCE 354FL_8A_1--------------------------
-Gurobi 13.0.0 (linux64) logging started sam. 13 juin 2026 14:53:42
+Gurobi 13.0.0 (linux64) logging started mer. 17 juin 2026 12:42:00
 
 Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_1/result_354FL_8A_1_benders_MILP.txt"
 Set parameter Cuts to value 0
 
-Gurobi 13.0.0 (linux64) logging started sam. 13 juin 2026 14:53:44
+Gurobi 13.0.0 (linux64) logging started mer. 17 juin 2026 12:42:02
 
 Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_1/result_354FL_8A_1_benders_MILP.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
@@ -36,3 +36,49 @@ Presolved: 384 rows, 2705 columns, 5394 nonzeros
 Variable types: 8 continuous, 2697 integer (2697 binary)
 
 Root relaxation: objective 0.000000e+00, 773 iterations, 0.01 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    -          -    0.00000      -     -    2s
+     0     0    0.00000    0    -          -    0.00000      -     -    3s
+     0     0    0.00000    0   10          -    0.00000      -     -    3s
+H    0     0                     160.0000000    0.00000   100%     -    3s
+H    0     0                     100.0000000    0.00000   100%     -    3s
+H    0     0                      95.0000000    0.00000   100%     -    4s
+     0     0    0.00000    0    -   95.00000    0.00000   100%     -    4s
+     0     0    0.00000    0   14   95.00000    0.00000   100%     -    4s
+     0     0    0.00000    0   14   95.00000    0.00000   100%     -    4s
+     0     0    0.00000    0   14   95.00000    0.00000   100%     -    4s
+     0     0    0.00000    0    -   95.00000    0.00000   100%     -    4s
+     0     0    0.00000    0    8   95.00000    0.00000   100%     -    4s
+     0     2    0.00000    0    8   95.00000    0.00000   100%     -    4s
+    51     3    0.00000    6   12   95.00000    0.00000   100%   4.0    7s
+   254     3    0.00000   10    -   95.00000    0.00000   100%   4.0   10s
+*  353    72               9      15.0000000    0.00000   100%   4.4   12s
+*  398     3              13       0.0000000    0.00000  0.00%   4.4   12s
+
+Cutting planes:
+  Lazy constraints: 249
+
+Explored 400 nodes (3370 simplex iterations) in 12.63 seconds (0.15 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 5: 0 15 95 ... 160
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 1683, time in user-callback 14.32 sec
+
+
+=== Résultat final ===
+Objectif: 0.0
+Temps total du master: 10.3049s
+Temps total du sp: 2.3304s
+Temps total: 12.6353s
+Nombre de coupes: 249
+Nombre de coupes faisabilité: 73
+Nombre de coupes d'optimalité: 176
+Nombre de coupes de fixing: 0
+Nombre d'itérations: 254
