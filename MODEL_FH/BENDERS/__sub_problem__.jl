@@ -226,8 +226,6 @@ function irreductible_path(ac_path, result, instance_data)
     if result.status == "OPTIMAL"
         y_val = result.y
         mtn_sub_path = Tuple{Vector{String}, Int, String}
-
-        
         path  = ac_path.path
         len_p = ac_path.len_path
         summ  = d[path[1]]

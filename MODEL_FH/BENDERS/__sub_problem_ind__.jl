@@ -56,7 +56,8 @@ function build_sp_ind(env, aircraft, set_for_SP, instance_data)
 
     # ===================Decision variables ===================
     sp_model[:x_copy] = @variable(sp_model, x_copy[k in rdc_A])                         #Copy of x
-    sp_model[:y] = @variable(sp_model, y[j in rdc_L_M], Bin)        
+    sp_model[:y] = @variable(sp_model, y[j in rdc_L_M], Bin
+    )        
     sp_model[:u] = @variable(sp_model, d[j] <= u[j in rdc_V] <= max_flt)                #Accumulatad flying time at node j  
     sp_model[:rho] = @variable(sp_model, rho[j in rdc_L_M] >= 0)                        #Remaining flying time at node j
 
@@ -93,15 +94,137 @@ function solve_sp_ind(sp_model, x_val, rdc_L_M, rdc_V, rdc_A)
         u_val = Dict(j => value(sp_model[:u][j]) for j in rdc_V)
         y_val = Dict(j => value(sp_model[:y][j]) for j in rdc_L_M)
         rho_val = Dict(j => value(sp_model[:rho][j]) for j in rdc_L_M)
-        return (status = "OPTIMAL", obj = round(objective_value(sp_model)), 
-                time = round(solve_time(sp_model), digits = 6), y = y_val, 
-                u = u_val, rho = rho_val)
+        return (status = "OPTIMAL", 
+                obj = round(objective_value(sp_model)), 
+                time = round(solve_time(sp_model), digits = 6), 
+                y = y_val, 
+                u = u_val, 
+                rho = rho_val)
     else sp_status == MOI.INFEASIBLE
         return (status = "INFEASIBLE", obj = Inf, 
                 y = Dict(j => 0.0 for j in rdc_L_M), 
                 time = round(solve_time(sp_model), digits = 6))
     end
 end 
+
+function build_sp(env, instance_data)
+    graph       = instance_data.graph
+    node_sets   = graph.node_sets
+    arc_sets    = graph.arc_sets
+    fl_data     = instance_data.fl_data
+    other_data  = instance_data.other_data
+
+    
+    fl_nodes    = node_sets.fl_nodes
+    a_nodes     = node_sets.ac_nodes
+    H_aircraft  = node_sets.H_aircraft
+    V_wt_st     = vcat(a_nodes, fl_nodes) 
+    max_flt     = instance_data.max_flying_time
+    A_M_bar     = arc_sets.arcs_M_bar
+
+    L_M = node_sets.mtn_nodes
+    V   = graph.nodes
+    A   = graph.arcs
+    A_M = arc_sets.arcs_M
+    f   = fl_data.init_flying_time
+    d   = fl_data.d
+
+    pred_A_M = other_data["pred_A_M"]
+    mtn_stations = other_data["mtn_stations"]
+    
+
+    sp_model = Model(() -> Gurobi.Optimizer(env))
+    set_optimizer_attribute(sp_model, "OutputFlag", 0)
+    set_optimizer_attribute(sp_model, "InfUnbdInfo", 1)
+    set_optimizer_attribute(sp_model, "DualReductions", 0)
+
+    # ===================Decision variables ===================
+    sp_model[:x_copy] = @variable(sp_model, x_copy[k in A])                          #Copy of x
+    sp_model[:y] = @variable(sp_model, y[j in L_M], Bin)        
+    sp_model[:u] = @variable(sp_model, d[j] <= u[j in V] <= max_flt)                #Accumulatad flying time at node j  
+    sp_model[:rho] = @variable(sp_model, rho[j in L_M] >= 0)                            #Remaining flying time at node j
+
+    # =========== Objective ===========
+    @objective(sp_model, Min,  sum(rho[j] for j in L_M))
+
+    # ========  Flying time constraints ========
+
+    @constraint(sp_model, sum(y[j] for j in L_M) <= length(H_aircraft))
+    @constraint(sp_model, c3[j in L_M], y[j] <= sum(x_copy[(i,j)] for i in get(pred_A_M, j, [])))
+    
+    @constraint(sp_model, c4[(i,j) in A_M], rho[j] >= max_flt*x_copy[(i, j)] - u[i] - (max_flt - d[i])*(1 - y[j]))
+    @constraint(sp_model, c5[(i,j) in A; j != "t"], u[j] <= u[i] + d[j] + (max_flt - d[i] - d[j])*(1 - x_copy[(i,j)]))
+    @constraint(sp_model, c6[j in L_M], u[j] <= max_flt -(max_flt - d[j])*y[j])
+    @constraint(sp_model, c7[(i,j) in A_M_bar; j != "t"], u[j] >= u[i] + d[j] - max_flt*(1 - x_copy[(i,j)]))
+    @constraint(sp_model, c8[(i,j) in A_M], u[j] >= u[i] + d[j] - max_flt*(1 - x_copy[(i,j)]) - max_flt*y[j])
+    @constraint(sp_model, u["s"] == 0)
+    @constraint(sp_model, c9[k in a_nodes], u[k] == f[k])
+
+    return sp_model
+end
+
+function solve_sp_ind_(sp_model, x_val, A, L_M, rdc_V, rdc_A, rdc_L_M)
+    x_copy = sp_model[:x_copy]
+    y      = sp_model[:y]
+
+    rdc_A_set   = Set(rdc_A)
+    rdc_L_M_set = Set(rdc_L_M)
+
+    for k in A
+        if k in rdc_A_set
+            JuMP.fix(x_copy[k], x_val[k]; force = true)
+        else
+            JuMP.fix(x_copy[k], 0.0; force = true)
+        end
+    end
+
+    for j in L_M
+        if j in rdc_L_M_set
+            if is_fixed(y[j])
+                JuMP.unfix(y[j])
+                set_binary(y[j])   # unfix retire aussi le type binaire, il faut le restaurer
+            end 
+        else
+            JuMP.fix(y[j], 0.0; force = true)
+        end
+    end
+    optimize!(sp_model)
+
+    status = termination_status(sp_model)
+
+    if status == MOI.OPTIMAL
+        u_full   = value.(sp_model[:u])
+        y_full   = value.(sp_model[:y])
+        rho_full = value.(sp_model[:rho])
+
+        # Restriction aux ensembles réduits (cohérent avec l'ancien comportement)
+        u_dict   = Dict(j => u_full[j] for j in rdc_V)
+        y_dict   = Dict(j => round(Int, y_full[j]) for j in rdc_L_M)
+        rho_dict = Dict(j => rho_full[j] for j in rdc_L_M)
+
+        return (
+            status = "OPTIMAL",
+            obj    = objective_value(sp_model),
+            time   = round(solve_time(sp_model), digits = 6),
+            u      = u_dict,
+            y      = y_dict,
+            rho    = rho_dict
+        )
+
+    elseif status == MOI.INFEASIBLE || status == MOI.INFEASIBLE_OR_UNBOUNDED
+        return (
+            status = "INFEASIBLE",
+            obj    = Inf,
+            time   = round(solve_time(sp_model), digits = 6),
+            u      = Dict{String, Float64}(),
+            y      = Dict{String, Int}(),
+            rho    = Dict{String, Float64}()
+        )
+    end
+
+
+end
+
 
 function solve_sp_H_ind(aircraft, set_for_SP, ac_path, instance_data)
     fl_data     = instance_data.fl_data
@@ -123,7 +246,7 @@ function solve_sp_H_ind(aircraft, set_for_SP, ac_path, instance_data)
         rho = Dict{String, Float64}(j => 0.0 for j in rdc_L_M)
         obj = 0.0
         status = "OPTIMAL"
-        path = ac_path.[aircraft].path
+        path = ac_path.path
         len_path = ac_path.len_path
         u[aircraft] = f[aircraft]
         mtn_node = nothing

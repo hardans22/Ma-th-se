@@ -1,13 +1,13 @@
 
 -----------------------INSTANCE 354FL_8A_14--------------------------
-Gurobi 13.0.0 (linux64) logging started mer. 01 juil. 2026 14:08:18
+Gurobi 13.0.0 (linux64) logging started mer. 01 juil. 2026 14:06:27
 
-Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_3/result_354FL_8A_14_benders_MILP.txt"
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_3/result_354FL_8A_14_benders_HT.txt"
 Set parameter Cuts to value 0
 
-Gurobi 13.0.0 (linux64) logging started mer. 01 juil. 2026 14:08:20
+Gurobi 13.0.0 (linux64) logging started mer. 01 juil. 2026 14:06:28
 
-Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_3/result_354FL_8A_14_benders_MILP.txt"
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_3/result_354FL_8A_14_benders_HT.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
 
 CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
@@ -40,24 +40,22 @@ Root relaxation: objective 0.000000e+00, 794 iterations, 0.01 seconds (0.01 work
     Nodes    |    Current Node    |     Objective Bounds      |     Work
  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 
-     0     0    0.00000    0    -          -    0.00000      -     -    2s
-     0     0    0.00000    0    -          -    0.00000      -     -    3s
-     0     0    0.00000    0   12          -    0.00000      -     -    3s
-H    0     0                     800.0000000    0.00000   100%     -    3s
-     0     0    0.00000    0    6  800.00000    0.00000   100%     -    3s
-     0     0    0.00000    0    6  800.00000    0.00000   100%     -    3s
-     0     0    0.00000    0    6  800.00000    0.00000   100%     -    3s
-     0     2    4.54545    0   31  800.00000    4.54545  99.4%     -    3s
-   358   117   50.00000    6    -  800.00000   50.00000  93.8%   7.5    5s
-  1819   550 infeasible   17       800.00000   50.00000  93.8%   9.1   10s
-* 1969   607              22     225.0000000   50.00000  77.8%   8.8   11s
-* 2287   701              16      75.0000000   50.00000  33.3%   8.3   12s
-* 2311   152              14      50.0000000   50.00000  0.00%   8.3   12s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0   12          -    0.00000      -     -    0s
+H    0     0                     800.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    6  800.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    6  800.00000    0.00000   100%     -    0s
+     0     0    0.00000    0    6  800.00000    0.00000   100%     -    0s
+     0     2    4.54545    0   31  800.00000    4.54545  99.4%     -    1s
+* 1969   607              22     225.0000000   50.00000  77.8%   8.8    5s
+* 2287   701              16      75.0000000   50.00000  33.3%   8.3    5s
+* 2311   152              14      50.0000000   50.00000  0.00%   8.3    5s
 
 Cutting planes:
   Lazy constraints: 694
 
-Explored 2611 nodes (21997 simplex iterations) in 12.84 seconds (0.43 work units)
+Explored 2611 nodes (21997 simplex iterations) in 5.51 seconds (0.43 work units)
 Thread count was 8 (of 16 available processors)
 
 Solution count 4: 50 75 225 800 
@@ -65,10 +63,10 @@ Solution count 4: 50 75 225 800
 Optimal solution found (tolerance 1.00e-04)
 Best objective 5.000000000000e+01, best bound 5.000000000000e+01, gap 0.0000%
 
-User-callback calls 6260, time in user-callback 14.10 sec
+User-callback calls 6283, time in user-callback 7.16 sec
 
 🎯 Objective global: 50.0
-⏱️ Time used: 12.8416
+⏱️ Time used: 5.5157
 
 ✈️ Paths for each aircraft:
 🛩️ Aircraft N121 path (44 nodes): s_(u=0.0) ➡️  N121_(u=5950.0) ➡️  ESB_ERC_32370_32450_(u=80.0) ➡️  ERC_ESB_32485_32565_(u=160.0) ➡️  ESB_GNY_32620_32695_(u=235.0) ➡️  GNY_ESB_32730_32810_(u=315.0) ➡️  ESB_ECN_32865_32935_(u=385.0) ➡️  ECN_ESB_33360_33430_(u=455.0) ➡️  ESB_SAW_33480_33540_(u=515.0) ➡️  SAW_TZX_33585_33685_(u=615.0) ➡️  TZX_SAW_33720_33825_(u=720.0) ➡️  SAW_ESB_33960_34020_(u=780.0) ➡️  ESB_SZF_34100_34160_(u=840.0) ➡️  SZF_ESB_34195_34255_(u=900.0) ➡️  ESB_HTY_34310_34390_(u=980.0) ➡️  HTY_ESB_34800_34875_(u=1055.0) ➡️  ESB_TZX_34920_35000_(u=1135.0) ➡️  TZX_ESB_35035_35115_(u=1215.0) ➡️  ESB_ERC_35250_35330_(u=1295.0) ➡️  ERC_ESB_35365_35445_(u=1375.0) ➡️  ESB_GNY_35500_35575_(u=1450.0) ➡️  GNY_ESB_35610_35690_(u=1530.0) ➡️  ESB_ECN_35745_35815_(u=1600.0) ➡️  ECN_ESB_36240_36310_(u=1670.0) ➡️  ESB_SAW_36360_36420_(u=1730.0) ➡️  SAW_ESB_36480_36540_(u=1790.0) ➡️  ESB_SAW_36600_36660_(u=1850.0) ➡️  SAW_AYT_36705_36770_(u=1915.0) ➡️  AYT_SAW_36810_36875_(u=1980.0) ➡️  SAW_ASR_36975_37060_(u=2065.0) ➡️  ASR_SAW_37095_37185_(u=2155.0) ➡️  SAW_ADB_37680_37740_(u=2215.0) ➡️  ADB_SAW_37775_37835_(u=2275.0) ➡️  SAW_ESB_37920_37980_(u=2335.0) ➡️  ESB_SAW_38040_38100_(u=2395.0) ➡️  SAW_AYT_38145_38210_(u=2460.0) ➡️  AYT_SAW_38250_38315_(u=2525.0) ➡️  SAW_ADB_38370_38430_(u=2585.0) ➡️  ADB_SAW_38465_38525_(u=2645.0) ➡️  SAW_NAJ_39350_39490_(u=2785.0) ➡️  NAJ_SAW_39555_39710_(u=2940.0) ➡️  SAW_ESB_40800_40860_(u=3000.0) ➡️  ESB_ERC_41010_41090_(u=3080.0) ➡️  ERC_ESB_41125_41205_(u=3160.0) ➡️  ESB_ADA_41280_41340_(u=3220.0) ➡️  ADA_ESB_41380_41445_(u=3285.0) ➡️  t_(u=0.0)
@@ -96,9 +94,9 @@ User-callback calls 6260, time in user-callback 14.10 sec
 
 === Résultat final ===
 Objectif: 50.0
-Temps total du master: 7.0709s
-Temps total du sp: 5.7707s
-Temps total: 12.8416s
+Temps total du master: 5.4869s
+Temps total du sp: 0.0288s
+Temps total: 5.5157s
 Nombre de coupes: 694
 Nombre de coupes faisabilité: 281
 Nombre de coupes d'optimalité: 412
