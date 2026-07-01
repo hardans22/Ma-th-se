@@ -1,21 +1,21 @@
 #!/bin/bash
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=2G
-#SBATCH --time=01:00:00
-#SBATCH --array=1-40
+#SBATCH --mem=5G
+#SBATCH --time=01:10:00
+#SBATCH --array=1-20
 #SBATCH --output=arrayjob_%A_%a.out
 #SBATCH --partition=cpubase_bycore_b2
-#SBATCH --nodelist=c500
+#SBATCH --nodelist=c388
 #SBATCH --mail-user=harcenagedansou@gmail.com
-##SBATCH --mail-type=END
+#SBATCH --mail-type=BEGIN,END
 
 # Parcourir tous les fichiers JSON
 
 i=1
 
-for Fold in "A_MTN_1" "A_MTN_3" "A_MTN_5" "A_MTN_8"; do
+for Fold in "A_MTN_8" "A_MTN_12"; do
     # Dossier contenant les fichiers JSON
-    JSON_DIR="/home/danhar/projects/def-mattgru/danhar/Code/INSTANCES/instances_literature_json/${Fold}"
+    JSON_DIR="/home/danhar/projects/def-mattgru/danhar/Code/INSTANCES/instances_new_json/${Fold}"
     for json_file in "$JSON_DIR"/*.json; do
         for graph_reduc in false; do
             if [ $SLURM_ARRAY_TASK_ID -eq $i ]

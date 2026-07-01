@@ -1,4 +1,0 @@
-
-======================= INSTANCE 658FL_25A_13_MILP =======================
-
-GRAPH RÉDUCTION : false

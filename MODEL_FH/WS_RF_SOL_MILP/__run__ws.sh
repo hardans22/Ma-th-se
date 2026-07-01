@@ -1,19 +1,19 @@
 #!/bin/bash
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=7G
-#SBATCH --time=01:00:00
-#SBATCH --array=1-30
+#SBATCH --mem=35G
+#SBATCH --time=05:10:00
+#SBATCH --array=1-20
 #SBATCH --output=arrayjob_%A_%a.out
 #SBATCH --partition=cpubase_bycore_b2
-#SBATCH --nodelist=c500
+##SBATCH --nodelist=c388
 #SBATCH --mail-user=harcenagedansou@gmail.com
-##SBATCH --mail-type=END
+#SBATCH --mail-type=END
 
 # Parcourir tous les fichiers JSON
 
 i=1
 
-for Fold in "A_MTN_1" "A_MTN_3" "A_MTN_5"; do
+for Fold in "A_MTN_12" "A_MTN_15"; do
     # Dossier contenant les fichiers JSON
     JSON_DIR="/home/danhar/projects/def-mattgru/danhar/Code/INSTANCES/instances_literature_json/${Fold}"
     for json_file in "$JSON_DIR"/*.json; do
