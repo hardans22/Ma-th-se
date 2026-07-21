@@ -1,8 +1,7 @@
 include("../../structures.jl")
 include("__cuts_func_ind__.jl")
 include("__printing__.jl")
-include("__sub_problem__.jl")
-include("__sp_independant__.jl")
+include("__sub_problem_ind__.jl")
 
 
 function benders_decomp_ind(env, instance_data, sp_method, output_file, nbr_thread, silent, time_limit)
@@ -118,7 +117,11 @@ function benders_decomp_ind(env, instance_data, sp_method, output_file, nbr_thre
         sp_obj = 0.0
         # Flag global : reste true tant qu'aucune coupe n'a été nécessaire
         all_satisfied = true
-
+        all_optimal = true
+        fixing_cuts = Dict()
+        #= println()
+        println("NBR ITERATION : ", nbr_iter)
+         =#
         for ac in a_nodes
             set_for_SP_ac = sets_for_SP[ac]
             if sp_method == "MILP"
@@ -137,12 +140,22 @@ function benders_decomp_ind(env, instance_data, sp_method, output_file, nbr_thre
             sp_obj += result.obj
             all_sptime += (result.time + build_t)
             all_build_t += build_t
-
-            if result.status == "OPTIMAL"
+            
+            #= println("AIRCRAFT : ", ac)
+            println("STATUS : ", result.status)
+             =#if result.status == "OPTIMAL"
                 gap = abs(result.obj - Z_val[ac])
+                if gap < 0.0
+                    println("PPPPPROBLEMMMMMMMMMME")
+                    println(gap)
+                end 
                 if gap > 1e-6
                     # ADD OPTIMALITY CUT
                     cut = build_opti_cut_ind(ac, irr_path, x, Z, result)
+                    #= println()
+                    println(ac)
+                    println("OPTIMALITY CUT :", cut)
+                     =#
                     if cut !== nothing
                         MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
                         nbr_opti += 1
@@ -158,9 +171,14 @@ function benders_decomp_ind(env, instance_data, sp_method, output_file, nbr_thre
                     end
                 end
 
-                if ac in H_aircraft && result.obj == 0
+                if ac in H_aircraft && result.obj == 0 && fix_dict[ac] != 1
+                    #println("iteration : ", nbr_iter)
                     cut = build_fix_cut(ac, aircraft_paths[ac], irr_path, x, fix_dict)
-                    if cut !== nothing
+                    if cut !== nothing 
+                        #= println()
+                        println("FIXING CUT : ", cut)
+                         =#
+                        fixing_cuts[ac] = cut
                         MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
                         nbr_fix += 1
                     end
@@ -168,12 +186,25 @@ function benders_decomp_ind(env, instance_data, sp_method, output_file, nbr_thre
 
             elseif result.status == "INFEASIBLE"
                 cut = build_feas_cut_ind(irr_path, x)
+                #= println()
+                println(ac)
+                println("NO GOOD CUT :", cut)
+                 =#
                 MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
                 nbr_fais += 1
                 all_satisfied = false
-            end
+                all_optimal = false
+            end 
         end
-
+        #= if all_optimal
+            for cut in values(fixing_cuts)
+                #= println()
+                println("FIXING CUT : ", cut) =#
+                MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
+                nbr_fix += 1
+            end 
+        end
+         =#
         # ---- Mise à jour de la meilleure solution complète ----
         if all_satisfied && obj_Z < best_obj - 1e-6
             best_obj = obj_Z
@@ -189,6 +220,7 @@ function benders_decomp_ind(env, instance_data, sp_method, output_file, nbr_thre
 
     # solve
     optimize!(master_model)
+
 
     println("Temps de construction des modèles : ", all_build_t)
 

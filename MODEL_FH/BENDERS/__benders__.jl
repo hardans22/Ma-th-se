@@ -3,7 +3,6 @@ include("__cuts_func__.jl")
 include("__cuts_func_ind__.jl")
 include("__printing__.jl")
 include("__sub_problem__.jl")
-include("__sp_independant__.jl")
 
 
 function benders_decomp(env, instance_data, sp_method, cut_type, output_file, nbr_thread, silent, time_limit)

@@ -5,7 +5,7 @@
 #SBATCH --array=1-20
 #SBATCH --output=arrayjob_%A_%a.out
 #SBATCH --partition=cpubase_bycore_b2
-#SBATCH --nodelist=c388
+#SBATCH --nodelist=c178
 #SBATCH --mail-user=harcenagedansou@gmail.com
 #SBATCH --mail-type=BEGIN,END
 

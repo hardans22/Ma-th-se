@@ -42,7 +42,7 @@ instance_data = build_graph(instance)
 solution = benders_decomp_ind(env, instance_data, sp_method, path_file, nbr_thread, silent, time_limit)
 other_info = solution.other_info
 Output_file = open(path_file, "a") 
-print_solution(solution, instance_data, Output_file)
+#print_solution(solution, instance_data, Output_file)
 
 Obj = solution.obj
 MP_time = other_info["mp_time"]

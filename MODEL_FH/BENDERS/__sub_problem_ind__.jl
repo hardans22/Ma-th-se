@@ -33,6 +33,8 @@ function set_for_SP(aircraft_paths, instance_data)
 end 
 
 function build_sp_ind(env, aircraft, set_for_SP, instance_data)
+
+    #On déclare un sous-problème pour chaque avion à chaque fois
     fl_data     = instance_data.fl_data
 
     max_flt = instance_data.max_flying_time
@@ -80,6 +82,8 @@ function build_sp_ind(env, aircraft, set_for_SP, instance_data)
 end
 
 function solve_sp_ind(sp_model, x_val, rdc_L_M, rdc_V, rdc_A)
+
+    #On déclare un sous-problème pour chaque avion à chaque fois
     # Fixer x_copy
     x_copy = sp_model[:x_copy]
     for arc in rdc_A
@@ -108,6 +112,7 @@ function solve_sp_ind(sp_model, x_val, rdc_L_M, rdc_V, rdc_A)
 end 
 
 function build_sp(env, instance_data)
+    #On déclare un sous-problème global qui est modifié par la suite
     graph       = instance_data.graph
     node_sets   = graph.node_sets
     arc_sets    = graph.arc_sets
@@ -164,6 +169,7 @@ function build_sp(env, instance_data)
 end
 
 function solve_sp_ind_(sp_model, x_val, A, L_M, rdc_V, rdc_A, rdc_L_M)
+    #On déclare un sous-problème global qui est modifié par la suite
     x_copy = sp_model[:x_copy]
     y      = sp_model[:y]
 
@@ -283,7 +289,8 @@ function solve_sp_H_ind(aircraft, set_for_SP, ac_path, instance_data)
         u["t"] = 0.0
     end 
     if infeasible
-        return (status = status, obj = Inf, time = round(time, digits = 6))
+        return (status = status, obj = Inf, y = y, u = u, 
+            rho = rho, time = round(time, digits = 6))
     end 
     return (status = status, obj = obj, y = y, u = u, 
             rho = rho, time = round(time, digits = 6))
@@ -291,6 +298,8 @@ end
 
 
 function irreductible_path_ind(ac_path, set_for_SP, result, instance_data)
+    #À modifier pour être cohérent avec ce que j'écris dans l'article
+
     graph      = instance_data.graph
     fl_data    = instance_data.fl_data
     d          = fl_data.d
@@ -305,9 +314,11 @@ function irreductible_path_ind(ac_path, set_for_SP, result, instance_data)
 
         path  = ac_path.path
         len_p = ac_path.len_path
-        summ  = d[path[1]]
         mtn_node = nothing
+        mtn_idx = nothing
 
+        #= 
+        summ  = d[path[1]]
         for i in 2:len_p
             node = path[i]
             summ += d[node]
@@ -318,16 +329,46 @@ function irreductible_path_ind(ac_path, set_for_SP, result, instance_data)
                 mtn_sub_path = (path[1:i], i, mtn_node) #Changer ceci pourait régler le problème
                 break
             end  
+        end =#
+        
+        for i in len_p-1:-1:1
+            node = path[i]
+            if node in L_M_set && y_val[node] >= 0.9
+                mtn_idx  = i
+                mtn_node = node
+                break
+            end
         end
+
+        #=   if mtn_idx === nothing
+            # Aucune maintenance sur la route : le sous-chemin optimal correspond à la route complète
+            return (path, len_p, nothing)
+        end =#
+
+        if mtn_node !== nothing
+            summ = result.u[path[mtn_idx-1]]
+            #mtn_sub_path = (path, len_p, mtn_node)  # valeur par défaut si aucun dépassement après mtn_idx
+            for i in mtn_idx:len_p
+                node = path[i]
+                summ += d[node]
+                if summ > max_flt
+                    mtn_sub_path = (path[1:i], i, mtn_node)
+                    break
+                end
+            end
+        end
+
         return mtn_sub_path
 
     elseif result.status == "INFEASIBLE"
         infeas_sub_path = nothing
+        y_val = result.y
         
         path  = ac_path.path
         len_p = ac_path.len_path
         summ  = d[path[1]]
 
+        #= 
         for i in 2:len_p
             node = path[i]
             pred_node = path[i-1]
@@ -338,7 +379,20 @@ function irreductible_path_ind(ac_path, set_for_SP, result, instance_data)
                 infeas_sub_path = (path[1:i], i)
                 break
             end
-        end
+        end =#
+        for i in 2:len_p
+            node = path[i]
+            if node in L_M_set && y_val[node] >= 0.9
+               #=  mtn_idx  = i
+                mtn_node = node =#
+                summ = 0
+            end
+            summ += d[node]
+            if summ > max_flt
+                infeas_sub_path = (path[1:i], i)
+                break
+            end
+        end 
         return infeas_sub_path
     end
 end
