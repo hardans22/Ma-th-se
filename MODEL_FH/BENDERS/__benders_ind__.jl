@@ -119,9 +119,9 @@ function benders_decomp_ind(env, instance_data, sp_method, output_file, nbr_thre
         all_satisfied = true
         all_optimal = true
         fixing_cuts = Dict()
-        #= println()
+        println()
         println("NBR ITERATION : ", nbr_iter)
-         =#
+        
         for ac in a_nodes
             set_for_SP_ac = sets_for_SP[ac]
             if sp_method == "MILP"
@@ -141,9 +141,9 @@ function benders_decomp_ind(env, instance_data, sp_method, output_file, nbr_thre
             all_sptime += (result.time + build_t)
             all_build_t += build_t
             
-            #= println("AIRCRAFT : ", ac)
+            println("AIRCRAFT : ", ac)
             println("STATUS : ", result.status)
-             =#if result.status == "OPTIMAL"
+            if result.status == "OPTIMAL"
                 gap = abs(result.obj - Z_val[ac])
                 if gap < 0.0
                     println("PPPPPROBLEMMMMMMMMMME")
@@ -176,11 +176,11 @@ function benders_decomp_ind(env, instance_data, sp_method, output_file, nbr_thre
                     cut = build_fix_cut(ac, aircraft_paths[ac], irr_path, x, fix_dict)
                     if cut !== nothing 
                         #= println()
-                        println("FIXING CUT : ", cut)
-                         =#
+                        println("ON FIXE DES CERTAINES VARIABLES")
+                        println() =#
                         fixing_cuts[ac] = cut
-                        MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
-                        nbr_fix += 1
+                        #MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
+                        #nbr_fix += 1
                     end
                 end
 
@@ -196,15 +196,16 @@ function benders_decomp_ind(env, instance_data, sp_method, output_file, nbr_thre
                 all_optimal = false
             end 
         end
-        #= if all_optimal
+        if all_optimal
             for cut in values(fixing_cuts)
-                #= println()
-                println("FIXING CUT : ", cut) =#
+                println()
+                println("ON FIXE DES CERTAINES VARIABLES")
+                println()
                 MOI.submit(master_model, MOI.LazyConstraint(cb_data), cut)
                 nbr_fix += 1
             end 
         end
-         =#
+        
         # ---- Mise à jour de la meilleure solution complète ----
         if all_satisfied && obj_Z < best_obj - 1e-6
             best_obj = obj_Z
