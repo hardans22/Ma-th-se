@@ -82,13 +82,13 @@ function buildM(env, instance_data, nbr_thread, silent, graph_reduc, time_limit,
     model[:y] = @variable(model,  0 <= y[j in L_M] <= 1)                        #1 if a maintenance is performed at node j 
 
     # ===================== Route Constraints =====================
-    #= @constraint(model, sum(x[i] for i in A_S) == nbr_K)
+    @constraint(model, sum(x[i] for i in A_S) == nbr_K)
     @constraint(model, sum(x[i] for i in A_T) == nbr_K)
-     =#
+     
     @constraint(model, c1[i in V_wt_st], sum(x[(i,j)] for j in get(successors, i, [])) == 1)
     @constraint(model, c2[i in V_wt_st], sum(x[(j,i)] for j in get(predecessors, i, [])) == sum(x[(i,j)] for j in get(successors, i, [])))
     @constraint(model, c3[j in L_M], y[j] <= sum(x[(i, j)] for i in get(pred_A_M, j, [])))
-    @constraint(model, sum(y[j] for j in L_M) <= length(H_aircraft))
+    #@constraint(model, sum(y[j] for j in L_M) <= length(H_aircraft))
      
     # =========== Variables ===========                        
     if graph_reduc 

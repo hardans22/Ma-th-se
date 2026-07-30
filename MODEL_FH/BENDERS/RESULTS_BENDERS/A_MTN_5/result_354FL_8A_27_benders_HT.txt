@@ -1,11 +1,11 @@
 
 -----------------------INSTANCE 354FL_8A_27--------------------------
-Gurobi 13.0.0 (linux64) logging started mer. 22 juil. 2026 09:16:43
+Gurobi 13.0.0 (linux64) logging started jeu. 30 juil. 2026 14:00:09
 
 Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_5/result_354FL_8A_27_benders_HT.txt"
 Set parameter Cuts to value 0
 
-Gurobi 13.0.0 (linux64) logging started mer. 22 juil. 2026 09:16:44
+Gurobi 13.0.0 (linux64) logging started jeu. 30 juil. 2026 14:00:10
 
 Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_5/result_354FL_8A_27_benders_HT.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
@@ -41,23 +41,59 @@ Root relaxation: objective 0.000000e+00, 810 iterations, 0.01 seconds (0.01 work
  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 
      0     0    0.00000    0    -          -    0.00000      -     -    0s
-     0     0    0.00000    0   10          -    0.00000      -     -    0s
      0     0    0.00000    0    -          -    0.00000      -     -    0s
-     0     0    0.00000    0   24          -    0.00000      -     -    0s
-     0     0    0.00000    0   24          -    0.00000      -     -    0s
      0     0    0.00000    0    -          -    0.00000      -     -    0s
-     0     0    0.00000    0    6          -    0.00000      -     -    0s
-     0     2    0.00000    0    6          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0   30          -    0.00000      -     -    0s
+     0     0    0.00000    0   11          -    0.00000      -     -    0s
+     0     0    0.00000    0   11          -    0.00000      -     -    0s
+     0     0    0.00000    0   11          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0   15          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0   27          -    0.00000      -     -    1s
+     0     0    0.00000    0   21          -    0.00000      -     -    1s
+     0     0    0.00000    0   21          -    0.00000      -     -    1s
+     0     0    0.00000    0   21          -    0.00000      -     -    1s
+     0     0    0.00000    0   21          -    0.00000      -     -    1s
+     0     2   16.25000    0   21          -   16.25000      -     -    1s
+  3217   511  130.00000   25   18          -  130.00000      -   9.0    5s
+* 4272    34              30     130.0000000  130.00000  0.00%   8.3    6s
 
 Cutting planes:
-  Lazy constraints: 92
+  Lazy constraints: 1154
 
-Explored 75 nodes (3256 simplex iterations) in 1.17 seconds (0.12 work units)
+Explored 4468 nodes (39145 simplex iterations) in 6.53 seconds (0.98 work units)
 Thread count was 8 (of 16 available processors)
 
-Solution count 0
+Solution count 1: 130 
 
-Model is infeasible
-Best objective -, best bound -, gap -
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.300000000000e+02, best bound 1.300000000000e+02, gap 0.0000%
 
-User-callback calls 771, time in user-callback 3.06 sec
+User-callback calls 10140, time in user-callback 7.64 sec
+
+
+=== Résultat final ===
+Objectif: 130.0
+Temps total du master: 6.5038s
+Temps total du sp: 0.0326s
+Temps total: 6.5364s
+Nombre de coupes: 1178
+Nombre de coupes faisabilité: 100
+Nombre de coupes d'optimalité: 1074
+Nombre de coupes de fixing: 4
+Nombre d'itérations: 454

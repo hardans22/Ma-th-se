@@ -66,9 +66,9 @@ function combine_csv(folder, type)
 end
 
 
-for fold in ["A_MTN_8/", "A_MTN_12/", "A_MTN_15/"]
+for fold in ["A_MTN_3/"]
     println("FOLD = ", fold)
-    folder = "/home/dansou/Téléchargements/RESULTS_MILP_VS_H/"*fold
+    folder = "/home/dansou/Téléchargements/RESULTS_MILP/"*fold
     type = "MILP.csv"
     combine_csv(folder,type)
 end

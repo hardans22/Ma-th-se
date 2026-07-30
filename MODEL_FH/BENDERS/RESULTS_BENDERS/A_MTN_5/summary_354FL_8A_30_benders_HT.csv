@@ -1,2 +1,2 @@
 Instances,UB,MP_Time,SP_Time,Time,Nbr_mtn,Nbr_iter,Nbr_feas_cuts,Nbr_opti_cuts,Nbr_fix_cuts,Nbr_cuts
-354FL_8A_30,120.0,4.1341,0.0203,4.1544,5,252,197,350,4,551
+354FL_8A_30,120.0,16.0396,0.0505,16.0901,5,1311,1024,660,2,1686

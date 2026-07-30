@@ -20,7 +20,7 @@ work_limit = 40
 
 # =============== En local sur mon ordi ===============
 inst = ARGS[1]
-instance = "../../INSTANCES/instances_new_json/"*inst
+instance = "../../INSTANCES/instances_literature_json/"*inst
 
 # ============== Gestion des fichiers et la sortie =================
 parts = split(instance, "/")

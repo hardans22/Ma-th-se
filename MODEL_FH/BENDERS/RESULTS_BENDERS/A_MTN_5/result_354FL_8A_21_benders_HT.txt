@@ -1,11 +1,11 @@
 
 -----------------------INSTANCE 354FL_8A_21--------------------------
-Gurobi 13.0.0 (linux64) logging started mer. 22 juil. 2026 09:44:22
+Gurobi 13.0.0 (linux64) logging started lun. 27 juil. 2026 09:53:00
 
 Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_5/result_354FL_8A_21_benders_HT.txt"
 Set parameter Cuts to value 0
 
-Gurobi 13.0.0 (linux64) logging started mer. 22 juil. 2026 09:44:23
+Gurobi 13.0.0 (linux64) logging started lun. 27 juil. 2026 09:53:02
 
 Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_5/result_354FL_8A_21_benders_HT.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
@@ -43,56 +43,48 @@ Root relaxation: objective 0.000000e+00, 810 iterations, 0.01 seconds (0.01 work
      0     0    0.00000    0    -          -    0.00000      -     -    0s
      0     0    0.00000    0    -          -    0.00000      -     -    0s
      0     0    0.00000    0    -          -    0.00000      -     -    0s
-     0     0    0.00000    0   24          -    0.00000      -     -    0s
-     0     0    0.00000    0   12          -    0.00000      -     -    0s
-     0     0    0.00000    0   12          -    0.00000      -     -    0s
-     0     0    0.00000    0   12          -    0.00000      -     -    0s
-     0     0    0.00000    0    6          -    0.00000      -     -    0s
      0     0    0.00000    0    -          -    0.00000      -     -    0s
      0     0    0.00000    0    -          -    0.00000      -     -    0s
-     0     0    0.00000    0   16          -    0.00000      -     -    0s
      0     0    0.00000    0    -          -    0.00000      -     -    0s
-     0     0   35.00000    0   32          -   35.00000      -     -    0s
-     0     0   35.00000    0   32          -   35.00000      -     -    0s
-     0     0   35.00000    0   32          -   35.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
      0     0   35.00000    0    -          -   35.00000      -     -    0s
-     0     0   35.00000    0   20          -   35.00000      -     -    0s
-     0     2   35.00000    0    8          -   35.00000      -     -    1s
-H 3620  1909                     990.0000000   35.00000  96.5%   9.5    5s
-H 3754  1862                     970.0000000   35.00000  96.4%  10.6    6s
-  7802  2128   35.00000   53   10  970.00000   35.00000  96.4%   9.9   10s
-*10433  2936              63     525.0000000   35.00000  93.3%   9.5   12s
-*11264  2971              68     155.0000000   35.00000  77.4%   9.2   13s
-*11265  2953              68     120.0000000   35.00000  70.8%   9.2   13s
- 12148  3270   35.00000   56   17  120.00000   35.00000  70.8%   9.1   15s
-*12853  3405              52      75.0000000   35.00000  53.3%   8.9   16s
- 15720  4459   35.00000   67   13   75.00000   35.00000  53.3%   8.5   20s
- 19563  5708   35.00000   72    -   75.00000   35.00000  53.3%   7.8   25s
-*22459  6376              72      55.0000000   35.00000  36.4%   7.5   29s
- 23415  6658 infeasible   66        55.00000   35.00000  36.4%   7.4   30s
-*26253   424              83      35.0000000   35.00000  0.00%   7.0   34s
+     0     0   35.00000    0   18          -   35.00000      -     -    0s
+H    0     0                    1980.0000000   35.00000  98.2%     -    0s
+H    0     0                    1485.0000000   35.00000  97.6%     -    0s
+     0     0   35.00000    0    - 1485.00000   35.00000  97.6%     -    0s
+     0     0   35.00000    0   12 1485.00000   35.00000  97.6%     -    0s
+     0     0   35.00000    0   12 1485.00000   35.00000  97.6%     -    0s
+     0     0   35.00000    0    - 1485.00000   35.00000  97.6%     -    1s
+     0     0   35.00000    0    8 1485.00000   35.00000  97.6%     -    1s
+H    0     0                     855.0000000   35.00000  95.9%     -    1s
+     0     2   35.00000    0    8  855.00000   35.00000  95.9%     -    1s
+*  658    10              10      35.0000000   35.00000  0.00%   7.4    3s
 
 Cutting planes:
-  Lazy constraints: 4503
+  Lazy constraints: 267
 
-Explored 26490 nodes (188774 simplex iterations) in 34.28 seconds (8.15 work units)
+Explored 660 nodes (6629 simplex iterations) in 3.09 seconds (0.23 work units)
 Thread count was 8 (of 16 available processors)
 
-Solution count 8: 35 55 75 ... 990
+Solution count 4: 35 855 1485 1980 
 
 Optimal solution found (tolerance 1.00e-04)
 Best objective 3.500000000000e+01, best bound 3.500000000000e+01, gap 0.0000%
 
-User-callback calls 57905, time in user-callback 27.87 sec
+User-callback calls 2168, time in user-callback 4.85 sec
 
 
 === Résultat final ===
 Objectif: 35.0
-Temps total du master: 34.0848s
-Temps total du sp: 0.1965s
-Temps total: 34.2813s
-Nombre de coupes: 5836
-Nombre de coupes faisabilité: 1338
-Nombre de coupes d'optimalité: 4496
-Nombre de coupes de fixing: 2
-Nombre d'itérations: 2441
+Temps total du master: 3.0806s
+Temps total du sp: 0.012s
+Temps total: 3.0926s
+Nombre de coupes: 267
+Nombre de coupes faisabilité: 100
+Nombre de coupes d'optimalité: 163
+Nombre de coupes de fixing: 4
+Nombre d'itérations: 192
