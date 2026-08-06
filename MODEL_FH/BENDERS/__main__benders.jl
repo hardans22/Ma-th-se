@@ -3,7 +3,7 @@ using JuMP, Gurobi, JSON, MathOptInterface, DataFrames, XLSX, CSV, Dates
 include("../../build_graph.jl")
 include("__benders__.jl")
 include("__benders_ind__.jl")
-include("__benders__2.jl")
+#include("__benders__2.jl")
 include("__cuts_func__.jl")
 
 env = Gurobi.Env()
@@ -11,9 +11,9 @@ env = Gurobi.Env()
 instance = ARGS[1]
 sp_method = ARGS[2]
 
-nbr_thread = 8
+nbr_thread = 1
 silent = false
-time_limit = 300
+time_limit = 600
 cut_type = "desagg"
 
 # =============== Sur Nibi ===============
@@ -40,7 +40,7 @@ close(Output_file)
 
 instance_data = build_graph(instance)
 solution = benders_decomp_ind(env, instance_data, sp_method, path_file, nbr_thread, silent, time_limit)
-#solution = benders_decomp(env, instance_data, sp_method, path_file, nbr_thread, silent, time_limit)
+#solution = benders_decomp(env, instance_data, sp_method, cut_type, path_file, nbr_thread, silent, time_limit)
 other_info = solution.other_info
 Output_file = open(path_file, "a") 
 #print_solution(solution, instance_data, Output_file)

@@ -1,0 +1,87 @@
+
+-----------------------INSTANCE 667FL_20A_9--------------------------
+Gurobi 13.0.0 (linux64) logging started jeu. 30 juil. 2026 16:04:00
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_8/result_667FL_20A_9_benders_HT.txt"
+Set parameter Cuts to value 0
+
+Gurobi 13.0.0 (linux64) logging started jeu. 30 juil. 2026 16:04:01
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_8/result_667FL_20A_9_benders_HT.txt"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
+
+CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  300
+FeasibilityTol  1e-09
+IntFeasTol  1e-09
+Cuts  0
+Threads  8
+LazyConstraints  1
+
+Optimize a model with 1376 rows, 12385 columns and 37075 nonzeros (Min)
+Model fingerprint: 0x055eda6e
+Model has 20 linear objective coefficients
+Variable types: 20 continuous, 12365 integer (12365 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+00, 2e+01]
+Presolve removed 580 rows and 893 columns
+Presolve time: 0.04s
+Presolved: 796 rows, 11492 columns, 22928 nonzeros
+Variable types: 20 continuous, 11472 integer (11472 binary)
+
+Root relaxation: objective 0.000000e+00, 1701 iterations, 0.03 seconds (0.03 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0   20.00000    0    -          -   20.00000      -     -    0s
+     0     0   20.00000    0   37          -   20.00000      -     -    0s
+     0     0   20.00000    0    -          -   20.00000      -     -    1s
+     0     0   20.00000    0    -          -   20.00000      -     -    1s
+     0     0   20.00000    0   18          -   20.00000      -     -    1s
+     0     0   20.00000    0   18          -   20.00000      -     -    1s
+     0     0   20.00000    0    -          -   20.00000      -     -    1s
+     0     0   20.00000    0    -          -   20.00000      -     -    1s
+     0     0   20.00000    0   21          -   20.00000      -     -    1s
+     0     2   20.00000    0    8          -   20.00000      -     -    2s
+   224   163   20.00000   21   42          -   20.00000      -   7.9    5s
+  2633   422   20.00000   11    -          -   20.00000      -  12.5   10s
+  4732  1488   20.00000   10   21          -   20.00000      -  11.4   15s
+H 4733  1414                    1260.0000000   20.00000  98.4%  11.4   15s
+  5242  1341   20.00000   22   52 1260.00000   20.00000  98.4%  11.9   20s
+  6471  1498   20.00000   32   49 1260.00000   20.00000  98.4%  11.5   27s
+H 7054  1604                     400.0000000   20.00000  95.0%  11.4   29s
+  7420  1185 infeasible   32       400.00000   20.00000  95.0%  11.5   31s
+* 8090   199              21      20.0000000   20.00000  0.00%  10.8   32s
+
+Cutting planes:
+  Lazy constraints: 644
+
+Explored 8547 nodes (93102 simplex iterations) in 32.95 seconds (4.28 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 3: 20 400 1260 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.000000000000e+01, best bound 2.000000000000e+01, gap 0.0000%
+
+User-callback calls 19396, time in user-callback 31.97 sec
+
+
+=== Résultat final ===
+Objectif: 20.0
+Temps total du master: 32.8963s
+Temps total du sp: 0.0537s
+Temps total: 32.95s
+Nombre de coupes: 1110
+Nombre de coupes faisabilité: 182
+Nombre de coupes d'optimalité: 921
+Nombre de coupes de fixing: 7
+Nombre d'itérations: 540

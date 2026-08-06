@@ -128,40 +128,12 @@ function benders_decomp(env, instance_data, sp_method, cut_type, output_file, nb
 
         runtime_ref = Ref{Cdouble}(0.0)
         Gurobi.GRBcbget(cb_data, cb_where, Gurobi.GRB_CB_RUNTIME, runtime_ref)
-        current_time = runtime_ref[]
-        
-        #= if current_time - last_print >= 3.0
-            last_print  = current_time
-            ub_str = best_obj == Inf ? "N/A" : string(best_obj)
-            println("INCUMBENT = $ub_str | LB = $LB | OPT_GAP = $(format_gap(best_obj, LB)) | TIME = $(round(current_time))")
-        end
-        =#
-        #= # ================ ENDING CRITERIA ================
-        if best_obj - LB <= 1e-4
-            println("ENDING")
-            #println("INCUMBENT = $ub_str | LB = $LB | OPT_GAP = $(format_gap(best_obj, LB)) | TIME = $(round(current_time))")
-            Gurobi.GRBterminate(backend(master_model))
-            return
-        end 
-        =#
         aircraft_paths = build_all_paths(x_val, A, a_nodes) 
         
         if sp_method == "MILP" 
             result = solve_sp(sp_model, x_val, L_M, V)
-            #= result_pd = solve_sp_pd(aircraft_paths, instance_data, a_nodes)
-            if result_pd.obj != result.obj
-                println("DIFFÉRENCE")
-                println("Result du milp = ", result.obj)
-                println("Result du pd = ", result_pd.obj)
-            end =#
-        elseif sp_method == "PD"
+        elseif sp_method == "HT"
             result = solve_sp_pd(aircraft_paths, instance_data, a_nodes)
-            #= result_milp = solve_sp(sp_model, x_val, L_M, V)
-            if result_milp.obj != result.obj
-                println("DIFFÉRENCE")
-                println("Result du milp = ", result_milp.obj)
-                println("Result du pd = ", result.obj)
-            end =#
         end 
 
         sp_obj = result.obj

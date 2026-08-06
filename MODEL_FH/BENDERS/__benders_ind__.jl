@@ -171,7 +171,7 @@ function benders_decomp_ind(env, instance_data, sp_method, output_file, nbr_thre
                     end
                 end
 
-                if ac in H_aircraft && result.obj == 0 && fix_dict[ac] != 1
+                if ac in H_aircraft && result.obj == 0
                     #println("iteration : ", nbr_iter)
                     cut = build_fix_cut(ac, aircraft_paths[ac], irr_path, x, fix_dict)
                     if cut !== nothing 

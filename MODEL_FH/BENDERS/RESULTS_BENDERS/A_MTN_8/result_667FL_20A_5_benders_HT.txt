@@ -1,11 +1,11 @@
 
 -----------------------INSTANCE 667FL_20A_5--------------------------
-Gurobi 13.0.0 (linux64) logging started lun. 27 juil. 2026 10:16:22
+Gurobi 13.0.0 (linux64) logging started jeu. 30 juil. 2026 16:00:02
 
 Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_8/result_667FL_20A_5_benders_HT.txt"
 Set parameter Cuts to value 0
 
-Gurobi 13.0.0 (linux64) logging started lun. 27 juil. 2026 10:16:24
+Gurobi 13.0.0 (linux64) logging started jeu. 30 juil. 2026 16:00:03
 
 Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_8/result_667FL_20A_5_benders_HT.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
@@ -31,11 +31,11 @@ Coefficient statistics:
   Bounds range     [0e+00, 0e+00]
   RHS range        [1e+00, 2e+01]
 Presolve removed 580 rows and 893 columns
-Presolve time: 0.04s
+Presolve time: 0.02s
 Presolved: 796 rows, 11492 columns, 22928 nonzeros
 Variable types: 20 continuous, 11472 integer (11472 binary)
 
-Root relaxation: objective 0.000000e+00, 1709 iterations, 0.02 seconds (0.03 work units)
+Root relaxation: objective 0.000000e+00, 1709 iterations, 0.01 seconds (0.03 work units)
 
     Nodes    |    Current Node    |     Objective Bounds      |     Work
  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
@@ -43,33 +43,31 @@ Root relaxation: objective 0.000000e+00, 1709 iterations, 0.02 seconds (0.03 wor
      0     0    0.00000    0    -          -    0.00000      -     -    0s
      0     0    0.00000    0    -          -    0.00000      -     -    0s
      0     0    0.00000    0   78          -    0.00000      -     -    0s
-H    0     0                    3215.0000000    0.00000   100%     -    1s
-H    0     0                    1835.0000000    0.00000   100%     -    1s
-     0     0    0.00000    0    - 1835.00000    0.00000   100%     -    1s
-     0     0    0.00000    0   28 1835.00000    0.00000   100%     -    1s
-     0     0    0.00000    0   28 1835.00000    0.00000   100%     -    1s
-     0     0    0.00000    0   28 1835.00000    0.00000   100%     -    1s
+H    0     0                    3215.0000000    0.00000   100%     -    0s
+H    0     0                    1835.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0    - 1835.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   28 1835.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   28 1835.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   28 1835.00000    0.00000   100%     -    0s
      0     0    0.00000    0    - 1835.00000    0.00000   100%     -    1s
      0     0    0.00000    0   16 1835.00000    0.00000   100%     -    1s
-     0     0    0.00000    0    - 1835.00000    0.00000   100%     -    2s
-     0     0    0.00000    0   56 1835.00000    0.00000   100%     -    2s
-     0     0    0.00000    0    8 1835.00000    0.00000   100%     -    2s
-     0     0    0.00000    0    8 1835.00000    0.00000   100%     -    2s
-     0     2    0.00000    0    8 1835.00000    0.00000   100%     -    4s
-    13    10    0.00000    4    - 1835.00000    0.00000   100%  27.2    5s
-H 2871  1149                     805.0000000    0.00000   100%  11.6    8s
-H 2871  1091                     570.0000000    0.00000   100%  11.6    9s
-  2935  1125    2.54630   16  103  570.00000    0.00000   100%  12.8   10s
-H 3222  1148                     155.0000000    0.00000   100%  12.3   14s
-  3261  1180    3.33333   20   77  155.00000    0.00000   100%  12.2   15s
-  3663  1322    4.70085   28   65  155.00000    3.12500  98.0%  11.3   20s
-* 3749  1171              56     110.0000000    3.31325  97.0%  11.2   22s
-* 3939  1048              54      50.0000000   27.50000  45.0%  10.8   23s
+     0     0    0.00000    0    - 1835.00000    0.00000   100%     -    1s
+     0     0    0.00000    0   56 1835.00000    0.00000   100%     -    1s
+     0     0    0.00000    0    8 1835.00000    0.00000   100%     -    1s
+     0     0    0.00000    0    8 1835.00000    0.00000   100%     -    1s
+     0     2    0.00000    0    8 1835.00000    0.00000   100%     -    2s
+  2101   588    0.00000   12  110 1835.00000    0.00000   100%  12.6    5s
+H 2871  1149                     805.0000000    0.00000   100%  11.6    6s
+H 2871  1091                     570.0000000    0.00000   100%  11.6    6s
+H 3222  1148                     155.0000000    0.00000   100%  12.3    9s
+  3261  1180    3.33333   20   77  155.00000    0.00000   100%  12.2   10s
+* 3749  1171              56     110.0000000    3.31325  97.0%  11.2   15s
+* 3939  1048              54      50.0000000   27.50000  45.0%  10.8   15s
 
 Cutting planes:
   Lazy constraints: 256
 
-Explored 4250 nodes (50614 simplex iterations) in 23.15 seconds (2.94 work units)
+Explored 4250 nodes (50614 simplex iterations) in 15.98 seconds (2.94 work units)
 Thread count was 8 (of 16 available processors)
 
 Solution count 7: 50 110 155 ... 3215
@@ -77,14 +75,14 @@ Solution count 7: 50 110 155 ... 3215
 Optimal solution found (tolerance 1.00e-04)
 Best objective 5.000000000000e+01, best bound 5.000000000000e+01, gap 0.0000%
 
-User-callback calls 10493, time in user-callback 22.15 sec
+User-callback calls 10367, time in user-callback 15.34 sec
 
 
 === Résultat final ===
 Objectif: 50.0
-Temps total du master: 23.1005s
-Temps total du sp: 0.0496s
-Temps total: 23.1501s
+Temps total du master: 15.9505s
+Temps total du sp: 0.0375s
+Temps total: 15.988s
 Nombre de coupes: 600
 Nombre de coupes faisabilité: 4
 Nombre de coupes d'optimalité: 590

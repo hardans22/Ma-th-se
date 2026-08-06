@@ -1,11 +1,11 @@
 
 -----------------------INSTANCE 354FL_8A_21--------------------------
-Gurobi 13.0.0 (linux64) logging started lun. 27 juil. 2026 09:53:00
+Gurobi 13.0.0 (linux64) logging started ven. 31 juil. 2026 09:08:54
 
 Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_5/result_354FL_8A_21_benders_HT.txt"
 Set parameter Cuts to value 0
 
-Gurobi 13.0.0 (linux64) logging started lun. 27 juil. 2026 09:53:02
+Gurobi 13.0.0 (linux64) logging started ven. 31 juil. 2026 09:08:55
 
 Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_5/result_354FL_8A_21_benders_HT.txt"
 Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
@@ -14,7 +14,7 @@ CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
 Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
 
 Non-default parameters:
-TimeLimit  300
+TimeLimit  600
 FeasibilityTol  1e-09
 IntFeasTol  1e-09
 Cuts  0
@@ -55,36 +55,45 @@ Root relaxation: objective 0.000000e+00, 810 iterations, 0.01 seconds (0.01 work
      0     0   35.00000    0   18          -   35.00000      -     -    0s
 H    0     0                    1980.0000000   35.00000  98.2%     -    0s
 H    0     0                    1485.0000000   35.00000  97.6%     -    0s
-     0     0   35.00000    0    - 1485.00000   35.00000  97.6%     -    0s
-     0     0   35.00000    0   12 1485.00000   35.00000  97.6%     -    0s
-     0     0   35.00000    0   12 1485.00000   35.00000  97.6%     -    0s
+     0     0   35.00000    0    - 1485.00000   35.00000  97.6%     -    1s
+     0     0   35.00000    0   12 1485.00000   35.00000  97.6%     -    1s
+     0     0   35.00000    0   12 1485.00000   35.00000  97.6%     -    1s
      0     0   35.00000    0    - 1485.00000   35.00000  97.6%     -    1s
      0     0   35.00000    0    8 1485.00000   35.00000  97.6%     -    1s
 H    0     0                     855.0000000   35.00000  95.9%     -    1s
      0     2   35.00000    0    8  855.00000   35.00000  95.9%     -    1s
-*  658    10              10      35.0000000   35.00000  0.00%   7.4    3s
+  2870  1760   35.00000   20   22  855.00000   35.00000  95.9%   9.4    5s
+  5078  2346   35.00000   48   26  855.00000   35.00000  95.9%   8.8   10s
+* 6491  2366              53     120.0000000   35.00000  70.8%   8.3   12s
+* 6684  2282              51      60.0000000   35.00000  41.7%   8.3   12s
+* 7848  2290              60      40.0000000   35.00000  12.5%   7.9   14s
+  8575  2655 infeasible   58        40.00000   35.00000  12.5%   7.9   15s
+ 11137  3971   35.00000   60    -   40.00000   35.00000  12.5%   7.8   20s
+ 13850  5233   35.00000   58   31   40.00000   35.00000  12.5%   7.8   25s
+ 16818  6654   35.00000   80   12   40.00000   35.00000  12.5%   7.8   30s
+*17708   497              59      35.0000000   35.00000  0.00%   7.8   32s
 
 Cutting planes:
-  Lazy constraints: 267
+  Lazy constraints: 3558
 
-Explored 660 nodes (6629 simplex iterations) in 3.09 seconds (0.23 work units)
+Explored 17758 nodes (140924 simplex iterations) in 32.37 seconds (5.15 work units)
 Thread count was 8 (of 16 available processors)
 
-Solution count 4: 35 855 1485 1980 
+Solution count 8: 35 40 60 ... 1980
 
 Optimal solution found (tolerance 1.00e-04)
 Best objective 3.500000000000e+01, best bound 3.500000000000e+01, gap 0.0000%
 
-User-callback calls 2168, time in user-callback 4.85 sec
+User-callback calls 39595, time in user-callback 28.87 sec
 
 
 === Résultat final ===
 Objectif: 35.0
-Temps total du master: 3.0806s
-Temps total du sp: 0.012s
-Temps total: 3.0926s
-Nombre de coupes: 267
-Nombre de coupes faisabilité: 100
-Nombre de coupes d'optimalité: 163
-Nombre de coupes de fixing: 4
-Nombre d'itérations: 192
+Temps total du master: 32.2288s
+Temps total du sp: 0.1476s
+Temps total: 32.3764s
+Nombre de coupes: 4487
+Nombre de coupes faisabilité: 1287
+Nombre de coupes d'optimalité: 3198
+Nombre de coupes de fixing: 2
+Nombre d'itérations: 2542

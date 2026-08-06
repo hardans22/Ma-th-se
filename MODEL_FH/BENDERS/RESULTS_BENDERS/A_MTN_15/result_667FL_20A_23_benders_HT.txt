@@ -1,0 +1,99 @@
+
+-----------------------INSTANCE 667FL_20A_23--------------------------
+Gurobi 13.0.0 (linux64) logging started jeu. 30 juil. 2026 16:41:02
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_15/result_667FL_20A_23_benders_HT.txt"
+Set parameter Cuts to value 0
+
+Gurobi 13.0.0 (linux64) logging started jeu. 30 juil. 2026 16:41:04
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_15/result_667FL_20A_23_benders_HT.txt"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
+
+CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  600
+FeasibilityTol  1e-09
+IntFeasTol  1e-09
+Cuts  0
+Threads  8
+LazyConstraints  1
+
+Optimize a model with 1376 rows, 12378 columns and 37054 nonzeros (Min)
+Model fingerprint: 0xa84c79fe
+Model has 20 linear objective coefficients
+Variable types: 20 continuous, 12358 integer (12358 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+00, 2e+01]
+Presolve removed 580 rows and 893 columns
+Presolve time: 0.04s
+Presolved: 796 rows, 11485 columns, 22914 nonzeros
+Variable types: 20 continuous, 11465 integer (11465 binary)
+
+Root relaxation: objective 0.000000e+00, 1717 iterations, 0.03 seconds (0.03 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0    0.00000    0   50          -    0.00000      -     -    0s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0   58          -    0.00000      -     -    1s
+     0     0    0.00000    0   58          -    0.00000      -     -    1s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0    -          -    0.00000      -     -    1s
+     0     0    0.00000    0   38          -    0.00000      -     -    1s
+     0     2    0.00000    0    6          -    0.00000      -     -    1s
+   679   414    0.00000   21    -          -    0.00000      -  12.7    5s
+  2998  1728    0.00000   37   16          -    0.00000      -  14.3   10s
+  4288  2436    0.00000   13    -          -    0.00000      -  19.5   15s
+  6018  3007    0.00000   29   15          -    0.00000      -  19.0   21s
+  8385  3780    2.00000   60   36          -    0.00000      -  20.2   25s
+ 11774  5457    1.66667   27   81          -    0.00000      -  18.6   30s
+ 13937  7145   20.00000   50    -          -    0.00000      -  18.9   35s
+ 16330  9002    1.42857   36   71          -    0.00000      -  19.4   40s
+ 18916 11261   20.00000   46   25          -    0.00000      -  20.0   45s
+ 21324 13448   20.00000   59   71          -    0.00000      -  20.2   50s
+ 25186 16409    6.66667   45   46          -    0.00000      -  21.3   55s
+ 27730 18562   44.37500   55   24          -    0.00000      -  21.5   60s
+ 30589 21132   52.50000   72   18          -    0.00000      -  22.3   65s
+ 33557 23878   61.90244  226   51          -    0.00000      -  23.0   70s
+ 36720 27130    1.42857   22  101          -    0.00000      -  23.5   75s
+ 39279 29020   20.00000  119   61          -    0.00000      -  24.2   80s
+ 41484 31154   11.28571   55   71          -    0.00000      -  24.8   85s
+ 44852 34200    1.42857   42   96          -    0.00000      -  25.3   91s
+ 46372 35589    1.42857   42   76          -    0.00000      -  25.7   95s
+ 49364 38061    2.53590   33  160          -    0.00000      -  26.2  100s
+ 52329 40369    1.66667   23   71          -    0.00000      -  27.0  106s
+ 54941 41911    1.66667   49  101          -    0.00000      -  27.3  110s
+*56499 37258             104     120.0000000    0.00000   100%  27.5  113s
+
+Cutting planes:
+  Lazy constraints: 4692
+
+Explored 56562 nodes (1565551 simplex iterations) in 113.40 seconds (54.15 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 1: 120 
+
+Solve interrupted
+Best objective 1.200000000000e+02, best bound 0.000000000000e+00, gap 100.0000%
+
+User-callback calls 119487, time in user-callback 79.32 sec
+
+
+=== Résultat final ===
+Objectif: Inf
+Temps total du master: 113.3308s
+Temps total du sp: 0.0743s
+Temps total: 113.4051s
+Nombre de coupes: 5474
+Nombre de coupes faisabilité: 1170
+Nombre de coupes d'optimalité: 4302
+Nombre de coupes de fixing: 2
+Nombre d'itérations: 1172

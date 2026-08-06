@@ -1,0 +1,95 @@
+
+-----------------------INSTANCE 667FL_20A_15--------------------------
+Gurobi 13.0.0 (linux64) logging started jeu. 30 juil. 2026 16:08:53
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_12/result_667FL_20A_15_benders_HT.txt"
+Set parameter Cuts to value 0
+
+Gurobi 13.0.0 (linux64) logging started jeu. 30 juil. 2026 16:08:54
+
+Set parameter LogFile to value "RESULTS_BENDERS/A_MTN_12/result_667FL_20A_15_benders_HT.txt"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
+
+CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  300
+FeasibilityTol  1e-09
+IntFeasTol  1e-09
+Cuts  0
+Threads  8
+LazyConstraints  1
+
+Optimize a model with 1376 rows, 12385 columns and 37075 nonzeros (Min)
+Model fingerprint: 0xa7fa986f
+Model has 20 linear objective coefficients
+Variable types: 20 continuous, 12365 integer (12365 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+00, 2e+01]
+Presolve removed 580 rows and 893 columns
+Presolve time: 0.04s
+Presolved: 796 rows, 11492 columns, 22928 nonzeros
+Variable types: 20 continuous, 11472 integer (11472 binary)
+
+Root relaxation: objective 0.000000e+00, 1705 iterations, 0.02 seconds (0.03 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0    -          -    0.00000      -     -    0s
+     0     0   25.00000    0    -          -   25.00000      -     -    0s
+     0     0   25.00000    0    -          -   25.00000      -     -    1s
+     0     0   25.00000    0   30          -   25.00000      -     -    1s
+     0     0   25.00000    0    -          -   25.00000      -     -    1s
+     0     0   25.00000    0    -          -   25.00000      -     -    1s
+     0     0   25.00000    0    8          -   25.00000      -     -    1s
+     0     0   25.00000    0    8          -   25.00000      -     -    1s
+     0     0   25.00000    0    8          -   25.00000      -     -    1s
+     0     2   25.00000    0    6          -   25.00000      -     -    2s
+   338   224   25.00000   18   18          -   25.00000      -   7.8    5s
+  2757   986 infeasible   43               -   25.00000      -   9.9   10s
+  4916  1418   25.00000   14   18          -   25.00000      -  11.5   15s
+  5798  1706 infeasible   19               -   25.00000      -  13.1   20s
+  7350  2014   25.00000   32    -          -   25.00000      -  13.5   25s
+  9700  1990   25.00000   43    -          -   25.00000      -  14.1   30s
+ 11754  2973   29.45652   89   22          -   25.00000      -  14.1   35s
+ 14057  4608   25.00000   43   18          -   25.00000      -  14.1   41s
+ 15560  5683   25.00000   49   33          -   25.00000      -  14.0   45s
+ 18323  7639   25.00000   35    8          -   25.00000      -  14.1   51s
+*20104  7475              62      40.0000000   25.00000  37.5%  14.2   55s
+ 21516  8640   25.00000   73   33   40.00000   25.00000  37.5%  14.2   60s
+ 24088 10247   25.00000   51   13   40.00000   25.00000  37.5%  14.2   66s
+ 25622 11277   36.25000  118   12   40.00000   25.00000  37.5%  14.1   71s
+ 27485 12602   34.00000   69   25   40.00000   25.00000  37.5%  14.1   75s
+ 30117 14322   25.00000   94   27   40.00000   25.00000  37.5%  14.1   82s
+ 31818 15521   25.00000   75    -   40.00000   25.00000  37.5%  14.1   86s
+*32938   838              89      25.0000000   25.00000  0.00%  14.1   89s
+
+Cutting planes:
+  Lazy constraints: 3917
+
+Explored 33405 nodes (474833 simplex iterations) in 89.25 seconds (17.33 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 2: 25 40 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.500000000000e+01, best bound 2.500000000000e+01, gap 0.0000%
+
+User-callback calls 70947, time in user-callback 79.85 sec
+
+
+=== Résultat final ===
+Objectif: 25.0
+Temps total du master: 89.1116s
+Temps total du sp: 0.1475s
+Temps total: 89.2591s
+Nombre de coupes: 4811
+Nombre de coupes faisabilité: 836
+Nombre de coupes d'optimalité: 3968
+Nombre de coupes de fixing: 7
+Nombre d'itérations: 1686
