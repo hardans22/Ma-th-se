@@ -39,7 +39,7 @@ write_both(Output_file, "======================= INSTANCE "*inst_name*"=========
 write_both(Output_file, "\nGRAPH RÉDUCTION : "*string(graph_reduc)*"\n")
 
 close(Output_file)
-sp_method = "PD"
+sp_method = "HT"
 cut_type = "desagg"
 instance_data = build_graph(instance)
 solution = benders_decomp(env, instance_data, sp_method, cut_type, path_file, nbr_thread, silent, all_time_limit)
