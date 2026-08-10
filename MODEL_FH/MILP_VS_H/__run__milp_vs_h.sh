@@ -18,13 +18,15 @@ for Fold in "A_MTN_8" "A_MTN_12" "A_MTN_15"; do
     JSON_DIR="/home/danhar/projects/def-mattgru/danhar/Code/INSTANCES/instances_literature_json/${Fold}"
     for json_file in "$JSON_DIR"/*.json; do
         for graph_reduc in false; do
-            if [ $SLURM_ARRAY_TASK_ID -eq $i ]
-            then
-                module load julia
-                module load gurobi
-                julia /home/danhar/projects/def-mattgru/danhar/Code/MODEL_FH/MILP_VS_H/__main__milp_vs_h.jl "$json_file" $graph_reduc
-            fi
-            ((i = $i + 1))
+            for H_name in "BENDERS" "RFFO" 
+                if [ $SLURM_ARRAY_TASK_ID -eq $i ]
+                then
+                    module load julia
+                    module load gurobi
+                    julia /home/danhar/projects/def-mattgru/danhar/Code/MODEL_FH/MILP_VS_H/__main__milp_vs_h.jl "$json_file" $graph_reduc $H_name
+                fi
+                ((i = $i + 1))
+            done
         done
     done
 done

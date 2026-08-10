@@ -1,0 +1,81 @@
+
+======================= INSTANCE 354FL_8A_17 =======================
+
+GRAPH RÉDUCTION : false
+
+Gurobi 13.0.0 (linux64) logging started sam. 08 août 2026 07:17:14
+
+Set parameter LogFile to value "RESULTS_MILP_VS_H/A_MTN_3/result_354FL_8A_17_MILP.txt"
+
+Gurobi 13.0.0 (linux64) logging started sam. 08 août 2026 07:17:17
+
+Set parameter LogFile to value "RESULTS_MILP_VS_H/A_MTN_3/result_354FL_8A_17_MILP.txt"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.4 LTS")
+
+CPU model: Intel(R) Core(TM) Ultra 7 255H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  1.5201
+Threads  8
+
+Optimize a model with 8637 rows, 3754 columns and 37981 nonzeros (Min)
+Model fingerprint: 0x86eb90de
+Model has 199 linear objective coefficients
+Variable types: 563 continuous, 3191 integer (3191 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e+01, 6e+03]
+  RHS range        [1e+00, 6e+03]
+Presolve removed 1297 rows and 514 columns
+Presolve time: 0.12s
+Presolved: 7340 rows, 3240 columns, 49260 nonzeros
+Variable types: 364 continuous, 2876 integer (2874 binary)
+
+Root relaxation: objective 0.000000e+00, 1679 iterations, 0.06 seconds (0.06 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0   27          -    0.00000      -     -    0s
+H    0     0                     420.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0   49  420.00000    0.00000   100%     -    0s
+H    0     0                     310.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0   49  310.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   32  310.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   17  310.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   33  310.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   49  310.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   14  310.00000    0.00000   100%     -    0s
+H    0     0                     170.0000000    0.00000   100%     -    0s
+     0     0    0.00000    0   14  170.00000    0.00000   100%     -    0s
+     0     0    0.00000    0   23  170.00000    0.00000   100%     -    1s
+     0     0    0.00000    0   10  170.00000    0.00000   100%     -    1s
+H    0     0                     160.0000000    0.00000   100%     -    1s
+     0     0    0.00000    0   18  160.00000    0.00000   100%     -    1s
+     0     0    0.00000    0   12  160.00000    0.00000   100%     -    1s
+H    0     0                     130.0000000    0.00000   100%     -    1s
+H    0     0                     125.0000000    0.00000   100%     -    1s
+H    0     0                     120.0000000    0.00000   100%     -    1s
+
+Cutting planes:
+  Learned: 6
+  Cover: 3
+  Implied bound: 1
+  MIR: 17
+  StrongCG: 1
+  RLT: 1
+  Relax-and-lift: 8
+
+Explored 1 nodes (5170 simplex iterations) in 1.60 seconds (1.19 work units)
+Thread count was 8 (of 16 available processors)
+
+Solution count 7: 120 125 130 ... 420
+
+Time limit reached
+Best objective 1.200000000000e+02, best bound 0.000000000000e+00, gap 100.0000%
+
+User-callback calls 661, time in user-callback 0.00 sec
+
+CSV Summary saved to: RESULTS_MILP_VS_H/A_MTN_3/summary_354FL_8A_17_MILP.csv

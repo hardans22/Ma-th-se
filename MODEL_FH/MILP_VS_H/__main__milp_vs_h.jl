@@ -18,10 +18,14 @@ H_name = "RFFO"
 # =============== Sur Nibi ===============
 #instance = ARGS[1]
 #graph_reduc = parse(Bool, ARGS[2])
+#H_name = ARGS[3]
+
 
 # =============== En local sur mon ordi ===============
 inst = ARGS[1]
 instance = "../../INSTANCES/instances_literature_json/"*inst
+H_name = ARGS[2]
+
 
 # ============== Gestion des fichiers et la sortie =================
 parts = split(instance, "/")
@@ -32,11 +36,12 @@ inst_name = splitext(basename(instance))[1]
 
 # ============== Réccupération du temps du RFFO =================
 if H_name == "RFFO"
-    df = CSV.read("RESULTS_RF_FO/"*f_fold*"/summary__RFFO.csv", DataFrame, delim=',')
+    df = CSV.read("RESULTS_RF_FO/"*f_fold*"/summary_RFFO.csv", DataFrame, delim=',')
     rffo_time = df[df.Instances .== inst_name, :RFFO_Time][1]
     time_limit = rffo_time
 elseif H_name == "BENDERS"
-    df = CSV.read("RESULTS_BENDERS/"*f_fold*"/summary__PD.csv", DataFrame, delim=',')
+
+    df = CSV.read("RESULTS_BENDERS/"*f_fold*"/summary_HT.csv", DataFrame, delim=',')
     rffo_time = df[df.Instances .== inst_name, :Time][1]
     time_limit = rffo_time
 end 
